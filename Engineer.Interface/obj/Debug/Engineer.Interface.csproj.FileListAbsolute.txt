@@ -1,0 +1,13 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Interface.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Interface.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Data.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Engine.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Mathematics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.IO.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Data.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Engine.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\bin\Debug\Engineer.IO.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\obj\Debug\Engineer.Interface.csprojResolveAssemblyReference.cache
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\obj\Debug\Engineer.Interface.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Interface\obj\Debug\Engineer.Interface.pdb

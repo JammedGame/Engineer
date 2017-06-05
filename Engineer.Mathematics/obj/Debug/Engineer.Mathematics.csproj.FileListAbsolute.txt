@@ -1,0 +1,5 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.csprojResolveAssemblyReference.cache
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.pdb

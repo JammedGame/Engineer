@@ -1,0 +1,5 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\bin\Debug\Engineer.IO.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\bin\Debug\Engineer.IO.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\obj\Debug\Engineer.IO.csprojResolveAssemblyReference.cache
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\obj\Debug\Engineer.IO.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\obj\Debug\Engineer.IO.pdb
