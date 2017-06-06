@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BulletSharp">
+      <HintPath>..\DLLs\BulletSharp.dll</HintPath>
+    </Reference>
     <Reference Include="opentk">
       <HintPath>..\DLLs\opentk.dll</HintPath>
     </Reference>
@@ -53,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameLogic.cs" />
+    <Compile Include="Physics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
@@ -114,6 +118,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk0b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk1b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk2b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk3b.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -24,3 +24,4 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\obj\Debug\TriHead.Engineer.PlatformerExample.csproj.GenerateResource.Cache
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\obj\Debug\Engineer.PlatformerExample.exe
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\obj\Debug\Engineer.PlatformerExample.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\BulletSharp.dll

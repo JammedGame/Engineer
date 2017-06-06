@@ -92,6 +92,10 @@ namespace Engineer.Engine
             _CurrentSpriteSet = Index;
             _CurrentIndex = 0;
         }
+        public void UpdateSpriteSet(int Index)
+        {
+            if (Index != _CurrentSpriteSet) SetSpriteSet(Index);
+        }
         public int Index()
         {
             int Index = 0;
