@@ -1,5 +1,6 @@
 ﻿using Engineer.Engine;
 using Engineer.Engine.IO;
+using Engineer.Engine.Physics;
 using Engineer.Mathematics;
 using Engineer.Runner;
 using System;
@@ -13,13 +14,13 @@ namespace Engineer.PlatformerExample
 {
     public class GameLogic
     {
-        private int _CharDirection;
         private Point _WindowSize;
         private DrawnSceneObject _Player;
         private Game _CurrentGame;
         private Scene2D _CurrentScene;
         private ExternRunner _Runner;
         private ResourceManager _ResMan;
+        private BulletPhysics _Physics;
         private List<SceneObject> _Colliders;
         public Game CurrentGame
         {
@@ -64,6 +65,7 @@ namespace Engineer.PlatformerExample
         public void Init(Point WindowSize)
         {
             _WindowSize = WindowSize;
+            _Physics = new BulletPhysics();
             _CurrentGame.Scenes.Add(new Scene2D("Default"));
             _CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
             //EFXInterface Interface = new EFXInterface();
@@ -78,7 +80,7 @@ namespace Engineer.PlatformerExample
             _CurrentScene.BackColor = Color.FromArgb(41, 216, 238);
             CreateFloor();
             CreateCharacter();
-
+            _Physics.UpdateScene(_CurrentScene);
             //Interface.Save(_CurrentGame, "Data/game.efx");
         }
         private void CreateFloor()
@@ -89,13 +91,19 @@ namespace Engineer.PlatformerExample
             FloorSprite.SpriteSets.Add(FloorSet);
             FloorSprite.Translation = new Vertex(FloorSprite.Translation.X, _WindowSize.Y - FloorSprite.Scale.Y, FloorSprite.Translation.Z);
             DrawnSceneObject Floor = new DrawnSceneObject("Floor", FloorSprite);
+            Floor.Data["Collision"] = true;
+            Floor.Data["Weight"] = 0;
             for (int i = 0; i < 14; i++)
             {
                 DrawnSceneObject FloorN = new DrawnSceneObject(Floor, _CurrentScene);
+                FloorN.Data["Collision"] = true;
+                FloorN.Data["Weight"] = 0;
                 FloorN.Representation.Translation = new Vertex(FloorN.Representation.Translation.X + i * 98, FloorN.Representation.Translation.Y, FloorN.Representation.Translation.Z);
                 _CurrentScene.AddSceneObject(FloorN);
             }
             DrawnSceneObject FloorU = new DrawnSceneObject(Floor, _CurrentScene);
+            FloorU.Data["Collision"] = true;
+            FloorU.Data["Weight"] = 0;
             FloorU.Representation.Translation = new Vertex(FloorU.Representation.Translation.X + 8 * 98, FloorU.Representation.Translation.Y - 200, FloorU.Representation.Translation.Z);
             _CurrentScene.AddSceneObject(FloorU);
         }
@@ -123,7 +131,11 @@ namespace Engineer.PlatformerExample
             CharSprite.Translation = new Vertex(CharSprite.Translation.X, _WindowSize.Y - CharSprite.Scale.Y - 95, CharSprite.Translation.Z);
             DrawnSceneObject Char = new DrawnSceneObject("Char",CharSprite);
             Char.ParentScene = _CurrentScene;
+            
             _Player = Char;
+            _Player.Data["Direction"] = 0;
+            _Player.Data["Collision"] = true;
+            _Player.Data["Weight"] = 50;
             Char.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
             _CurrentScene.AddSceneObject(Char);
         }
@@ -131,17 +143,26 @@ namespace Engineer.PlatformerExample
         {
             if (E.KeyDown == KeyType.D)
             {
-                _CharDirection = 0;
+                _Player.Data["Direction"] = 0;
                 Sprite PlayerSprite = _Player.Representation as Sprite;
                 PlayerSprite.UpdateSpriteSet(2);
-                PlayerSprite.Translation = new Vertex(PlayerSprite.Translation.X + 5, PlayerSprite.Translation.Y, PlayerSprite.Translation.Z);
+                Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
+                _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(3, Velocities.Y, 0));
             }
             if (E.KeyDown == KeyType.A)
             {
-                _CharDirection = 1;
+                _Player.Data["Direction"] = 1;
                 Sprite PlayerSprite = _Player.Representation as Sprite;
                 PlayerSprite.UpdateSpriteSet(3);
-                PlayerSprite.Translation = new Vertex(PlayerSprite.Translation.X - 5, PlayerSprite.Translation.Y, PlayerSprite.Translation.Z);
+                Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
+                _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(-3, Velocities.Y, 0));
+            }
+            if (E.KeyDown == KeyType.Space)
+            {
+                Sprite PlayerSprite = _Player.Representation as Sprite;
+                PlayerSprite.UpdateSpriteSet(0 + (int)_Player.Data["Direction"]);
+                Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
+                _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(Velocities.X, 10f, 0));
             }
         }
         private void KeyDownEvent(Game G, EventArguments E)
@@ -153,16 +174,17 @@ namespace Engineer.PlatformerExample
             if (E.KeyDown == KeyType.D || E.KeyDown == KeyType.A)
             {
                 Sprite PlayerSprite = _Player.Representation as Sprite;
-                PlayerSprite.UpdateSpriteSet(0 + _CharDirection);
+                PlayerSprite.UpdateSpriteSet(0 + (int)_Player.Data["Direction"]);
+                Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
+                _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(0, Velocities.Y, 0));
             }
         }
         private void MouseClickEvent(Game G, EventArguments E)
         {
-
         }
         private void GameUpdateEvent(Game G, EventArguments E)
         {
-
+            _Physics.RunSimulation();
         }
         private void MouseMoveEvent(Game G, EventArguments E)
         {

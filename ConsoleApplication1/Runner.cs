@@ -21,6 +21,7 @@ namespace Engineer.Runner
 {
     public class Runner : OpenTK.GameWindow
     {
+        private int _Seed;
         protected bool _GameInit;
         protected bool _EngineInit;
         protected Timer _Time;
@@ -29,9 +30,10 @@ namespace Engineer.Runner
         protected DrawEngine _Engine;
         public Runner(int width, int height, GraphicsMode mode, string title) : base(width, height, mode, title)
         {
+            this._Seed = 0;
             this._GameInit = false;
             this._EngineInit = false;
-            this._Time = new Timer(100);
+            this._Time = new Timer(33);
             this._Time.Elapsed += Event_TimerTick;
             this._Time.AutoReset = true;
         }
@@ -258,7 +260,8 @@ namespace Engineer.Runner
         }
         private void Event_TimerTick(object sender, ElapsedEventArgs e)
         {
-            if (_CurrentScene.Type == SceneType.Scene2D)
+            this._Seed++;
+            if (_CurrentScene.Type == SceneType.Scene2D && _Seed % 3 == 0)
             {
                 Scene2D C2DS = (Scene2D)_CurrentScene;
                 for (int i = 0; i < C2DS.Sprites.Count; i++)

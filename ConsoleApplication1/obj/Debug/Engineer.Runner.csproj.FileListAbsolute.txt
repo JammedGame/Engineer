@@ -1,8 +1,6 @@
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engineer.Runner.exe.config
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engineer.Runner.exe
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engineer.Runner.pdb
-C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\CSSCodeProvider.v3.5.dll
-C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\CSScriptLibrary.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engineer.Data.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engineer.Draw.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engineer.Draw.OpenGL.dll
@@ -20,3 +18,5 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engi
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\obj\Debug\Engineer.Runner.csprojResolveAssemblyReference.cache
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\obj\Debug\Engineer.Runner.exe
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\obj\Debug\Engineer.Runner.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\Engineer.Draw.OpenGL.dll.config
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\ConsoleApplication1\bin\Debug\OpenTK.xml

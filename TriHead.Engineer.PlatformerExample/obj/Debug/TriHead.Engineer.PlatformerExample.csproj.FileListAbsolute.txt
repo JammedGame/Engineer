@@ -9,7 +9,6 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Mathematics.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Runner.exe
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\opentk.dll
-C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\OpenTK.GLControl.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\CSScriptLibrary.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Runner.pdb
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Data.pdb
@@ -28,3 +27,7 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Engine.IO.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Engine.IO.pdb
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Runner.exe.config
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Engine.Physics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Engine.Physics.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Draw.OpenGL.dll.config
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\OpenTK.xml

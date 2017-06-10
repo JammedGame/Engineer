@@ -63,6 +63,16 @@ namespace Engineer.PlatformerExample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _412 {
+            get {
+                object obj = ResourceManager.GetObject("_412", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap floor {
             get {
                 object obj = ResourceManager.GetObject("floor", resourceCulture);

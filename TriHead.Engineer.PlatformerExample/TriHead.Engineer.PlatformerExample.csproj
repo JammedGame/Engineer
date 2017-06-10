@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,11 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BulletSharp">
-      <HintPath>..\DLLs\BulletSharp.dll</HintPath>
+    <Reference Include="BulletSharp, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BulletSharp.0.9\lib\net40-client\BulletSharp.dll</HintPath>
     </Reference>
-    <Reference Include="opentk">
-      <HintPath>..\DLLs\opentk.dll</HintPath>
+    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK.GLControl">
       <HintPath>..\DLLs\OpenTK.GLControl.dll</HintPath>
@@ -56,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameLogic.cs" />
-    <Compile Include="Physics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
@@ -70,6 +71,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,6 +102,10 @@
     <ProjectReference Include="..\Engineer.Engine.IO\Engineer.Engine.IO.csproj">
       <Project>{f07efd68-8268-436a-8917-95284792bad5}</Project>
       <Name>Engineer.Engine.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.Engine.Physics\Engineer.Engine.Physics.csproj">
+      <Project>{e1479ae4-2040-4c81-998a-5d067ef5f70d}</Project>
+      <Name>Engineer.Engine.Physics</Name>
     </ProjectReference>
     <ProjectReference Include="..\Engineer.Engine\Engineer.Engine.csproj">
       <Project>{efb51f33-46a8-4367-a8a3-9e647ca6bbe7}</Project>
@@ -147,7 +154,17 @@
   <ItemGroup>
     <None Include="Resources\walk3b.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\412.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\BulletSharp.0.9\build\net40-client\BulletSharp.targets" Condition="Exists('..\packages\BulletSharp.0.9\build\net40-client\BulletSharp.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\BulletSharp.0.9\build\net40-client\BulletSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BulletSharp.0.9\build\net40-client\BulletSharp.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
