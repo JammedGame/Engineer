@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engineer.Interface", "Engin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriHead.Engineer.PlatformerExample", "TriHead.Engineer.PlatformerExample\TriHead.Engineer.PlatformerExample.csproj", "{FEC0B776-DEE3-4EE5-A3D8-95368E42DCE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engineer.Engine.IO", "Engineer.Engine.IO\Engineer.Engine.IO.csproj", "{F07EFD68-8268-436A-8917-95284792BAD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{FEC0B776-DEE3-4EE5-A3D8-95368E42DCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEC0B776-DEE3-4EE5-A3D8-95368E42DCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC0B776-DEE3-4EE5-A3D8-95368E42DCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F07EFD68-8268-436A-8917-95284792BAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F07EFD68-8268-436A-8917-95284792BAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F07EFD68-8268-436A-8917-95284792BAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F07EFD68-8268-436A-8917-95284792BAD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +99,6 @@ Global
 		{E609EBC6-3B93-4386-A4A2-F96C00B376E7} = {096144DF-7C41-4FFD-89A2-1A057F756C09}
 		{71F8AAD9-38BC-4115-AEFB-350CCBF9D06F} = {87362F9D-79EB-4DBF-9675-7BD845676AD8}
 		{EFB51F33-46A8-4367-A8A3-9E647CA6BBE7} = {EB5EFF97-F476-4477-B46B-98A824A01F96}
+		{F07EFD68-8268-436A-8917-95284792BAD5} = {EB5EFF97-F476-4477-B46B-98A824A01F96}
 	EndGlobalSection
 EndGlobal

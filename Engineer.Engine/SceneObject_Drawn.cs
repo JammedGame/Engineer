@@ -17,6 +17,7 @@ namespace Engineer.Engine
     public class DrawnSceneObject : SceneObject
     {
         private DrawObject _Representation;
+        [XmlIgnore]
         public DrawObject Representation
         {
             get

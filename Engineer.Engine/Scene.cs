@@ -13,9 +13,6 @@ namespace Engineer.Engine
         Scene2D = 0,
         Scene3D = 1
     }
-    [XmlInclude(typeof(SceneObject))]
-    [XmlInclude(typeof(ScriptSceneObject))]
-    [XmlInclude(typeof(DrawnSceneObject))]
     public class Scene
     {
         private string _ID;
@@ -61,7 +58,6 @@ namespace Engineer.Engine
                 _Type = value;
             }
         }
-        [XmlIgnore]
         public Color BackColor
         {
             get
@@ -74,6 +70,7 @@ namespace Engineer.Engine
                 _BackColor = value;
             }
         }
+        [XmlIgnore]
         public EventsPackage Events
         {
             get
@@ -86,6 +83,7 @@ namespace Engineer.Engine
                 _Events = value;
             }
         }
+        [XmlIgnore]
         public List<SceneObject> Objects
         {
             get
@@ -125,6 +123,7 @@ namespace Engineer.Engine
                 }
             }
         }
+        [XmlIgnore]
         public List<ScriptSceneObject> Scripts
         {
             get

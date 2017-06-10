@@ -96,6 +96,10 @@
       <Project>{cb524cc3-ddad-4e7f-8112-253896a2857c}</Project>
       <Name>Engineer.Draw</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Engineer.Engine.IO\Engineer.Engine.IO.csproj">
+      <Project>{f07efd68-8268-436a-8917-95284792bad5}</Project>
+      <Name>Engineer.Engine.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Engineer.Engine\Engineer.Engine.csproj">
       <Project>{efb51f33-46a8-4367-a8a3-9e647ca6bbe7}</Project>
       <Name>Engineer.Engine</Name>

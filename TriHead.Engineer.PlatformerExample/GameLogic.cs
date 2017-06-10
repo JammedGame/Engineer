@@ -1,4 +1,5 @@
 ﻿using Engineer.Engine;
+using Engineer.Engine.IO;
 using Engineer.Mathematics;
 using Engineer.Runner;
 using System;
@@ -65,6 +66,9 @@ namespace Engineer.PlatformerExample
             _WindowSize = WindowSize;
             _CurrentGame.Scenes.Add(new Scene2D("Default"));
             _CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
+            //EFXInterface Interface = new EFXInterface();
+            //_CurrentGame = (Game)Interface.Load("Data/game.efx");
+            //_CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
             _CurrentScene.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
             _CurrentScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
             _CurrentScene.Events.Extern.KeyUp += new GameEventHandler(KeyUpEvent);
@@ -74,6 +78,8 @@ namespace Engineer.PlatformerExample
             _CurrentScene.BackColor = Color.FromArgb(41, 216, 238);
             CreateFloor();
             CreateCharacter();
+
+            //Interface.Save(_CurrentGame, "Data/game.efx");
         }
         private void CreateFloor()
         {

@@ -61,6 +61,7 @@
     <Compile Include="DrawObject_Sprite.cs" />
     <Compile Include="SceneObject_Script.cs" />
     <Compile Include="ScriptArgumentStructures.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ValueHolder.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@ namespace Engineer.Engine
                 _Name = value;
             }
         }
+        [XmlIgnore]
         public List<SceneObject> Assets
         {
             get
@@ -40,6 +41,7 @@ namespace Engineer.Engine
                 _Assets = value;
             }
         }
+        [XmlIgnore]
         public List<Scene> Scenes
         {
             get

@@ -28,6 +28,7 @@ namespace Engineer.Engine
                 _Modified = value;
             }
         }
+        [XmlIgnore]
         public List<SpriteSet> SpriteSets
         {
             get
@@ -40,6 +41,7 @@ namespace Engineer.Engine
                 _SpriteSets = value;
             }
         }
+        [XmlIgnore]
         public List<Sprite> SubSprites
         {
             get

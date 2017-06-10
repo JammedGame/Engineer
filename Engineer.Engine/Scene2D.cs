@@ -11,7 +11,6 @@ namespace Engineer.Engine
 {
     public class Scene2D : Scene
     {
-        [XmlIgnore]
         private Scene2DTransformation _Transformation;
         public Scene2DTransformation Transformation
         {

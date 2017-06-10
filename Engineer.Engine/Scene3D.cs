@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Engineer.Engine
 {
@@ -34,6 +35,7 @@ namespace Engineer.Engine
                 _ActiveCamera = value;
             }
         }
+        [XmlIgnore]
         public List<Actor> Actors
         {
             get
@@ -47,6 +49,7 @@ namespace Engineer.Engine
                 return NewList;
             }
         }
+        [XmlIgnore]
         public List<Light> Lights
         {
             get
@@ -60,6 +63,7 @@ namespace Engineer.Engine
                 return NewList;
             }
         }
+        [XmlIgnore]
         public List<Camera> Cameras
         {
             get
@@ -73,6 +77,7 @@ namespace Engineer.Engine
                 return NewList;
             }
         }
+        [XmlIgnore]
         public Background Background
         {
             get
