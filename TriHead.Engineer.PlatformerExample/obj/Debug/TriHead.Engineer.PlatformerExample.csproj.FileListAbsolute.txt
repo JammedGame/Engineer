@@ -27,3 +27,4 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\BulletSharp.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Engine.IO.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Engine.IO.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\bin\Debug\Engineer.Runner.exe.config
