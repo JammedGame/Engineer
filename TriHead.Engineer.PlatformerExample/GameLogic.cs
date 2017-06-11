@@ -68,7 +68,7 @@ namespace Engineer.PlatformerExample
             _Physics = new BulletPhysics();
             _CurrentGame.Scenes.Add(new Scene2D("Default"));
             _CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
-            //EFXInterface Interface = new EFXInterface();
+            EFXInterface Interface = new EFXInterface();
             //_CurrentGame = (Game)Interface.Load("Data/game.efx");
             //_CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
             _CurrentScene.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
@@ -81,31 +81,120 @@ namespace Engineer.PlatformerExample
             CreateFloor();
             CreateCharacter();
             _Physics.UpdateScene(_CurrentScene);
-            //Interface.Save(_CurrentGame, "Data/game.efx");
+            Interface.Save(_CurrentGame, "Data/game.efx");
         }
         private void CreateFloor()
         {
-            SpriteSet FloorSet = new SpriteSet("Idle");
-            FloorSet.Sprite.Add(global::Engineer.PlatformerExample.Properties.Resources.floor);
+            SpriteSet FloorSet1 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._1);
+            SpriteSet FloorSet2 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._2);
+            SpriteSet FloorSet3 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._3);
+            SpriteSet FloorSet4 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._13);
+            SpriteSet FloorSet5 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._14);
+            SpriteSet FloorSet6 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._15);
+            SpriteSet FloorSet7 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._17);
+            SpriteSet FloorSet8 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources.Sign_2);
+            SpriteSet FloorSet9 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources.Bush__1_);
+            SpriteSet FloorSet10 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources.Tree_2);
             Sprite FloorSprite = new Sprite();
-            FloorSprite.SpriteSets.Add(FloorSet);
+            FloorSprite.SpriteSets.Add(FloorSet1);
+            FloorSprite.SpriteSets.Add(FloorSet2);
+            FloorSprite.SpriteSets.Add(FloorSet3);
+            FloorSprite.SpriteSets.Add(FloorSet4);
+            FloorSprite.SpriteSets.Add(FloorSet5);
+            FloorSprite.SpriteSets.Add(FloorSet6);
+            FloorSprite.SpriteSets.Add(FloorSet7);
+            FloorSprite.SpriteSets.Add(FloorSet8);
+            FloorSprite.SpriteSets.Add(FloorSet9);
+            FloorSprite.SpriteSets.Add(FloorSet10);
             FloorSprite.Translation = new Vertex(FloorSprite.Translation.X, _WindowSize.Y - FloorSprite.Scale.Y, FloorSprite.Translation.Z);
-            DrawnSceneObject Floor = new DrawnSceneObject("Floor", FloorSprite);
-            Floor.Data["Collision"] = true;
-            Floor.Data["Weight"] = 0;
-            for (int i = 0; i < 14; i++)
+            DrawnSceneObject FloorC = new DrawnSceneObject("Floor", FloorSprite);
+            FloorC.Data["Collision"] = true;
+            FloorC.Data["Weight"] = 0;
+            DrawnSceneObject FloorNC = new DrawnSceneObject("Floor", FloorSprite);
+
+            DrawnSceneObject Floor = null;
+
+            Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(100, 580, 0);
+            Floor.Representation.Scale = new Vertex(100, 100, 0);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(7);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(600, 380, 0);
+            Floor.Representation.Scale = new Vertex(200, 100, 0);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(8);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(1000, 380, 0);
+            Floor.Representation.Scale = new Vertex(300, 300, 0);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(9);
+            _CurrentScene.AddSceneObject(Floor);
+
+            for (int i = 0; i < 10; i++)
             {
-                DrawnSceneObject FloorN = new DrawnSceneObject(Floor, _CurrentScene);
-                FloorN.Data["Collision"] = true;
-                FloorN.Data["Weight"] = 0;
-                FloorN.Representation.Translation = new Vertex(FloorN.Representation.Translation.X + i * 98, FloorN.Representation.Translation.Y, FloorN.Representation.Translation.Z);
-                _CurrentScene.AddSceneObject(FloorN);
+                Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
+                Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + (2 + i) * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
+                ((Sprite)Floor.Representation).UpdateSpriteSet(6);
+                _CurrentScene.AddSceneObject(Floor);
             }
-            DrawnSceneObject FloorU = new DrawnSceneObject(Floor, _CurrentScene);
-            FloorU.Data["Collision"] = true;
-            FloorU.Data["Weight"] = 0;
-            FloorU.Representation.Translation = new Vertex(FloorU.Representation.Translation.X + 8 * 98, FloorU.Representation.Translation.Y - 200, FloorU.Representation.Translation.Z);
-            _CurrentScene.AddSceneObject(FloorU);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 1 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 2 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(2);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 4 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(3);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 5 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(4);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 6 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(4);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 7 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(4);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 8 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(5);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 11 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(0);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 12 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            _CurrentScene.AddSceneObject(Floor);
+
+            Floor = new DrawnSceneObject(FloorC, _CurrentScene);
+            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 13 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
+            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            _CurrentScene.AddSceneObject(Floor);
+
+            
         }
         private void CreateCharacter()
         {
@@ -162,7 +251,7 @@ namespace Engineer.PlatformerExample
                 Sprite PlayerSprite = _Player.Representation as Sprite;
                 PlayerSprite.UpdateSpriteSet(0 + (int)_Player.Data["Direction"]);
                 Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
-                _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(Velocities.X, 10f, 0));
+                _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(Velocities.X, 8f, 0));
             }
         }
         private void KeyDownEvent(Game G, EventArguments E)

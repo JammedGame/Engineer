@@ -163,6 +163,13 @@ namespace Engineer.Engine
             this._Name = Name;
             this._Sprites = new List<Bitmap>();
         }
+        public SpriteSet(string Name, Bitmap SpriteImage)
+        {
+            this._ID = Guid.NewGuid().ToString();
+            this._Name = Name;
+            this._Sprites = new List<Bitmap>();
+            this._Sprites.Add(SpriteImage);
+        }
         public SpriteSet(SpriteSet SS)
         {
             this._ID = SS._ID;
