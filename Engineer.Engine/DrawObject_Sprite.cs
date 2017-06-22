@@ -108,6 +108,8 @@ namespace Engineer.Engine
             Index += _CurrentIndex;
             return Index;
         }
+        public int IO_CurrentSpriteSet
+        { get => _CurrentSpriteSet; set => _CurrentSpriteSet = value; }
     }
     public class SpriteSet
     {

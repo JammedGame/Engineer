@@ -33,8 +33,8 @@ namespace Engineer.Draw.OpenGL
                 GL.TexEnv(TextureEnvTarget.TextureEnv, TextureEnvParameter.TextureEnvMode, (float)TextureEnvMode.Modulate);
                 GL.TexParameter(TextureTarget.Texture2DArray, TextureParameterName.TextureWrapS, (float)All.Clamp);
                 GL.TexParameter(TextureTarget.Texture2DArray, TextureParameterName.TextureWrapT, (float)All.Clamp);
-                GL.TexParameter(TextureTarget.Texture2DArray, TextureParameterName.TextureMagFilter, (float)All.Nearest);
-                GL.TexParameter(TextureTarget.Texture2DArray, TextureParameterName.TextureMinFilter, (float)All.Nearest);
+                GL.TexParameter(TextureTarget.Texture2DArray, TextureParameterName.TextureMagFilter, (float)All.Linear);
+                GL.TexParameter(TextureTarget.Texture2DArray, TextureParameterName.TextureMinFilter, (float)All.Linear);
                 GL.PixelStore(PixelStoreParameter.UnpackAlignment, 1);
                 _BufferPointer = GCHandle.Alloc(this._Textures, GCHandleType.Pinned);
                 IntPtr TextureBuffer = _BufferPointer.AddrOfPinnedObject();

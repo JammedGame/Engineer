@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DictionaryEntry.cs" />
     <Compile Include="DrawObject_Actor.cs" />
     <Compile Include="DrawObject_Background.cs" />
     <Compile Include="DrawObject_Camera.cs" />

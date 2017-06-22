@@ -17,6 +17,7 @@ namespace Engineer.Engine
         ScriptSceneObject = 2,
         SoundSceneObject = 3
     }
+    [XmlInclude(typeof(DictionaryEntry))]
     public class SceneObject
     {
         private string _Name;
@@ -99,21 +100,26 @@ namespace Engineer.Engine
                 _Data = value;
             }
         }
-        public List<KeyValuePair<string, object>> IO_DataList
+        public List<DictionaryEntry> IO_DataList
         {
             get
             {
                 if (_Data == null) return null;
-                List<KeyValuePair<string, object>> NewList = _Data.ToList();
-                return NewList;
+                List<DictionaryEntry> Entries = new List<DictionaryEntry>(_Data.Count);
+                foreach (string Key in _Data.Keys)
+                {
+                    Entries.Add(new DictionaryEntry(Key, _Data[Key]));
+                }            
+                return Entries;
             }
             set
             {
-                foreach (KeyValuePair<string, object> Pair in value)
+                Console.WriteLine("test");
+                foreach (DictionaryEntry Pair in value)
                 {
                     if (!_Data.ContainsKey(Pair.Key))
                     {
-                        _Data.Add(Pair.Key, Pair.Value);
+                        _Data[Pair.Key] = Pair.Value;
                     }
                 }
             }

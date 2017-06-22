@@ -66,11 +66,11 @@ namespace Engineer.PlatformerExample
         {
             _WindowSize = WindowSize;
             _Physics = new BulletPhysics();
-            _CurrentGame.Scenes.Add(new Scene2D("Default"));
-            _CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
+            
             EFXInterface Interface = new EFXInterface();
             //_CurrentGame = (Game)Interface.Load("Data/game.efx");
-            //_CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
+            _CurrentGame.Scenes.Add(new Scene2D("Default"));
+            _CurrentScene = (Scene2D)_CurrentGame.Scenes[0];
             _CurrentScene.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
             _CurrentScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
             _CurrentScene.Events.Extern.KeyUp += new GameEventHandler(KeyUpEvent);
@@ -78,6 +78,7 @@ namespace Engineer.PlatformerExample
             _CurrentScene.Events.Extern.MouseMove += new GameEventHandler(MouseMoveEvent);
             _CurrentScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
             _CurrentScene.BackColor = Color.FromArgb(41, 216, 238);
+            //_Player = (DrawnSceneObject)_CurrentScene.Objects[_CurrentScene.Objects.Count - 1];
             CreateFloor();
             CreateCharacter();
             _Physics.UpdateScene(_CurrentScene);
@@ -85,6 +86,14 @@ namespace Engineer.PlatformerExample
         }
         private void CreateFloor()
         {
+            SpriteSet BackSet = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources.BG);
+            Sprite BackSprite = new Sprite();
+            BackSprite.SpriteSets.Add(BackSet);
+            BackSprite.Translation = new Vertex();
+            BackSprite.Scale = new Vertex(1920, 1080, 0);
+            DrawnSceneObject Back = new DrawnSceneObject("Back", BackSprite);
+            _CurrentScene.AddSceneObject(Back);
+
             SpriteSet FloorSet1 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._1);
             SpriteSet FloorSet2 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._2);
             SpriteSet FloorSet3 = new SpriteSet("Tile", global::Engineer.PlatformerExample.Properties.Resources._3);
@@ -224,7 +233,7 @@ namespace Engineer.PlatformerExample
             _Player = Char;
             _Player.Data["Direction"] = 0;
             _Player.Data["Collision"] = true;
-            _Player.Data["Weight"] = 50;
+            _Player.Data["Weight"] = 100;
             Char.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
             _CurrentScene.AddSceneObject(Char);
         }
