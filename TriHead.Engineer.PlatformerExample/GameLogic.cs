@@ -82,7 +82,7 @@ namespace Engineer.PlatformerExample
             CreateFloor();
             CreateCharacter();
             _Physics.UpdateScene(_CurrentScene);
-            Interface.Save(_CurrentGame, "Data/game.efx");
+            //Interface.Save(_CurrentGame, "Data/game.efx");
         }
         private void CreateFloor()
         {
