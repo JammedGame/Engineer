@@ -95,15 +95,6 @@ namespace GameJam.FrogShift
 
         private void KeyDownEvent(Game G, EventArguments E)
         {
-            if (E.KeyDown == KeyType.Space && Convert.ToInt32(_Player.Data["skokBrojac"]) < 1)
-            {
-
-                _Player.Data["skokBrojac"] = 25;
-            }
-            if (E.KeyDown == KeyType.Escape)
-            {
-                Runner.Close();
-            }
             if (E.KeyDown == KeyType.A)
             {
                 moveLeft();
@@ -111,6 +102,17 @@ namespace GameJam.FrogShift
             if (E.KeyDown == KeyType.D)
             {
                 moveRight();
+            }
+            if (E.KeyDown == KeyType.Space)
+            {
+                if (Convert.ToInt32(_Player.Data["skokBrojac"]) < 1)
+                {
+                    _Player.Data["skokBrojac"] = 25;
+                }
+            }
+            if (E.KeyDown == KeyType.Escape)
+            {
+                Runner.Close();
             }
         }
 
@@ -127,7 +129,6 @@ namespace GameJam.FrogShift
             lastPos.X += 2;
             _Player.Representation.Translation = lastPos;
         }
-
         private void moveLeft()
         {
             Vertex lastPos = _Player.Representation.Translation;
