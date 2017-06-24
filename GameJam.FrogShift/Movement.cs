@@ -27,7 +27,7 @@ namespace GameJam.FrogShift
             {
                 if (Convert.ToBoolean(_Player.Data["flying"]))
                 {
-                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - 3, _Player.Representation.Translation.Y, 0);
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - 6, _Player.Representation.Translation.Y, 0);
                     Character.UpdateLegs(_Player);
                 }
             }
@@ -35,7 +35,7 @@ namespace GameJam.FrogShift
             {
                 if (Convert.ToBoolean(_Player.Data["flying"]))
                 {
-                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + 3, _Player.Representation.Translation.Y, 0);
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + 6, _Player.Representation.Translation.Y, 0);
                     Character.UpdateLegs(_Player);
                 }
             }

@@ -16,7 +16,7 @@ namespace GameJam.FrogShift
         }
         private static DrawnSceneObject CreateCharacter(Scene2D CScene)
         {
-            DrawnSceneObject LL = CreateLeg("LeftLeg", "leva_noga", new Vertex(22, -50, 0));
+            DrawnSceneObject LL = CreateLeg("LeftLeg", "leva_noga", new Vertex(40, -88, 0));
             CScene.AddSceneObject(LL);
 
             SpriteSet IdleSet = new SpriteSet("Idle");
@@ -32,7 +32,7 @@ namespace GameJam.FrogShift
 
             CScene.AddSceneObject(Char);
 
-            DrawnSceneObject RL = CreateLeg("RightLeg", "desna_noga", new Vertex(-22, -50, 0));
+            DrawnSceneObject RL = CreateLeg("RightLeg", "desna_noga", new Vertex(-40, -88, 0));
             CScene.AddSceneObject(RL);
 
             Char.Data["RL"] = RL;
@@ -42,6 +42,7 @@ namespace GameJam.FrogShift
         }
         private static DrawnSceneObject CreateLeg(string Name, string ResName, Vertex Offset)
         {
+            Offset = new Vertex(Offset.X * GameLogic._GlobalScale, Offset.Y * GameLogic._GlobalScale, 0);
             SpriteSet IdleSet = new SpriteSet("Idle");
             IdleSet.Sprite.Add(ResourceManager.Images[ResName + 1]);
             SpriteSet JumpSet = new SpriteSet("Jump");
