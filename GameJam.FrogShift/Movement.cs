@@ -28,6 +28,7 @@ namespace GameJam.FrogShift
                 if (Convert.ToBoolean(_Player.Data["flying"]))
                 {
                     _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - 3, _Player.Representation.Translation.Y, 0);
+                    Character.UpdateLegs(_Player);
                 }
             }
             if (E.KeyDown == KeyType.D)
@@ -35,6 +36,7 @@ namespace GameJam.FrogShift
                 if (Convert.ToBoolean(_Player.Data["flying"]))
                 {
                     _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + 3, _Player.Representation.Translation.Y, 0);
+                    Character.UpdateLegs(_Player);
                 }
             }
             if (E.KeyDown == KeyType.Space)
@@ -44,6 +46,8 @@ namespace GameJam.FrogShift
                     _Player.Data["skokBrojac"] = 25;
                     _Player.Data["flying"] = true;
                     ((Sprite)(_Player.Representation)).SetSpriteSet(1);
+                    ((Sprite)(((DrawnSceneObject)(_Player.Data["LL"])).Representation)).SetSpriteSet(1);
+                    ((Sprite)(((DrawnSceneObject)(_Player.Data["RL"])).Representation)).SetSpriteSet(1);
                 }
             }
             if (E.KeyDown == KeyType.Escape)
@@ -132,6 +136,8 @@ namespace GameJam.FrogShift
                 {
                     _Player.Data["flying"] = false;
                     ((Sprite)(_Player.Representation)).SetSpriteSet(0);
+                    ((Sprite)(((DrawnSceneObject)(_Player.Data["LL"])).Representation)).SetSpriteSet(0);
+                    ((Sprite)(((DrawnSceneObject)(_Player.Data["RL"])).Representation)).SetSpriteSet(0);
                     _Player.Data["padBrojac"] = 0;
                 }
             }
