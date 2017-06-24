@@ -1,7 +1,9 @@
 ﻿using Engineer.Engine;
+using Engineer.Mathematics;
 using Engineer.Runner;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,15 @@ namespace GameJam.FrogShift
             this._Runner = NewRunner;
             this._CGame = NewGame;
             this._CScene = CurrentScene;
+        }
+        private void CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size)
+        {
+            SpriteSet StaticSet = new SpriteSet("Static", Image);
+            Sprite StaticSprite = new Sprite();
+            StaticSprite.SpriteSets.Add(StaticSet);
+            StaticSprite.Translation = Positon;
+            StaticSprite.Scale = Size;
+            DrawnSceneObject Static = new DrawnSceneObject(Name, StaticSprite);
         }
     }
 }
