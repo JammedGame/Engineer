@@ -69,11 +69,16 @@ namespace GameJam.FrogShift
 
         private void CreateFloor()
         {
+            int[] LilipadsX = new int[] { 0, 200, 450, 600, 800 };
+
             DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.BG, new Vertex(0, 0, 0), new Vertex(Runner.Width, Runner.Height, 0));
             _CScene.AddSceneObject(Back);
 
-            DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor1", global::GameJam.FrogShift.Properties.Resources._2, new Vertex(0, 425, 0), new Vertex(100, 50, 0));
-            _CScene.AddSceneObject(Floor);
+            for (int i = 0; i < LilipadsX.Length; i++)
+            {
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor"+i, global::GameJam.FrogShift.Properties.Resources._2, new Vertex(LilipadsX[i], 425, 0), new Vertex(100, 50, 0));
+                _CScene.AddSceneObject(Floor);
+            }
 
             DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 450, 0), new Vertex(1024, 1000, 0));
             _CScene.AddSceneObject(Water);
