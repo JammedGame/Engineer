@@ -13,6 +13,7 @@ namespace GameJam.FrogShift
 {
     public class GameLogic
     {
+        private static float _GlobalScale;
         private DrawnSceneObject _Player;
         private Runner _Runner;
         private Game _CGame;
@@ -29,6 +30,7 @@ namespace GameJam.FrogShift
         }
         public void Init(Runner NewRunner, Game NewGame, Scene CurrentScene)
         {
+            GameLogic._GlobalScale = NewRunner.Height / 1080.0f;
             this._Runner = NewRunner;            
             this._CGame = NewGame;
             this._CScene = CurrentScene;
@@ -58,7 +60,8 @@ namespace GameJam.FrogShift
             CharSprite.SpriteSets.Add(IdleBSet);
             CharSprite.SpriteSets.Add(WalkSet);
             CharSprite.SpriteSets.Add(WalkBSet);
-            CharSprite.Translation = new Vertex(CharSprite.Translation.X, Runner.Height - CharSprite.Scale.Y - 175, 0);
+            CharSprite.Translation = new Vertex(200 * GameLogic._GlobalScale, 600 * GameLogic._GlobalScale, 0);
+            CharSprite.Scale = new Vertex(200 * GameLogic._GlobalScale, 200 * GameLogic._GlobalScale, 0);
             DrawnSceneObject Char = new DrawnSceneObject("Char", CharSprite);
 
             _Player = Char;
@@ -73,19 +76,19 @@ namespace GameJam.FrogShift
 
         private void CreateFloor()
         {
-            int[] LilipadsX = new int[] { 0, 200, 450, 600, 800 };
+            int[] LilipadsX = new int[] { 200, 600, 1000, 1400, 1800 };
 
-            DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.BG, new Vertex(0, 0, 0), new Vertex(Runner.Width, Runner.Height, 0));
+            DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.BG, new Vertex(0, 0, 0), new Vertex(Runner.Width, Runner.Height, 0), false);
             _CScene.AddSceneObject(Back);
 
             for (int i = 0; i < LilipadsX.Length; i++)
             {
-                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor"+i, global::GameJam.FrogShift.Properties.Resources._2, new Vertex(LilipadsX[i], 425, 0), new Vertex(100, 50, 0));
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor"+i, global::GameJam.FrogShift.Properties.Resources._2, new Vertex(LilipadsX[i], 800, 0), new Vertex(200, 100, 0));
                 _CScene.AddSceneObject(Floor);
                 _Colliders.Add(Floor);
             }
 
-            DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 450, 0), new Vertex(1024, 1000, 0));
+            DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 850, 0), new Vertex(1920, 1080, 0));
             _CScene.AddSceneObject(Water);
         }
 
@@ -96,7 +99,10 @@ namespace GameJam.FrogShift
 
                 _Player.Data["skokBrojac"] = 25;
             }
-
+            if (E.KeyDown == KeyType.Escape)
+            {
+                Runner.Close();
+            }
         }
 
         private void GameUpdateEvent(Game G, EventArguments E)
@@ -104,8 +110,13 @@ namespace GameJam.FrogShift
 
             CheckCollision();
         }
-        public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size)
+        public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
         {
+            if (ApplyGlobalScale)
+            {
+                Positon = new Vertex(Positon.X * GameLogic._GlobalScale, Positon.Y * GameLogic._GlobalScale, 0);
+                Size = new Vertex(Size.X * GameLogic._GlobalScale, Size.Y * GameLogic._GlobalScale, 0);
+            }
             SpriteSet StaticSet = new SpriteSet("Static", Image);
             Sprite StaticSprite = new Sprite();
             StaticSprite.SpriteSets.Add(StaticSet);

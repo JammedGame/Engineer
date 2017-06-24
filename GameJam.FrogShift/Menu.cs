@@ -16,10 +16,10 @@ namespace GameJam.FrogShift
         {
             Scene2D MenuScene = new Scene2D("Menu");
             MenuScene.BackColor = Color.FromArgb(41, 216, 238);
-            SceneObject Play = GameLogic.CreateStaticSprite("Play", global::GameJam.FrogShift.Properties.Resources.play, new Engineer.Mathematics.Vertex(350, 200, 0), new Engineer.Mathematics.Vertex(300, 60, 0));
+            SceneObject Play = GameLogic.CreateStaticSprite("Play", global::GameJam.FrogShift.Properties.Resources.play, new Engineer.Mathematics.Vertex(350, 200, 0), new Engineer.Mathematics.Vertex(300, 60, 0), false);
             Play.Events.Extern.MouseClick += new GameEventHandler(this.PlayClickEvent);
             MenuScene.AddSceneObject(Play);
-            SceneObject Exit = GameLogic.CreateStaticSprite("Exit", global::GameJam.FrogShift.Properties.Resources.exit, new Engineer.Mathematics.Vertex(350, 400, 0), new Engineer.Mathematics.Vertex(300, 60, 0));
+            SceneObject Exit = GameLogic.CreateStaticSprite("Exit", global::GameJam.FrogShift.Properties.Resources.exit, new Engineer.Mathematics.Vertex(350, 400, 0), new Engineer.Mathematics.Vertex(300, 60, 0), false);
             Exit.Events.Extern.MouseClick += new GameEventHandler(this.ExitClickEvent);
             MenuScene.AddSceneObject(Exit);
             return MenuScene;
