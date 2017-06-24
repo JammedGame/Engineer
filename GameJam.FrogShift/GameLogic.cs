@@ -95,22 +95,24 @@ namespace GameJam.FrogShift
 
         private void KeyDownEvent(Game G, EventArguments E)
         {
-            if (E.KeyDown == KeyType.Space && Convert.ToInt32(_Player.Data["skokBrojac"]) < 1)
+            if (E.KeyDown == KeyType.A)
             {
-
-                _Player.Data["skokBrojac"] = 25;
+                _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - 3, _Player.Representation.Translation.Y, 0);
+            }
+            if (E.KeyDown == KeyType.D)
+            {
+                _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + 3, _Player.Representation.Translation.Y, 0);
+            }
+            if (E.KeyDown == KeyType.Space)
+            {
+                if (Convert.ToInt32(_Player.Data["skokBrojac"]) < 1)
+                {
+                    _Player.Data["skokBrojac"] = 25;
+                }
             }
             if (E.KeyDown == KeyType.Escape)
             {
                 Runner.Close();
-            }
-            if (E.KeyDown == KeyType.A)
-            {
-                moveLeft();
-            }
-            if (E.KeyDown == KeyType.D)
-            {
-                moveRight();
             }
         }
 
@@ -120,19 +122,6 @@ namespace GameJam.FrogShift
             counter++;
             GameTimer gtimer = new GameTimer(_CScene);
             if (counter == 333) gtimer.DecTime();
-        }
-        private void moveRight()
-        {
-            Vertex lastPos = _Player.Representation.Translation;
-            lastPos.X += 2;
-            _Player.Representation.Translation = lastPos;
-        }
-
-        private void moveLeft()
-        {
-            Vertex lastPos = _Player.Representation.Translation;
-            lastPos.X -= 2;
-            _Player.Representation.Translation = lastPos;
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
         {
