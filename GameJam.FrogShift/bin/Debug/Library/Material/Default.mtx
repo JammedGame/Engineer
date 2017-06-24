@@ -1,0 +1,32 @@
+<Material>
+	<Name>Test Material</Name>
+	<MaterialNode>
+		<ID>Ambient_0</ID>
+		<Name>Ambient</Name>
+		<Output> <Name>Ambient</Name> <Connect><ID>Add_0</ID><Input>Input1</Input></Connect> </Output>
+		<Input>	<Name>Color</Name> <Type>Color</Type> <Value><R>0.2</R><G>0.2</G><B>0.2</B></Value> </Input>
+		<Function>Ambient</Function>
+	</MaterialNode>
+	<MaterialNode>
+		<ID>Diffuse_0</ID>
+		<Name>Diffuse</Name>
+		<Output> <Name>Diffuse</Name> <Connect><ID>Add_0</ID><Input>Input2</Input></Connect> </Output>
+		<Input>	<Name>Color</Name> <Type>Color</Type> <Value><R>0.8</R><G>0.8</G><B>0.8</B></Value> </Input>
+		<Function>Diffuse</Function>
+	</MaterialNode>
+	<MaterialNode>
+		<ID>Add_0</ID>
+		<Name>Add</Name>
+		<Output> <Name>Result</Name> <Connect><ID>Output</ID><Input>Surface</Input></Connect> </Output>
+		<Input>	<Name>Input1</Name> <Type>Color</Type> <Connect><ID>Ambient_0</ID><Output>Ambient</Output></Connect> </Input>
+		<Input>	<Name>Input2</Name> <Type>Color</Type> <Connect><ID>Diffuse_0</ID><Output>Diffuse</Output></Connect> </Input>
+		<Function>Add</Function>
+	</MaterialNode>
+	<MaterialNode>
+		<ID>Output</ID>
+		<Name>Output</Name>
+		<Input>	<Name>Surface</Name> <Type>Input</Type> <Connect><ID>Add_0</ID><Output>Result</Output></Connect> </Input>
+		<Input>	<Name>Displacement</Name> <Type>Input</Type> </Input>
+		<Input>	<Name>Post Processing</Name> <Type>Input</Type> </Input>
+	</MaterialNode>
+</Material>
