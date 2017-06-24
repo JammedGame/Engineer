@@ -131,6 +131,7 @@ namespace GameJam.FrogShift
                 else
                 {
                     _Player.Data["flying"] = false;
+                    ((Sprite)(_Player.Representation)).SetSpriteSet(0);
                     _Player.Data["padBrojac"] = 0;
                 }
             }
