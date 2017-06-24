@@ -30,7 +30,7 @@ namespace GameJam.FrogShift
             this._CGame = NewGame;
             this._CScene = CurrentScene;
         }
-        private void CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size)
+        private DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size)
         {
             SpriteSet StaticSet = new SpriteSet("Static", Image);
             Sprite StaticSprite = new Sprite();
@@ -38,6 +38,7 @@ namespace GameJam.FrogShift
             StaticSprite.Translation = Positon;
             StaticSprite.Scale = Size;
             DrawnSceneObject Static = new DrawnSceneObject(Name, StaticSprite);
+            return Static;
         }
     }
 }
