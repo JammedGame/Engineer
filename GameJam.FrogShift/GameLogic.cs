@@ -65,6 +65,7 @@ namespace GameJam.FrogShift
             _Player.Data["Direction"] = 0;
             _Player.Data["Collision"] = true;
             _Player.Data["skokBrojac"] = 0;
+            _Player.Data["padBrojac"] = 0;
             _Player.Data["colliding"] = true;
             //Char.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
             _CScene.AddSceneObject(Char);
@@ -155,7 +156,9 @@ namespace GameJam.FrogShift
 
                 if (!collided)
                 {
-                    lastPos.Y += 12.0f;
+                     
+                    lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
+                    _Player.Data["padBrojac"] =(int)_Player.Data["padBrojac"] + 1;
                     _Player.Representation.Translation = lastPos;
                 }
             }
