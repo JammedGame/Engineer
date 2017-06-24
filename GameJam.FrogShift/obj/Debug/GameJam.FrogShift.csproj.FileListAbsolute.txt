@@ -62,3 +62,7 @@ C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\OpenTK.xml
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\CSScriptLibrary.xml
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\BulletSharp.dll.config
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\GameJam.FrogShift.exe
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Engine.Physics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\BulletSharp.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Engine.Physics.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\BulletSharp.dll.config
