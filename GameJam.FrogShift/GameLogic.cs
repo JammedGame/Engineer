@@ -73,6 +73,7 @@ namespace GameJam.FrogShift
             _Player.Data["skokBrojac"] = 0;
             _Player.Data["padBrojac"] = 0;
             _Player.Data["colliding"] = true;
+            _Player.Data["flying"] = false;
             //Char.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
             _CScene.AddSceneObject(Char);
         }
@@ -99,17 +100,24 @@ namespace GameJam.FrogShift
         {
             if (E.KeyDown == KeyType.A)
             {
-                _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - 3, _Player.Representation.Translation.Y, 0);
+                if (Convert.ToBoolean(_Player.Data["flying"])  )
+                {
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - 3, _Player.Representation.Translation.Y, 0);
+                }
             }
             if (E.KeyDown == KeyType.D)
             {
-                _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + 3, _Player.Representation.Translation.Y, 0);
+                if (Convert.ToBoolean(_Player.Data["flying"]) )
+                {
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + 3, _Player.Representation.Translation.Y, 0);
+                }
             }
             if (E.KeyDown == KeyType.Space)
             {
-                if (Convert.ToInt32(_Player.Data["skokBrojac"]) < 1)
+                if (Convert.ToBoolean(_Player.Data["flying"])==false)
                 {
                     _Player.Data["skokBrojac"] = 25;
+                    _Player.Data["flying"] = true;
                 }
             }
             if (E.KeyDown == KeyType.Escape)
@@ -143,6 +151,7 @@ namespace GameJam.FrogShift
         private void CheckCollision()
         {
             bool collided = Convert.ToBoolean(_Player.Data["colliding"]);
+            bool flying = Convert.ToBoolean(_Player.Data["flying"]);
             int tmpSkokBrojac = Convert.ToInt32(_Player.Data["skokBrojac"]);
             if (tmpSkokBrojac > 0 && collided == true)
             {
@@ -177,6 +186,7 @@ namespace GameJam.FrogShift
                     {
                         collided = true;
                         _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X, colliderPos.Y - _Player.Representation.Scale.Y + 1, _Player.Representation.Translation.Z);
+                        flying = false;
                         break;
                     }
                 }
