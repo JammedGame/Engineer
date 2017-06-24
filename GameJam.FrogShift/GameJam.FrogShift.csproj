@@ -193,5 +193,182 @@
   <ItemGroup>
     <None Include="Resources\voda.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desna noga19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leva noga19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaba19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lokvanj1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lokvanj2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

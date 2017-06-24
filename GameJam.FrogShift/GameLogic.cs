@@ -41,6 +41,71 @@ namespace GameJam.FrogShift
             CreateCharacter();
             CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
             CScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
+            this.gtimer = new GameTimer(_CScene);
+        }
+        private void CreateCharacter()
+        {
+            SpriteSet IdleSet = new SpriteSet("Idle");
+            IdleSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk0);
+            SpriteSet IdleBSet = new SpriteSet("Idle");
+            IdleBSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk0b);
+            SpriteSet WalkSet = new SpriteSet("Walk");
+            WalkSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk0);
+            WalkSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk1);
+            WalkSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk2);
+            WalkSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk3);
+            SpriteSet WalkBSet = new SpriteSet("Walk");
+            WalkBSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk0b);
+            WalkBSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk1b);
+            WalkBSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk2b);
+            WalkBSet.Sprite.Add(global::GameJam.FrogShift.Properties.Resources.walk3b);
+            Sprite CharSprite = new Sprite();
+            CharSprite.SpriteSets.Add(IdleSet);
+            CharSprite.SpriteSets.Add(IdleBSet);
+            CharSprite.SpriteSets.Add(WalkSet);
+            CharSprite.SpriteSets.Add(WalkBSet);
+            CharSprite.Translation = new Vertex(200 * GameLogic._GlobalScale, 600 * GameLogic._GlobalScale, 0);
+            CharSprite.Scale = new Vertex(200 * GameLogic._GlobalScale, 200 * GameLogic._GlobalScale, 0);
+            DrawnSceneObject Char = new DrawnSceneObject("Char", CharSprite);
+
+            _Player = Char;
+            _Player.Data["Direction"] = 0;
+            _Player.Data["Collision"] = true;
+            _Player.Data["skokBrojac"] = 0;
+            _Player.Data["padBrojac"] = 0;
+            _Player.Data["colliding"] = true;
+            _Player.Data["flying"] = false;
+            //Char.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
+            _CScene.AddSceneObject(Char);
+        }
+
+        private void CreateFloor()
+        {
+            int[] LilipadsX = new int[] { 200, 600, 1000, 1400, 1800 };
+
+            DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.BG, new Vertex(0, 0, 0), new Vertex(Runner.Width, Runner.Height, 0), false);
+            _CScene.AddSceneObject(Back);
+
+            for (int i = 0; i < LilipadsX.Length; i++)
+            {
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor"+i, global::GameJam.FrogShift.Properties.Resources._2, new Vertex(LilipadsX[i], 800, 0), new Vertex(200, 100, 0));
+                _CScene.AddSceneObject(Floor);
+                _Colliders.Add(Floor);
+            }
+
+            DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 850, 0), new Vertex(1920, 1080, 0));
+            _CScene.AddSceneObject(Water);
+        }
+        public void Init(Runner NewRunner, Game NewGame, Scene CurrentScene)
+        {
+            GameLogic._GlobalScale = NewRunner.Height / 1080.0f;
+            this._Runner = NewRunner;            
+            this._CGame = NewGame;
+            this._CScene = CurrentScene;
+            CreateFloor();
+            CreateCharacter();
+            CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
+            CScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
             this.gtimer = new GameTimer(_CScene,Runner);
         }
         private void CreateCharacter()
@@ -119,6 +184,7 @@ namespace GameJam.FrogShift
                 {
                     _Player.Data["skokBrojac"] = 25;
                     _Player.Data["flying"] = true;
+                    ((Sprite)(_Player.Representation)).SetSpriteSet(1);
                 }
             }
             if (E.KeyDown == KeyType.Escape)
@@ -207,6 +273,7 @@ namespace GameJam.FrogShift
                 else
                 {
                     _Player.Data["flying"] = false;
+                    ((Sprite)(_Player.Representation)).SetSpriteSet(0);
                     _Player.Data["padBrojac"] = 0;
                 }
             }
@@ -221,3 +288,75 @@ namespace GameJam.FrogShift
 
     }
 }
+
+        private int counter = 0;
+        private static float _GlobalScale;
+        private DrawnSceneObject _Player;
+        private Runner _Runner;
+        private Game _CGame;
+        private Scene _CScene;
+        private ResourceManager _ResMan;
+        private List<SceneObject> _Colliders = new List<SceneObject>();
+        public Runner Runner { get => _Runner; set => _Runner = value; }
+        public Game CGame { get => _CGame; set => _CGame = value; }
+        public Scene CScene { get => _CScene; set => _CScene = value; }
+        public GameLogic()
+        {
+            _ResMan = new ResourceManager();
+            _ResMan.Init();
+        }
+        public void Init(Runner NewRunner, Game NewGame, Scene CurrentScene)
+        {
+            GameLogic._GlobalScale = NewRunner.Height / 1080.0f;
+            this._Runner = NewRunner;            
+            this._CGame = NewGame;
+            this._CScene = CurrentScene;
+            CreateFloor();
+            CreateCharacter();
+            CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
+            CScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
+            this.gtimer = new GameTimer(_CScene);
+        }
+        private void CreateCharacter()
+        {
+            SpriteSet IdleSet = new SpriteSet("Idle");
+            IdleSet.Sprite.Add(ResourceManager.Images["zaba1"]);
+            SpriteSet JumpSet = new SpriteSet("Jump");
+            for(int i = 2; i < 15; i++ ) JumpSet.Sprite.Add(ResourceManager.Images["zaba"+i]);
+            Sprite CharSprite = new Sprite();
+            CharSprite.SpriteSets.Add(IdleSet);
+            CharSprite.SpriteSets.Add(JumpSet);
+            CharSprite.Translation = new Vertex(200 * GameLogic._GlobalScale, 600 * GameLogic._GlobalScale, 0);
+            CharSprite.Scale = new Vertex(200 * GameLogic._GlobalScale, 200 * GameLogic._GlobalScale, 0);
+            DrawnSceneObject Char = new DrawnSceneObject("Char", CharSprite);
+
+            _Player = Char;
+            _Player.Data["Direction"] = 0;
+            _Player.Data["Collision"] = true;
+            _Player.Data["skokBrojac"] = 0;
+            _Player.Data["padBrojac"] = 0;
+            _Player.Data["colliding"] = true;
+            _Player.Data["flying"] = false;
+            //Char.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
+            _CScene.AddSceneObject(Char);
+        }
+        private void CreateLegs()
+        {
+
+        }
+        private void CreateFloor()
+        {
+            int[] LilipadsX = new int[] { 200, 600, 1000, 1400, 1800 };
+
+            DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.BG, new Vertex(0, 0, 0), new Vertex(Runner.Width, Runner.Height, 0), false);
+            _CScene.AddSceneObject(Back);
+
+            for (int i = 0; i < LilipadsX.Length; i++)
+            {
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor"+i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadsX[i], 830, 0), new Vertex(200, 30, 0));
+                _CScene.AddSceneObject(Floor);
+                _Colliders.Add(Floor);
+            }
+
+            DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 850, 0), new Vertex(1920, 1080, 0));
+            _CScene.AddSceneObject(Water);
