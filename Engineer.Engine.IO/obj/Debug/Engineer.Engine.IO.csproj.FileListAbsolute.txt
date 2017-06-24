@@ -11,3 +11,16 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Engine.IO\bin\Debug\Engin
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Engine.IO\obj\Debug\Engineer.Engine.IO.csprojResolveAssemblyReference.cache
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Engine.IO\obj\Debug\Engineer.Engine.IO.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Engine.IO\obj\Debug\Engineer.Engine.IO.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Engine.IO.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Engine.IO.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Data.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Engine.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Mathematics.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.IO.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Data.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Engine.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\bin\Debug\Engineer.IO.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\obj\Debug\Engineer.Engine.IO.csprojResolveAssemblyReference.cache
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\obj\Debug\Engineer.Engine.IO.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Engine.IO\obj\Debug\Engineer.Engine.IO.pdb

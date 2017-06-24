@@ -60,6 +60,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
@@ -93,6 +94,10 @@
       <Project>{f07efd68-8268-436a-8917-95284792bad5}</Project>
       <Name>Engineer.Engine.IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Engineer.Engine.Physics\Engineer.Engine.Physics.csproj">
+      <Project>{E1479AE4-2040-4C81-998A-5D067EF5F70D}</Project>
+      <Name>Engineer.Engine.Physics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Engineer.Engine\Engineer.Engine.csproj">
       <Project>{efb51f33-46a8-4367-a8a3-9e647ca6bbe7}</Project>
       <Name>Engineer.Engine</Name>
@@ -109,6 +114,72 @@
       <Project>{71f8aad9-38bc-4115-aefb-350ccbf9d06f}</Project>
       <Name>Engineer.Draw.OpenGL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\412.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bush %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image_8_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sign_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tree_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk0b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk1b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk2b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk3b.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
