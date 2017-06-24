@@ -1,5 +1,6 @@
 ﻿using Engineer.Engine;
 using Engineer.Mathematics;
+using Engineer.Runner;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,7 +17,7 @@ namespace GameJam.FrogShift
         DrawnSceneObject t2;
         Random rnd = new Random();
 
-        public GameTimer(Scene _CScene)
+        public GameTimer(Scene _CScene, Runner Runner)
         {
             
             gameTime = rnd.Next(15,45);
@@ -45,10 +46,10 @@ namespace GameJam.FrogShift
             Sprite HighDigits = new Sprite(Digits);
 
 
-            Digits.Translation = new Vertex(512,0 , 0);
+            Digits.Translation = new Vertex(Runner.Width/2+30, 0 , 0);
             t1 = new DrawnSceneObject("Time1", Digits);
             _CScene.AddSceneObject(t1);
-            HighDigits.Translation = new Vertex(480,0, 0);
+            HighDigits.Translation = new Vertex(Runner.Width / 2 - 30, 0, 0);
             t2 = new DrawnSceneObject("Time2", HighDigits);
             _CScene.AddSceneObject(t2);
         }

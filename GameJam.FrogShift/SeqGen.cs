@@ -13,7 +13,8 @@ namespace GameJam.FrogShift
 
         public SeqGen()
         {
-            diff = 0;            
+            diff = 0;
+            intList = null;
         }
 
         public List<int> GenerateSequence()
