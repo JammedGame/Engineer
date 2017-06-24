@@ -103,12 +103,33 @@ namespace GameJam.FrogShift
             {
                 Runner.Close();
             }
+            if (E.KeyDown == KeyType.A)
+            {
+                moveLeft();
+            }
+            if (E.KeyDown == KeyType.D)
+            {
+                moveRight();
+            }
         }
 
         private void GameUpdateEvent(Game G, EventArguments E)
         {
 
             CheckCollision();
+        }
+        private void moveRight()
+        {
+            Vertex lastPos = _Player.Representation.Translation;
+            lastPos.X += 2;
+            _Player.Representation.Translation = lastPos;
+        }
+
+        private void moveLeft()
+        {
+            Vertex lastPos = _Player.Representation.Translation;
+            lastPos.X -= 2;
+            _Player.Representation.Translation = lastPos;
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
         {
@@ -162,15 +183,25 @@ namespace GameJam.FrogShift
                     if (playerRect.IntersectsWith(colliderRect))
                     {
                         collided = true;
+                        _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X, colliderPos.Y - _Player.Representation.Scale.Y + 1, _Player.Representation.Translation.Z);
+                        break;
                     }
                 }
 
                 if (!collided)
                 {
-                     
+
                     lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
-                    _Player.Data["padBrojac"] =(int)_Player.Data["padBrojac"] + 1;
+                    _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
+
+                    _Player.Data["flying"] = true;
                     _Player.Representation.Translation = lastPos;
+
+                }
+                else
+                {
+                    _Player.Data["flying"] = false;
+                    _Player.Data["padBrojac"] = 0;
                 }
             }
             //_Physics.RunSimulation();
