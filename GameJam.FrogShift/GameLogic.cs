@@ -13,6 +13,7 @@ namespace GameJam.FrogShift
 {
     public class GameLogic
     {
+        private GameTimer gtimer;
         private int counter = 0;
         private static float _GlobalScale;
         private DrawnSceneObject _Player;
@@ -39,6 +40,7 @@ namespace GameJam.FrogShift
             CreateCharacter();
             CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
             CScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
+            this.gtimer = new GameTimer(_CScene);
         }
         private void CreateCharacter()
         {
@@ -120,7 +122,6 @@ namespace GameJam.FrogShift
         {
             CheckCollision();
             counter++;
-            GameTimer gtimer = new GameTimer(_CScene);
             if (counter == 333) gtimer.DecTime();
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
