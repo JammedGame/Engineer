@@ -13,6 +13,7 @@ namespace GameJam.FrogShift
 {
     public class GameLogic
     {
+        private int counter = 0;
         private static float _GlobalScale;
         private DrawnSceneObject _Player;
         private Runner _Runner;
@@ -115,8 +116,10 @@ namespace GameJam.FrogShift
 
         private void GameUpdateEvent(Game G, EventArguments E)
         {
-
             CheckCollision();
+            counter++;
+            GameTimer gtimer = new GameTimer(_CScene);
+            if (counter == 333) gtimer.DecTime();
         }
         private void moveRight()
         {
