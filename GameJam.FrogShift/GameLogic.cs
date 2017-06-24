@@ -55,7 +55,7 @@ namespace GameJam.FrogShift
         }
         private void CreateCharacter()
         {
-            DrawnSceneObject Char = Character.Create();
+            DrawnSceneObject Char = Character.Create((Scene2D)CScene);
             _Player = Char;
             _Player.Data["Direction"] = 0;
             _Player.Data["Collision"] = true;
@@ -63,7 +63,6 @@ namespace GameJam.FrogShift
             _Player.Data["padBrojac"] = 0;
             _Player.Data["colliding"] = true;
             _Player.Data["flying"] = false;
-            _CScene.AddSceneObject(Char);
         }
         private void CreateFloor()
         {
@@ -73,6 +72,7 @@ namespace GameJam.FrogShift
         public void GameUpdateEvent(Game G, EventArguments E)
         {
             _Movement.CheckCollision();
+            Character.UpdateLegs(_Player);
             if (counter++ == 333) gtimer.DecTime();
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
