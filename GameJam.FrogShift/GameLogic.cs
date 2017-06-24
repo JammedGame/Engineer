@@ -18,6 +18,7 @@ namespace GameJam.FrogShift
         private Game _CGame;
         private Scene _CScene;
         private ResourceManager _ResMan;
+        private List<SceneObject> _Colliders = new List<SceneObject>();
         public Runner Runner { get => _Runner; set => _Runner = value; }
         public Game CGame { get => _CGame; set => _CGame = value; }
         public Scene CScene { get => _CScene; set => _CScene = value; }
@@ -33,7 +34,8 @@ namespace GameJam.FrogShift
             this._CScene = CurrentScene;
             CreateFloor();
             CreateCharacter();
-            
+            CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
+            CScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
         }
         private void CreateCharacter()
         {
@@ -62,7 +64,8 @@ namespace GameJam.FrogShift
             _Player = Char;
             _Player.Data["Direction"] = 0;
             _Player.Data["Collision"] = true;
-            
+            _Player.Data["skokBrojac"] = 0;
+            _Player.Data["colliding"] = true;
             //Char.Events.Extern.KeyPress += new GameEventHandler(KeyPressEvent);
             _CScene.AddSceneObject(Char);
         }
@@ -78,13 +81,27 @@ namespace GameJam.FrogShift
             {
                 DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor"+i, global::GameJam.FrogShift.Properties.Resources._2, new Vertex(LilipadsX[i], 425, 0), new Vertex(100, 50, 0));
                 _CScene.AddSceneObject(Floor);
+                _Colliders.Add(Floor);
             }
 
             DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 450, 0), new Vertex(1024, 1000, 0));
             _CScene.AddSceneObject(Water);
         }
+
+        private void KeyDownEvent(Game G, EventArguments E)
+        {
+            if (E.KeyDown == KeyType.Space && Convert.ToInt32(_Player.Data["skokBrojac"]) < 1)
+            {
+
+                _Player.Data["skokBrojac"] = 25;
+            }
+
+        }
+
         private void GameUpdateEvent(Game G, EventArguments E)
         {
+
+            CheckCollision();
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size)
         {
@@ -96,5 +113,56 @@ namespace GameJam.FrogShift
             DrawnSceneObject Static = new DrawnSceneObject(Name, StaticSprite);
             return Static;
         }
+
+        private void CheckCollision()
+        {
+            bool collided = Convert.ToBoolean(_Player.Data["colliding"]);
+            int tmpSkokBrojac = Convert.ToInt32(_Player.Data["skokBrojac"]);
+            if (tmpSkokBrojac > 0 && collided == true)
+            {
+                tmpSkokBrojac -= 1;
+                _Player.Data["skokBrojac"] = tmpSkokBrojac;
+
+                Vertex lastPos = _Player.Representation.Translation;
+
+                lastPos.Y -= tmpSkokBrojac;
+
+                _Player.Representation.Translation = lastPos;
+            }
+            else
+            {
+                Vertex lastPos = _Player.Representation.Translation;
+                Vertex playerScale = _Player.Representation.Scale;
+                //lastPos.Y += (float)12;
+                collided = false;
+
+                _Player.Representation.Translation = lastPos;
+
+                for (int i = 0; i < _Colliders.Count; i++)
+                {
+                    DrawnSceneObject colliderDSO = (DrawnSceneObject)_Colliders[i];
+                    Vertex colliderPos = colliderDSO.Representation.Translation;
+                    Vertex coliderScale = colliderDSO.Representation.Scale;
+
+                    Rectangle playerRect = new Rectangle(Convert.ToInt32(lastPos.X + playerScale.X / 4), Convert.ToInt32(lastPos.Y), (int)(playerScale.X / 2), (int)playerScale.Y);
+                    Rectangle colliderRect = new Rectangle(Convert.ToInt32(colliderPos.X), Convert.ToInt32(colliderPos.Y), Convert.ToInt32(coliderScale.X), Convert.ToInt32(coliderScale.Y));
+
+                    if (playerRect.IntersectsWith(colliderRect))
+                    {
+                        collided = true;
+                    }
+                }
+
+                if (!collided)
+                {
+                    lastPos.Y += 12.0f;
+                    _Player.Representation.Translation = lastPos;
+                }
+            }
+            //_Physics.RunSimulation();
+            _Player.Data["colliding"] = collided;
+        }
+
+
     }
 }
