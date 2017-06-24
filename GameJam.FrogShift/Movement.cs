@@ -56,16 +56,28 @@ namespace GameJam.FrogShift
             bool collided = Convert.ToBoolean(_Player.Data["colliding"]);
             bool flying = Convert.ToBoolean(_Player.Data["flying"]);
             int tmpSkokBrojac = Convert.ToInt32(_Player.Data["skokBrojac"]);
-            if (tmpSkokBrojac > 0 && collided == true)
+            int waterLevel = (int)(850 * GameLogic._GlobalScale);
+            float frogCenter = _Player.Representation.Translation.Y + _Player.Representation.Scale.Y / 2;
+            if (tmpSkokBrojac > 0)
             {
+
                 tmpSkokBrojac -= 1;
                 _Player.Data["skokBrojac"] = tmpSkokBrojac;
 
                 Vertex lastPos = _Player.Representation.Translation;
 
-                lastPos.Y -= tmpSkokBrojac;
 
-                _Player.Representation.Translation = lastPos;
+
+                if (waterLevel > frogCenter)
+                {
+                    lastPos.Y -= tmpSkokBrojac;
+                    _Player.Representation.Translation = lastPos;
+                }
+                else
+                {
+                    lastPos.Y += tmpSkokBrojac;
+                    _Player.Representation.Translation = lastPos;
+                }
             }
             else
             {
@@ -96,18 +108,29 @@ namespace GameJam.FrogShift
 
                 if (!collided)
                 {
+                    if (waterLevel > frogCenter)
+                    {
+                        lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
+                        _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
+                        _Player.Data["flying"] = true;
+                        _Player.Representation.Translation = lastPos;
 
-                    lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
-                    _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
+                    }
+                    else
+                    {
+                        int tmpBrojac = (int)_Player.Data["padBrojac"];
+                        _Player.Data["padBrojac"] = (int)_Player.Data["skokBrojac"];
+                        _Player.Data["skokBrojac"] = tmpBrojac;
 
-                    _Player.Data["flying"] = true;
-                    _Player.Representation.Translation = lastPos;
-
+                        //lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
+                        //_Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
+                        //_Player.Data["flying"] = true;
+                        //_Player.Representation.Translation = lastPos;
+                    }
                 }
                 else
                 {
                     _Player.Data["flying"] = false;
-                    ((Sprite)(_Player.Representation)).SetSpriteSet(0);
                     _Player.Data["padBrojac"] = 0;
                 }
             }
