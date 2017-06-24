@@ -1,3 +1,6 @@
 /.vs
 *.exe
 *.pbp
+*.dll
+*.cache
+!packages/*.dll
