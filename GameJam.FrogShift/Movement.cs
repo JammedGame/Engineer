@@ -22,6 +22,7 @@ namespace GameJam.FrogShift
             this._Runner = NewRunner;
             this._Player = Player;
             this._Colliders = Colliders;
+            this._Player.Data["underWater"] = false;
         }
         public void KeyPressEvent(Game G, EventArguments E)
         {
@@ -108,10 +109,19 @@ namespace GameJam.FrogShift
                     Rectangle playerRect = new Rectangle(Convert.ToInt32(lastPos.X + (playerScale.X / 4) + (playerScale.X / 8)), Convert.ToInt32(lastPos.Y + (playerScale.Y / 4)), (int)(playerScale.X / 4), (int)(playerScale.Y / 2));
                     Rectangle colliderRect = new Rectangle(Convert.ToInt32(colliderPos.X), Convert.ToInt32(colliderPos.Y), Convert.ToInt32(coliderScale.X), Convert.ToInt32(coliderScale.Y));
 
+
                     if (playerRect.IntersectsWith(colliderRect))
                     {
                         collided = true;
-                        _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X, colliderPos.Y - coliderScale.Y - _Player.Representation.Scale.Y/2 + 1, _Player.Representation.Translation.Z);
+
+                        if (!Convert.ToBoolean(_Player.Data["underWater"]))
+                        {
+                            _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X, colliderPos.Y - coliderScale.Y - _Player.Representation.Scale.Y / 2 + 1, _Player.Representation.Translation.Z);
+
+                        }
+                        else
+                        { }
+
                         flying = false;
                         break;
                     }
@@ -121,6 +131,15 @@ namespace GameJam.FrogShift
                 {
                     if (waterLevel > frogCenter)
                     {
+
+                        if (Convert.ToBoolean(_Player.Data["underWater"]))
+                        {
+                            int tmpBrojac = (int)_Player.Data["padBrojac"];
+                            _Player.Data["padBrojac"] = (int)_Player.Data["skokBrojac"];
+                            _Player.Data["skokBrojac"] = tmpBrojac;
+                            _Player.Data["underWater"] = false;
+
+                        }
                         lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
                         _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
                         _Player.Data["flying"] = true;
@@ -129,14 +148,20 @@ namespace GameJam.FrogShift
                     }
                     else
                     {
-                        int tmpBrojac = (int)_Player.Data["padBrojac"];
-                        _Player.Data["padBrojac"] = (int)_Player.Data["skokBrojac"];
-                        _Player.Data["skokBrojac"] = tmpBrojac;
 
-                        //lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
-                        //_Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
-                        //_Player.Data["flying"] = true;
-                        //_Player.Representation.Translation = lastPos;
+                        if (!Convert.ToBoolean(_Player.Data["underWater"]))
+                        {
+                            int tmpBrojac = (int)_Player.Data["padBrojac"];
+                            _Player.Data["padBrojac"] = (int)_Player.Data["skokBrojac"];
+                            _Player.Data["skokBrojac"] = tmpBrojac;
+                            _Player.Data["underWater"] = true;
+
+                        }
+
+                        lastPos.Y -= (int)_Player.Data["padBrojac"] + 1;
+                        _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
+                        _Player.Data["flying"] = true;
+                        _Player.Representation.Translation = lastPos;
                     }
                 }
                 else
