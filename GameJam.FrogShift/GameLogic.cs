@@ -79,7 +79,9 @@ namespace GameJam.FrogShift
             _Movement.CheckCollision();
             Character.UpdateLegs(_Player);
             if (counter++ >= 333) gtimer.DecTime();
-            if (counter1++ >= 1) { Camera.MoveCamera(this._CScene); counter1 = 0; }
+            
+            if (counter1 == 1) { Camera.MoveCamera(this._CScene); counter1 = 0; }
+            counter1++;
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
         {
