@@ -67,13 +67,15 @@ namespace GameJam.FrogShift
            
             int left =Convert.ToInt32( score/100);
             int rev = 0;
+            string tmpScore ="";
             while (left > 0)
             {
                 int r = left % 10;
                 rev = rev * 10 + r;
                 left = left / 10;  //left = Math.floor(left / 10); 
+                tmpScore += "" + r;
             }
-            string tmpScore = "" + rev;
+             
            
             for (int i = 0; i < tmpScore.Length; i++)
             {
