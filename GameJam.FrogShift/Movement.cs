@@ -148,7 +148,7 @@ namespace GameJam.FrogShift
                             _Player.Data["underWater"] = false;
 
                         }
-                        lastPos.Y += (int)_Player.Data["padBrojac"] + 1;
+                        lastPos.Y += ((int)_Player.Data["padBrojac"] + 1)*GameLogic._GlobalScale;
                         _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
                         _Player.Data["flying"] = true;
                         _Player.Representation.Translation = lastPos;
@@ -166,7 +166,7 @@ namespace GameJam.FrogShift
 
                         }
 
-                        lastPos.Y -= (int)_Player.Data["padBrojac"] + 1;
+                        lastPos.Y -= ((int)_Player.Data["padBrojac"] + 1)* GameLogic._GlobalScale;
                         _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
                         _Player.Data["flying"] = true;
                         _Player.Representation.Translation = lastPos;
