@@ -79,7 +79,7 @@ namespace GameJam.FrogShift
             _Movement.CheckCollision();
             _Movement.CheckWaterLevel((Scene2D)_CScene);
             Character.UpdateLegs(_Player);
-            if (counter++ >= 333) gtimer.DecTime();
+            if (counter++ >= 166) gtimer.DecTime();
             if (counter1 == 1) { Camera.MoveCamera(this._CScene); counter1 = 0; }
             counter1++;
         }
