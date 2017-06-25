@@ -24,18 +24,21 @@ namespace Engineer.Runner
         private int _Seed;
         protected bool _GameInit;
         protected bool _EngineInit;
-        protected Timer _Time;
+        private Timer _Time;
         protected Scene _CurrentScene;
         protected Game _CurrentGame;
         protected DrawEngine _Engine;
+
+        protected Timer Time { get => _Time; set => _Time = value; }
+
         public Runner(int width, int height, GraphicsMode mode, string title) : base(width, height, mode, title)
         {
             this._Seed = 0;
             this._GameInit = false;
             this._EngineInit = false;
-            this._Time = new Timer(8.33);
-            this._Time.Elapsed += Event_TimerTick;
-            this._Time.AutoReset = true;
+            this.Time = new Timer(8.33);
+            this.Time.Elapsed += Event_TimerTick;
+            this.Time.AutoReset = true;
         }
         private void EngineInit()
         {
@@ -51,6 +54,7 @@ namespace Engineer.Runner
         }
         public void Init(Game CurrentGame, Scene CurrentScene)
         {
+            this.Time.Enabled = false;
             if (!_EngineInit) EngineInit();
             this._GameInit = true;
             this._CurrentGame = CurrentGame;
@@ -65,7 +69,7 @@ namespace Engineer.Runner
             this.MouseMove += new EventHandler<MouseMoveEventArgs>(Event_MouseMove);
             this.MouseWheel += new EventHandler<MouseWheelEventArgs>(Event_MouseWheel);
             PrepareEvents();
-            this._Time.Enabled = true;
+            this.Time.Enabled = true;
             Event_Load();
         }
         protected virtual void PrepareEvents()
@@ -189,33 +193,37 @@ namespace Engineer.Runner
         }
         private void Event_MouseClick(object sender, MouseButtonEventArgs e)
         {
-            EventArguments Arguments = new EventArguments();
-            Arguments.Location = new Vertex(e.X, e.Y, 0);
-            Arguments.ButtonDown = (MouseClickType)e.Button;
-            Arguments.Handled = false;
-            if (_CurrentScene.Type == SceneType.Scene2D)
+            try
             {
-                Scene2D Current2DScene = (Scene2D)_CurrentScene;
-                Vertex STrans = Current2DScene.Transformation.Translation;
-                for (int i = _CurrentScene.Objects.Count - 1; i >= 0; i--)
+                EventArguments Arguments = new EventArguments();
+                Arguments.Location = new Vertex(e.X, e.Y, 0);
+                Arguments.ButtonDown = (MouseClickType)e.Button;
+                Arguments.Handled = false;
+                if (_CurrentScene.Type == SceneType.Scene2D)
                 {
-                    if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
+                    Scene2D Current2DScene = (Scene2D)_CurrentScene;
+                    Vertex STrans = Current2DScene.Transformation.Translation;
+                    for (int i = _CurrentScene.Objects.Count - 1; i >= 0; i--)
                     {
-                        DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
-                        if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
-                            STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
+                        if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                         {
-                            Arguments.Target = Current;
-                            CallObjectEvents(i, "MouseClick", Arguments);
-                            Arguments.Handled = true;
+                            DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
+                            Vertex Trans = Current.Representation.Translation;
+                            Vertex Scale = Current.Representation.Scale;
+                            if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
+                                STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
+                            {
+                                Arguments.Target = Current;
+                                CallObjectEvents(i, "MouseClick", Arguments);
+                                Arguments.Handled = true;
+                            }
                         }
                     }
                 }
+                Arguments.Target = null;
+                CallEvents("MouseClick", Arguments);
             }
-            Arguments.Target = null;
-            CallEvents("MouseClick", Arguments);
+            catch { }
         }
         private void Event_MouseMove(object sender, MouseMoveEventArgs e)
         {

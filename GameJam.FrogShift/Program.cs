@@ -20,22 +20,19 @@ namespace GameJam.FrogShift
         {
             ExternRunner Runner = new ExternRunner(1920, 1080, new GraphicsMode(32, 24, 0, 8), "Frog Shift");
             Runner.WindowState = OpenTK.WindowState.Fullscreen;
-            GameLogic Logic = new GameLogic();
             Game GameObject = new Game();
-            
+
+            ResourceManager _ResMan = new ResourceManager();
+            _ResMan.Init();
+
             Menu _Menu = new Menu();
             Scene2D MenuScene = (Scene2D)_Menu.CreateMenuScene();
             MenuScene.Data["Runner"] = Runner;
             GameObject.Scenes.Add(MenuScene);
 
-            Scene2D PlayScene = new Scene2D("Play Scene");
-            PlayScene.BackColor = Color.FromArgb(0, 210, 127);
-            GameObject.Scenes.Add(PlayScene);
-
             AudioPlayer.Init();
             AudioPlayer.PlaySound(AudioPlayer.Music, true, 30);
-
-            Logic.Init(Runner, GameObject, PlayScene);
+            
             Runner.Init(GameObject, MenuScene);
             Runner.Run();
         }

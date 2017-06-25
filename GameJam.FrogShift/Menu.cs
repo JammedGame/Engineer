@@ -26,6 +26,14 @@ namespace GameJam.FrogShift
         }
         public void PlayClickEvent(Game G, EventArguments E)
         {
+            if (G.Scenes.Count > 1) G.Scenes.RemoveAt(1);
+
+            GameLogic Logic = new GameLogic();
+            Scene2D PlayScene = new Scene2D("Play Scene");
+            PlayScene.BackColor = Color.FromArgb(0, 210, 127);
+            Logic.Init(((ExternRunner)G.Scenes[0].Data["Runner"]), G, PlayScene);
+            G.Scenes.Add(PlayScene);
+
             ((ExternRunner)G.Scenes[0].Data["Runner"]).Init(G, G.Scenes[1]);
         }
         public void ExitClickEvent(Game G, EventArguments E)

@@ -22,6 +22,7 @@ namespace GameJam.FrogShift
         private DrawnSceneObject PredatorObject = null;
         private DrawnSceneObject splash;
         private DrawnSceneObject GameOverLabel;
+        private DrawnSceneObject Close;
         private HighScore hScore;
         private GameTimer gtimer;
         private CameraMove Camera;
@@ -49,8 +50,14 @@ namespace GameJam.FrogShift
         }
         public GameLogic()
         {
-            _ResMan = new ResourceManager();
-            _ResMan.Init();
+            _ResMan = ResourceManager.RM;
+            DiffTime = 0;
+            Up = true;
+            GameOver = false;
+            Switch = false;
+            SplashFlag = false;
+            Predator = false;
+            PredatorDone = false;
         }
         public void Init(Runner NewRunner, Game NewGame, Scene CurrentScene)
         {
@@ -84,6 +91,15 @@ namespace GameJam.FrogShift
         {
             _CScene.Data["Colliders"] = this._Colliders;
             Level.Create((Scene2D)_CScene, (ExternRunner)Runner);
+        }
+        public void CloseGameEvent(Game G, EventArguments E)
+        {
+            CScene.Events.Extern.TimerTick -= new GameEventHandler(GameUpdateEvent);
+            CScene.Events.Extern.KeyDown -= new GameEventHandler(_Movement.KeyDownEvent);
+            CScene.Events.Extern.KeyUp -= new GameEventHandler(_Movement.KeyUpEvent);
+            CScene.Events.Extern.KeyPress -= new GameEventHandler(_Movement.KeyPressEvent);
+            CScene.Objects.Clear();
+            _Runner.Init(G, G.Scenes[0]);
         }
         public void GameUpdateEvent(Game G, EventArguments E)
         {
@@ -119,11 +135,24 @@ namespace GameJam.FrogShift
                     if(!Up) GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
                     CScene.Data["GameOverLabel"] = GameOverLabel;
                     CScene.AddSceneObject(GameOverLabel);
+
+                    Close = GameLogic.CreateStaticSprite("Close", global::GameJam.FrogShift.Properties.Resources.exit, new Engineer.Mathematics.Vertex(800, 900, 0), new Engineer.Mathematics.Vertex(300, 60, 0), false);
+                    if (!Up) Close.Representation.Translation = new Vertex(800 * _GlobalScale, 1450 * _GlobalScale, 0);
+                    Close.Events.Extern.MouseClick += new GameEventHandler(this.CloseGameEvent);
+                    CScene.AddSceneObject(Close);
                 }
                 else
                 {
-                    if (Up) GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
-                    else GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                    if (Up)
+                    {
+                        GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
+                        Close.Representation.Translation = new Vertex(800 * _GlobalScale, 900 * _GlobalScale, 0);
+                    }
+                    else
+                    {
+                        GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                        Close.Representation.Translation = new Vertex(800 * _GlobalScale, 1450 * _GlobalScale, 0);
+                    }
                 }
 
                 if(!PredatorDone)
