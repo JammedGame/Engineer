@@ -22,16 +22,16 @@ namespace GameJam.FrogShift
             
             gameTime = rnd.Next(15,45);
 
-            SpriteSet Digit0 = new SpriteSet("0", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit1 = new SpriteSet("1", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit2 = new SpriteSet("2", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit3 = new SpriteSet("3", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit4 = new SpriteSet("4", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit5 = new SpriteSet("5", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit6 = new SpriteSet("6", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit7 = new SpriteSet("7", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit8 = new SpriteSet("8", global::GameJam.FrogShift.Properties.Resources.broj2);
-            SpriteSet Digit9 = new SpriteSet("9", global::GameJam.FrogShift.Properties.Resources.broj2);
+            SpriteSet Digit0 = new SpriteSet("0", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit1 = new SpriteSet("1", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit2 = new SpriteSet("2", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit3 = new SpriteSet("3", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit4 = new SpriteSet("4", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit5 = new SpriteSet("5", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit6 = new SpriteSet("6", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit7 = new SpriteSet("7", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit8 = new SpriteSet("8", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit9 = new SpriteSet("9", global::GameJam.FrogShift.Properties.Resources.broj0);
             Sprite Digits = new Sprite();
             Digits.SpriteSets.Add(Digit0);
             Digits.SpriteSets.Add(Digit1);

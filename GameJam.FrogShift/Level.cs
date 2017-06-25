@@ -23,7 +23,7 @@ namespace GameJam.FrogShift
             CScene.Data["Back"] = Back;
             CScene.AddSceneObject(Back);
 
-            DrawnSceneObject Back2 = GameLogic.CreateStaticSprite("Back2", global::GameJam.FrogShift.Properties.Resources.pod_vodom, new Vertex(0, 850, 0), new Vertex(1920, 850, 0));
+            DrawnSceneObject Back2 = GameLogic.CreateStaticSprite("Back2", global::GameJam.FrogShift.Properties.Resources.podvodom, new Vertex(0, 850, 0), new Vertex(1920, 850, 0));
             CScene.Data["Back2"] = Back2;
             CScene.AddSceneObject(Back2);
 

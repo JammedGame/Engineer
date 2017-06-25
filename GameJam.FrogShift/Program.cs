@@ -18,8 +18,8 @@ namespace GameJam.FrogShift
         [STAThread]
         static void Main()
         {
-            ExternRunner Runner = new ExternRunner(1920, 1080, new GraphicsMode(32, 24, 0, 8), "Frog Shift");
-            Runner.WindowState = OpenTK.WindowState.Fullscreen;
+            ExternRunner Runner = new ExternRunner(1024, 600, new GraphicsMode(32, 24, 0, 8), "Frog Shift");
+            //Runner.WindowState = OpenTK.WindowState.Fullscreen;
             GameLogic Logic = new GameLogic();
             Game GameObject = new Game();
             
