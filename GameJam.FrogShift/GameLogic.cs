@@ -13,6 +13,7 @@ namespace GameJam.FrogShift
 {
     public class GameLogic
     {
+        private HighScore hScore;
         private GameTimer gtimer;
         private CameraMove Camera;
         private int counter = 0;
@@ -56,6 +57,7 @@ namespace GameJam.FrogShift
             CScene.Events.Extern.KeyUp += new GameEventHandler(_Movement.KeyUpEvent);
             CScene.Events.Extern.KeyPress += new GameEventHandler(_Movement.KeyPressEvent);
             this.gtimer = new GameTimer(_CScene, Runner);
+            this.hScore = new HighScore(_CScene, Runner);
             Camera = new CameraMove(_CScene);
         }
         private void CreateCharacter()
@@ -82,6 +84,7 @@ namespace GameJam.FrogShift
             if (counter++ >= 166) { gtimer.DecTime(); counter = 0; }
             if (counter1 == 1) { Camera.MoveCamera(this._CScene, this._Runner); counter1 = 0; }
             counter1++;
+            hScore.updateHighscore();
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
         {
