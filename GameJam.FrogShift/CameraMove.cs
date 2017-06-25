@@ -14,6 +14,7 @@ namespace GameJam.FrogShift
         public static int moveRatio = 2;
         float move;
         float Difficulty = 1.0f;
+        int Delay = 500;
         
         Scene2D _CScene2D;
 
@@ -24,6 +25,9 @@ namespace GameJam.FrogShift
 
         public void MoveCamera(Scene _CScene, Runner Run)
         {
+            Delay--;
+            if (Delay > 0) return;
+
             move = CameraMove.moveRatio;
             move *= GameLogic._GlobalScale;
            
