@@ -29,7 +29,7 @@ namespace GameJam.FrogShift
             GameObject.Scenes.Add(MenuScene);
 
             Scene2D PlayScene = new Scene2D("Play Scene");
-            PlayScene.BackColor = Color.FromArgb(41, 216, 238);
+            PlayScene.BackColor = Color.FromArgb(0, 210, 127);
             GameObject.Scenes.Add(PlayScene);
 
             Logic.Init(Runner, GameObject, PlayScene);

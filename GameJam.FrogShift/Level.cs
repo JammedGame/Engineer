@@ -23,14 +23,20 @@ namespace GameJam.FrogShift
             CScene.Data["Back"] = Back;
             CScene.AddSceneObject(Back);
 
+            DrawnSceneObject WaterSurface = GameLogic.CreateStaticSprite("WaterSurface", global::GameJam.FrogShift.Properties.Resources.voda1, new Vertex(0, 825, 0), new Vertex(1920, 50, 0));
+            CScene.Data["WaterSurface"] = WaterSurface;
+            //((Sprite)(WaterSurface.Representation)).SpriteSets[0].Sprite.Add(global::GameJam.FrogShift.Properties.Resources.voda2);
+            //((Sprite)(WaterSurface.Representation)).SpriteSets[0].Sprite.Add(global::GameJam.FrogShift.Properties.Resources.voda3);
+            CScene.AddSceneObject(WaterSurface);
+
             for (int i = 0; i < LilipadList.Count; i++)
             {
-                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadList[i] * 200, 830, 0), new Vertex(200, 30, 0));
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadList[i] * 180, 830, 0), new Vertex(200, 30, 0));
                 CScene.AddSceneObject(Floor);                
                 ((List<SceneObject>)(CScene.Data["Colliders"])).Add(Floor);
             }
 
-            DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 850, 0), new Vertex(1920, 1080, 0));
+            DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 850, 0), new Vertex(1920, 2000, 0));
             CScene.Data["Water"] = Water;
             CScene.AddSceneObject(Water);
         }

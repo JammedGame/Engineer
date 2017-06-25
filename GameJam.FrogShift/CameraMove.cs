@@ -24,9 +24,11 @@ namespace GameJam.FrogShift
             _CScene2D = (Scene2D)_CScene;
             _CScene2D.Transformation.Translation = new Vertex(_CScene2D.Transformation.Translation.X - move, _CScene2D.Transformation.Translation.Y, 0);
             DrawnSceneObject Water = (DrawnSceneObject)_CScene.Data["Water"];
+            DrawnSceneObject WaterSurface = (DrawnSceneObject)_CScene.Data["WaterSurface"];
             DrawnSceneObject Back = (DrawnSceneObject)_CScene.Data["Back"];
             DrawnSceneObject TimerHigh = (DrawnSceneObject)_CScene.Data["TimerHigh"];
             DrawnSceneObject TimerLow = (DrawnSceneObject)_CScene.Data["TimerLow"];
+            WaterSurface.Representation.Translation = new Vertex(Water.Representation.Translation.X + move, 825*GameLogic._GlobalScale, 0);
             Water.Representation.Translation = new Vertex(Water.Representation.Translation.X + move, 850*GameLogic._GlobalScale, 0);
             Back.Representation.Translation = new Vertex(Back.Representation.Translation.X + move, 0, 0);
             TimerHigh.Representation.Translation = new Vertex(TimerHigh.Representation.Translation.X + move, 0, 0);

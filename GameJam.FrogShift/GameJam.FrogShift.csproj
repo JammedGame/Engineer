@@ -374,5 +374,14 @@
   <ItemGroup>
     <None Include="Resources\lokvanj2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\voda1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\voda2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\voda3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
