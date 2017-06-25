@@ -42,5 +42,16 @@ namespace GameJam.FrogShift
             }
             return intList;
         }
+        public List<int> GenerateArtIndexSequence(int Num, int maxVal)
+        {
+            List<int> indexList = new List<int>();
+            Random rnd = new Random();
+            for (int i = 0; i < Num; i++)
+            {
+                int num = rnd.Next(0, maxVal);
+                indexList.Add(num);
+            }
+            return indexList;
+        }
     }
 }

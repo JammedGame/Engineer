@@ -16,6 +16,7 @@ namespace GameJam.FrogShift
             SeqGen SG = new SeqGen();
 
             List<int> LilipadList = SG.GenerateSequence(99);
+            List<int> LilipadArtList = SG.GenerateArtIndexSequence(100, 2);
 
             LilipadList.Insert(0, 1);
 
@@ -35,7 +36,7 @@ namespace GameJam.FrogShift
 
             for (int i = 0; i < LilipadList.Count; i++)
             {
-                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadList[i] * 180, 830, 0), new Vertex(200, 30, 0));
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, ResourceManager.Images["lokvanj"+LilipadArtList[i]], new Vertex(LilipadList[i] * 180, 830, 0), new Vertex(200, 30, 0));
                 CScene.AddSceneObject(Floor);                
                 ((List<DrawnSceneObject>)(CScene.Data["Colliders"])).Add(Floor);
             }
