@@ -16,6 +16,7 @@ namespace GameJam.FrogShift
         public static bool Up = true;
         public static bool GameOver = false;
         public static bool Switch = false;
+        public static bool Splash = false;
         private HighScore hScore;
         private GameTimer gtimer;
         private CameraMove Camera;
@@ -81,6 +82,12 @@ namespace GameJam.FrogShift
         }
         public void GameUpdateEvent(Game G, EventArguments E)
         {
+            if(Splash)
+            {
+                AudioPlayer.PlaySplash();
+                Splash = false;
+            }
+
             if (counter1 == 1) { Camera.MoveCamera(this._CScene, this._Runner); counter1 = 0; }
             counter1++;
             Character.UpdateLegs(_Player);

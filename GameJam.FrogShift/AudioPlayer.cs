@@ -16,10 +16,11 @@ namespace GameJam.FrogShift
         public static MediaPlayer Looped;
         public static MediaPlayer Music;
         public static MediaPlayer Kre;
+        public static MediaPlayer Splash;
         public static void Init()
         {
             Music = new System.Windows.Media.MediaPlayer();
-            Music.Open(new Uri(@"Data\yeah.wav", UriKind.Relative));
+            Music.Open(new Uri(@"Data\theme.wav", UriKind.Relative));
             Kre = new System.Windows.Media.MediaPlayer();
             Kre.Open(new Uri(@"Data\bamboo.wav", UriKind.Relative));
         }
@@ -36,7 +37,15 @@ namespace GameJam.FrogShift
         }
         private static void Ended(object sender, EventArgs e)
         {
+            Looped.Stop();
             Looped.Play();
+        }
+        public static void PlaySplash()
+        {
+            Splash = new System.Windows.Media.MediaPlayer();
+            Splash.Volume = 1.0f;
+            Splash.Open(new Uri(@"Data\splash.wav", UriKind.Relative));
+            Splash.Play();
         }
     }
 }
