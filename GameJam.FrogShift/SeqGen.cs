@@ -17,11 +17,15 @@ namespace GameJam.FrogShift
             intList = null;
         }
 
-        public List<int> GenerateSequence()
+        public List<int> GenerateSequence(int Num)
         {
+            intList = new List<int>();
+            int max = 0;
             Random rnd = new Random();
-            for (int i = 0; i < 100;i++) {
-                intList.Add(rnd.Next(1,5));
+            for (int i = 0; i < Num;i++) {
+                int num = rnd.Next(1, 5);
+                max += num;
+                intList.Add(max);
             }
             return intList;
         }
