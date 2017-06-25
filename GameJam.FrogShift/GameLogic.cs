@@ -96,7 +96,7 @@ namespace GameJam.FrogShift
             ((DrawnSceneObject)CScene.Data["JumpIn"]).Representation.Active = !GameOver && Up && Switch;
             ((DrawnSceneObject)CScene.Data["JumpUp"]).Representation.Active = !GameOver && (!Up) && Switch;            
             _Movement.CheckCollision();
-            _Movement.CheckWaterLevel((Scene2D)_CScene);
+            _Movement.CheckWaterLevel((Scene2D)_CScene,Runner);
             if (GameLogic.GameOver)
             {
                 if(!PredatorDone)

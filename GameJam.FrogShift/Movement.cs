@@ -229,15 +229,45 @@ namespace GameJam.FrogShift
                 }
             }
         }
-        public void CheckWaterLevel(Scene2D CScene)
+        public void CheckWaterLevel(Scene2D CScene,Runner Runner)
         {
+            DrawnSceneObject TimerHigh = (DrawnSceneObject)CScene.Data["TimerHigh"];
+            DrawnSceneObject TimerLow = (DrawnSceneObject)CScene.Data["TimerLow"];
+
+            List<DrawnSceneObject> HSDigit = new List<DrawnSceneObject>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                HSDigit.Add((DrawnSceneObject)CScene.Data["number" + i]);
+            }
+
+
             if (Convert.ToBoolean(_Player.Data["underWater"]))
             {
                 CScene.Transformation.Translation = new Vertex(CScene.Transformation.Translation.X, -600 * GameLogic._GlobalScale, 0);
+               
+                TimerHigh.Representation.Translation = new Vertex((Runner.Width / 2.0f) - 100 * GameLogic._GlobalScale, Runner.Height + 400 * GameLogic._GlobalScale, 0);
+                TimerLow.Representation.Translation = new Vertex((Runner.Width / 2.0f), Runner.Height+400 * GameLogic._GlobalScale, 0);
+
+                for (int i = 0; i < 8; i++)
+                {
+                    HSDigit[i].Representation.Translation = new Vertex((Runner.Width - 40 * GameLogic._GlobalScale * (i + 1)), Runner.Height + 475 * GameLogic._GlobalScale, 0);
+
+                }
             }
             else
             {
                 CScene.Transformation.Translation = new Vertex(CScene.Transformation.Translation.X, 0, 0);
+
+                TimerHigh.Representation.Translation = new Vertex((Runner.Width / 2.0f) - 100 * GameLogic._GlobalScale, 0, 0);
+                TimerLow.Representation.Translation = new Vertex((Runner.Width / 2.0f), 0, 0);
+
+
+                for (int i = 0; i < 8; i++)
+                {
+                    HSDigit[i].Representation.Translation = new Vertex((Runner.Width - 40 * GameLogic._GlobalScale * (i + 1)),0, 0);
+
+                }           
             }
         }
     }
