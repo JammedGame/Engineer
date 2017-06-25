@@ -12,8 +12,8 @@ namespace GameJam.FrogShift
 {
     public class Movement
     {
-        private bool _ADown;
-        private bool _DDown;
+        public bool _ADown;
+        public bool _DDown;
         private Runner _Runner;
         private DrawnSceneObject _Player;
         private List<DrawnSceneObject> _Colliders = new List<DrawnSceneObject>();
@@ -34,12 +34,19 @@ namespace GameJam.FrogShift
         }
         public void KeyUpEvent(Game G, EventArguments E)
         {
-            if (GameLogic.GameOver) return;
+            if (GameLogic.GameOver)
+            {
+                return;
+            }
             if (E.KeyDown == KeyType.A) _ADown = false;
             if (E.KeyDown == KeyType.D) _DDown = false;
         }
         public void KeyDownEvent(Game G, EventArguments E)
         {
+            if (E.KeyDown == KeyType.Escape)
+            {
+                _Runner.Close();
+            }
             if (GameLogic.GameOver) return;
             if (E.KeyDown == KeyType.Space)
             {
@@ -52,10 +59,6 @@ namespace GameJam.FrogShift
                     ((Sprite)(((DrawnSceneObject)(_Player.Data["RL"])).Representation)).SetSpriteSet(1);
                     AudioPlayer.PlaySound(AudioPlayer.Kre, false, 100);
                 }
-            }
-            if (E.KeyDown == KeyType.Escape)
-            {
-                _Runner.Close();
             }
         }
         public void CheckCollision()

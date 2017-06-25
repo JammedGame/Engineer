@@ -59,6 +59,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Movement.cs" />
+    <Compile Include="Predators.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
@@ -443,6 +444,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\broj9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zmijo9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
