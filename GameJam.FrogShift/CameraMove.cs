@@ -13,34 +13,33 @@ namespace GameJam.FrogShift
     {
         public static int moveRatio = 2;
         float move;
+        float Difficulty = 1.0f;
+        
         Scene2D _CScene2D;
 
         public CameraMove(Scene _CScene)
         {
             _CScene2D = (Scene2D)_CScene;
         }
-    
+
         public void MoveCamera(Scene _CScene, Runner Run)
         {
             move = CameraMove.moveRatio;
             move *= GameLogic._GlobalScale;
-            /*_CScene2D = (Scene2D)_CScene;
-            _CScene2D.Transformation.Translation = new Vertex(_CScene2D.Transformation.Translation.X - move, _CScene2D.Transformation.Translation.Y, 0);
-            DrawnSceneObject Water = (DrawnSceneObject)_CScene.Data["Water"];
-            DrawnSceneObject WaterSurface = (DrawnSceneObject)_CScene.Data["WaterSurface"];
-            DrawnSceneObject Back = (DrawnSceneObject)_CScene.Data["Back"];
-            DrawnSceneObject TimerHigh = (DrawnSceneObject)_CScene.Data["TimerHigh"];
-            DrawnSceneObject TimerLow = (DrawnSceneObject)_CScene.Data["TimerLow"];
-            WaterSurface.Representation.Translation = new Vertex(Water.Representation.Translation.X + move, 825*GameLogic._GlobalScale, 0);
-            Water.Representation.Translation = new Vertex(Water.Representation.Translation.X + move, 850*GameLogic._GlobalScale, 0);
-            Back.Representation.Translation = new Vertex(Back.Representation.Translation.X + move, 0, 0);*/
+           
             DrawnSceneObject Frog = (DrawnSceneObject)_CScene.Data["Frog"];
-            Frog.Representation.Translation = new Vertex(Frog.Representation.Translation.X - move, Frog.Representation.Translation.Y, 0);
+            Frog.Representation.Translation = new Vertex(Frog.Representation.Translation.X - MoveSpeed(), Frog.Representation.Translation.Y, 0);
             List<DrawnSceneObject> Colliders = (List<DrawnSceneObject>)_CScene.Data["Colliders"];
             for (int i = 0; i < Colliders.Count; i++)
             {
-                Colliders[i].Representation.Translation = new Vertex(Colliders[i].Representation.Translation.X - move, Colliders[i].Representation.Translation.Y, 0);
+                Colliders[i].Representation.Translation = new Vertex(Colliders[i].Representation.Translation.X - MoveSpeed(), Colliders[i].Representation.Translation.Y, 0);
             }
+        }
+        private float MoveSpeed()
+        {
+            if (((GameLogic.DiffTime /20) == 1) && Difficulty < 6) { Difficulty++; GameLogic.DiffTime = 0; }
+            float movement = this.move * Difficulty;
+            return movement;
         }
     }
 }
