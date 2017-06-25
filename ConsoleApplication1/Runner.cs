@@ -33,7 +33,7 @@ namespace Engineer.Runner
             this._Seed = 0;
             this._GameInit = false;
             this._EngineInit = false;
-            this._Time = new Timer(8);
+            this._Time = new Timer(8.33);
             this._Time.Elapsed += Event_TimerTick;
             this._Time.AutoReset = true;
         }
