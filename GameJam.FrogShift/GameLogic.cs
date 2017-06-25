@@ -99,7 +99,7 @@ namespace GameJam.FrogShift
             _Movement.CheckWaterLevel((Scene2D)_CScene);
 
             if (GameLogic.GameOver) return;
-            
+
             if (counter++ >= 120) { gtimer.DecTime(); counter = 0; }
             hScore.updateHighscore();
             if(_Player.Representation.Translation.X + _Player.Representation.Scale.X / 2 < 0)

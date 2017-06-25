@@ -22,7 +22,7 @@ namespace GameJam.FrogShift
             Music = new System.Windows.Media.MediaPlayer();
             Music.Open(new Uri(@"Data\theme.wav", UriKind.Relative));
             Kre = new System.Windows.Media.MediaPlayer();
-            Kre.Open(new Uri(@"Data\bamboo.wav", UriKind.Relative));
+            Kre.Open(new Uri(@"Data\kre.wav", UriKind.Relative));
         }
         public static void PlaySound(MediaPlayer Sound, bool Loop, int Volume)
         {
