@@ -16,8 +16,8 @@ namespace GameJam.FrogShift
         private bool _DDown;
         private Runner _Runner;
         private DrawnSceneObject _Player;
-        private List<SceneObject> _Colliders = new List<SceneObject>();
-        public Movement(Runner NewRunner, DrawnSceneObject Player, List<SceneObject> Colliders)
+        private List<DrawnSceneObject> _Colliders = new List<DrawnSceneObject>();
+        public Movement(Runner NewRunner, DrawnSceneObject Player, List<DrawnSceneObject> Colliders)
         {
             this._Runner = NewRunner;
             this._Player = Player;

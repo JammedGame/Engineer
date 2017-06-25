@@ -33,6 +33,7 @@ namespace GameJam.FrogShift
             CScene.AddSceneObject(Char);
 
             DrawnSceneObject RL = CreateLeg("RightLeg", "desna_noga", new Vertex(-40, -88, 0));
+            CScene.Data["Frog"] = Char;
             CScene.AddSceneObject(RL);
 
             Char.Data["RL"] = RL;

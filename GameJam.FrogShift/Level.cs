@@ -33,7 +33,7 @@ namespace GameJam.FrogShift
             {
                 DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadList[i] * 180, 830, 0), new Vertex(200, 30, 0));
                 CScene.AddSceneObject(Floor);                
-                ((List<SceneObject>)(CScene.Data["Colliders"])).Add(Floor);
+                ((List<DrawnSceneObject>)(CScene.Data["Colliders"])).Add(Floor);
             }
 
             DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 850, 0), new Vertex(1920, 2000, 0));

@@ -45,13 +45,13 @@ namespace GameJam.FrogShift
             Digits.SpriteSets.Add(Digit9);
             Sprite HighDigits = new Sprite(Digits);
 
-            Digits.Scale = new Vertex(50, 80, 0);
-            Digits.Translation = new Vertex(0, 0 , 0);
+            Digits.Scale = new Vertex(100 * GameLogic._GlobalScale, 160* GameLogic._GlobalScale, 0);
+            Digits.Translation = new Vertex((Runner.Width/2.0f), 0 , 0);
             t1 = new DrawnSceneObject("Time1", Digits);
             _CScene.Data["TimerLow"] = t1;
             _CScene.AddSceneObject(t1);
-            HighDigits.Scale = new Vertex(50, 80, 0);
-            HighDigits.Translation = new Vertex(50, 0, 0);
+            HighDigits.Scale = new Vertex(100 * GameLogic._GlobalScale, 160 * GameLogic._GlobalScale, 0);
+            HighDigits.Translation = new Vertex((Runner.Width / 2.0f) - 100* GameLogic._GlobalScale, 0, 0);
             t2 = new DrawnSceneObject("Time2", HighDigits);            
             _CScene.AddSceneObject(t2);
             _CScene.Data["TimerHigh"]=t2;
@@ -73,7 +73,7 @@ namespace GameJam.FrogShift
                 for (int i = 0; i < 10; i++)
                 {
                     if(((gameTime)%10)==i)((Sprite)(t1.Representation)).UpdateSpriteSet(i);
-                    if (((gameTime) / 10) == i) ((Sprite)(t2.Representation)).UpdateSpriteSet(i);
+                    //if (((gameTime) / 10) == i) ((Sprite)(t2.Representation)).UpdateSpriteSet(i);
                 }
             }           
         }

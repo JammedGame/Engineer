@@ -24,7 +24,7 @@ namespace GameJam.FrogShift
         private Scene _CScene;
         private ResourceManager _ResMan;
         private Movement _Movement;
-        private List<SceneObject> _Colliders = new List<SceneObject>();
+        private List<DrawnSceneObject> _Colliders = new List<DrawnSceneObject>();
         public Runner Runner
         {
             get => _Runner; set => _Runner = value;
@@ -79,8 +79,8 @@ namespace GameJam.FrogShift
             _Movement.CheckCollision();
             _Movement.CheckWaterLevel((Scene2D)_CScene);
             Character.UpdateLegs(_Player);
-            if (counter++ >= 166) gtimer.DecTime();
-            if (counter1 == 1) { Camera.MoveCamera(this._CScene); counter1 = 0; }
+            if (counter++ >= 166) { gtimer.DecTime(); counter = 0; }
+            if (counter1 == 1) { Camera.MoveCamera(this._CScene, this._Runner); counter1 = 0; }
             counter1++;
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
