@@ -194,6 +194,7 @@ namespace GameJam.FrogShift
                     {
                         if (!Up)
                         {
+                            AudioPlayer.PlaySnake();
                             Predators.CreateSnake();
                             this.PredatorObject = Predators.Snake;
                             this.PredatorObject.Representation.Translation = new Vertex(-2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
@@ -202,6 +203,7 @@ namespace GameJam.FrogShift
                         }
                         else
                         {
+                            AudioPlayer.PlayStork();
                             Predators.CreateStork();
                             this.PredatorObject = Predators.Stork;
                             this.PredatorObject.Representation.Translation = new Vertex(2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);

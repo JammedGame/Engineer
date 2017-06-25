@@ -17,6 +17,8 @@ namespace GameJam.FrogShift
         public static MediaPlayer Music;
         public static MediaPlayer Kre;
         public static MediaPlayer Splash;
+        public static MediaPlayer Stork;
+        public static MediaPlayer Snake;
         public static void Init()
         {
             Music = new System.Windows.Media.MediaPlayer();
@@ -46,6 +48,20 @@ namespace GameJam.FrogShift
             Splash.Volume = 1.0f;
             Splash.Open(new Uri(@"Data\splash.wav", UriKind.Relative));
             Splash.Play();
+        }
+        public static void PlayStork()
+        {
+            Stork = new System.Windows.Media.MediaPlayer();
+            Stork.Volume = 1.0f;
+            Stork.Open(new Uri(@"Data\stork.wav", UriKind.Relative));
+            Stork.Play();
+        }
+        public static void PlaySnake()
+        {
+            Snake = new System.Windows.Media.MediaPlayer();
+            Snake.Volume = 1.0f;
+            Snake.Open(new Uri(@"Data\snake.wav", UriKind.Relative));
+            Snake.Play();
         }
     }
 }
