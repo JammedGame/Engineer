@@ -15,15 +15,17 @@ namespace GameJam.FrogShift
         {
             SeqGen SG = new SeqGen();
 
-            int[] LilipadsX = SG.GenerateSequence(100).ToArray();
+            List<int> LilipadList = SG.GenerateSequence(99);
+
+            LilipadList.Insert(0, 1);
 
             DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.BG, new Vertex(0, 0, 0), new Vertex(Runner.Width, Runner.Height, 0), false);
             CScene.Data["Back"] = Back;
             CScene.AddSceneObject(Back);
 
-            for (int i = 0; i < LilipadsX.Length; i++)
+            for (int i = 0; i < LilipadList.Count; i++)
             {
-                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadsX[i] * 160, 830, 0), new Vertex(200, 30, 0));
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadList[i] * 200, 830, 0), new Vertex(200, 30, 0));
                 CScene.AddSceneObject(Floor);                
                 ((List<SceneObject>)(CScene.Data["Colliders"])).Add(Floor);
             }
