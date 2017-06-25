@@ -1,4 +1,5 @@
 ﻿using Engineer.Engine;
+using Engineer.Mathematics;
 using Engineer.Runner;
 using OpenTK.Graphics;
 using System;
@@ -26,7 +27,8 @@ namespace GameJam.FrogShift
             _ResMan.Init();
 
             Menu _Menu = new Menu();
-            Scene2D MenuScene = (Scene2D)_Menu.CreateMenuScene();
+            Scene2D MenuScene = (Scene2D)_Menu.CreateMenuScene(Runner);
+
             MenuScene.Data["Runner"] = Runner;
             GameObject.Scenes.Add(MenuScene);
 

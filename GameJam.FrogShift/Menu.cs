@@ -1,4 +1,5 @@
 ﻿using Engineer.Engine;
+using Engineer.Mathematics;
 using Engineer.Runner;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,20 @@ namespace GameJam.FrogShift
 {
     public class Menu
     {
-        public Scene CreateMenuScene()
+        public Scene CreateMenuScene(Runner Run)
         {
             Scene2D MenuScene = new Scene2D("Menu");
             MenuScene.BackColor = Color.FromArgb(41, 216, 238);
-            SceneObject Play = GameLogic.CreateStaticSprite("Play", global::GameJam.FrogShift.Properties.Resources.play, new Engineer.Mathematics.Vertex(350, 200, 0), new Engineer.Mathematics.Vertex(300, 60, 0), false);
+
+            DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.naslovna, new Vertex(0, 0, 0), new Vertex(Run.Width, Run.Height, 0), false);
+            MenuScene.AddSceneObject(Back);
+
+            GameLogic._GlobalScale = Run.Height / 1080.0f;
+
+            SceneObject Play = GameLogic.CreateStaticSprite("Play", global::GameJam.FrogShift.Properties.Resources.play, new Engineer.Mathematics.Vertex(200, 850, 0), new Engineer.Mathematics.Vertex(300, 60, 0), true);
             Play.Events.Extern.MouseClick += new GameEventHandler(this.PlayClickEvent);
             MenuScene.AddSceneObject(Play);
-            SceneObject Exit = GameLogic.CreateStaticSprite("Exit", global::GameJam.FrogShift.Properties.Resources.exit, new Engineer.Mathematics.Vertex(350, 400, 0), new Engineer.Mathematics.Vertex(300, 60, 0), false);
+            SceneObject Exit = GameLogic.CreateStaticSprite("Exit", global::GameJam.FrogShift.Properties.Resources.exit, new Engineer.Mathematics.Vertex(1400, 850, 0), new Engineer.Mathematics.Vertex(300, 60, 0), true);
             Exit.Events.Extern.MouseClick += new GameEventHandler(this.ExitClickEvent);
             MenuScene.AddSceneObject(Exit);
             return MenuScene;

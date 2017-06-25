@@ -196,24 +196,28 @@ namespace GameJam.FrogShift
                     }
                     else
                     {
-                        if (!Up)
+                        try
                         {
-                            AudioPlayer.PlaySnake();
-                            Predators.CreateSnake();
-                            this.PredatorObject = Predators.Snake;
-                            this.PredatorObject.Representation.Translation = new Vertex(-2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
-                            _CScene.AddSceneObject(this.PredatorObject);
-                            Predator = true;
+                            if (!Up)
+                            {
+                                AudioPlayer.PlaySnake();
+                                Predators.CreateSnake();
+                                this.PredatorObject = Predators.Snake;
+                                this.PredatorObject.Representation.Translation = new Vertex(-2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
+                                _CScene.AddSceneObject(this.PredatorObject);
+                                Predator = true;
+                            }
+                            else
+                            {
+                                AudioPlayer.PlayStork();
+                                Predators.CreateStork();
+                                this.PredatorObject = Predators.Stork;
+                                this.PredatorObject.Representation.Translation = new Vertex(2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
+                                _CScene.AddSceneObject(this.PredatorObject);
+                                Predator = true;
+                            }
                         }
-                        else
-                        {
-                            AudioPlayer.PlayStork();
-                            Predators.CreateStork();
-                            this.PredatorObject = Predators.Stork;
-                            this.PredatorObject.Representation.Translation = new Vertex(2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
-                            _CScene.AddSceneObject(this.PredatorObject);
-                            Predator = true;
-                        }
+                        catch { }
                     }
                 }
 
