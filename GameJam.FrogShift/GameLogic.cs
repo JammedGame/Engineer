@@ -51,6 +51,8 @@ namespace GameJam.FrogShift
             this._Movement = new Movement(_Runner, _Player, _Colliders);
             CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
             CScene.Events.Extern.KeyDown += new GameEventHandler(_Movement.KeyDownEvent);
+            CScene.Events.Extern.KeyUp += new GameEventHandler(_Movement.KeyUpEvent);
+            CScene.Events.Extern.KeyPress += new GameEventHandler(_Movement.KeyPressEvent);
             this.gtimer = new GameTimer(_CScene, Runner);
         }
         private void CreateCharacter()
