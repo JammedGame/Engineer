@@ -46,12 +46,14 @@ namespace GameJam.FrogShift
             Sprite HighDigits = new Sprite(Digits);
 
 
-            Digits.Translation = new Vertex(Runner.Width/2+30, 0 , 0);
+            Digits.Translation = new Vertex(Runner.Width/2+50, 0 , 0);
             t1 = new DrawnSceneObject("Time1", Digits);
+            _CScene.Data["TimerLow"] = t1;
             _CScene.AddSceneObject(t1);
-            HighDigits.Translation = new Vertex(Runner.Width / 2 - 30, 0, 0);
-            t2 = new DrawnSceneObject("Time2", HighDigits);
+            HighDigits.Translation = new Vertex(Runner.Width/2-50, 0, 0);
+            t2 = new DrawnSceneObject("Time2", HighDigits);            
             _CScene.AddSceneObject(t2);
+            _CScene.Data["TimerHigh"]=t2;
         }
         public void ResetTime()
         {
