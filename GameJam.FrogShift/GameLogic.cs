@@ -143,16 +143,20 @@ namespace GameJam.FrogShift
                 }
                 else
                 {
-                    if (Up)
+                    try
                     {
-                        GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
-                        Close.Representation.Translation = new Vertex(800 * _GlobalScale, 900 * _GlobalScale, 0);
+                        if (Up)
+                        {
+                            GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
+                            Close.Representation.Translation = new Vertex(800 * _GlobalScale, 900 * _GlobalScale, 0);
+                        }
+                        else
+                        {
+                            GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                            Close.Representation.Translation = new Vertex(800 * _GlobalScale, 1450 * _GlobalScale, 0);
+                        }
                     }
-                    else
-                    {
-                        GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
-                        Close.Representation.Translation = new Vertex(800 * _GlobalScale, 1450 * _GlobalScale, 0);
-                    }
+                    catch { }
                 }
 
                 if(!PredatorDone)
@@ -223,6 +227,9 @@ namespace GameJam.FrogShift
             {
                 GameLogic.GameOver = true;
             }
+
+            SeqGen SG = new SeqGen();
+            SG.CheckEnd(CScene);
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
         {
