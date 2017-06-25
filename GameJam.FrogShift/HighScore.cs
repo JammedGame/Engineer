@@ -65,7 +65,7 @@ namespace GameJam.FrogShift
 
             
            
-            int left =score;
+            int left =Convert.ToInt32( score/100);
             int rev = 0;
             while (left > 0)
             {
@@ -77,7 +77,15 @@ namespace GameJam.FrogShift
            
             for (int i = 0; i < tmpScore.Length; i++)
             {
-                ((Sprite)(dsoDigits[i].Representation)).UpdateSpriteSet(Convert.ToInt32(tmpScore.Substring(i,1)));
+               dsoDigits[i].Representation.Active = true;
+               ((Sprite)(dsoDigits[i].Representation)).UpdateSpriteSet(Convert.ToInt32(tmpScore.Substring(i,1)));
+            }
+            if(tmpScore.Length < dsoDigits.Count)
+            {
+                for (int i = tmpScore.Length+1; i < dsoDigits.Count; i++)
+                {
+                    dsoDigits[i].Representation.Active = false;
+                }
             }
         }
 
