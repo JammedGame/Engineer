@@ -16,10 +16,11 @@ namespace GameJam.FrogShift
         public static bool Up = true;
         public static bool GameOver = false;
         public static bool Switch = false;
-        public static bool Splash = false;
+        public static bool SplashFlag = false;
         public static bool Predator = false;
         public static bool PredatorDone = false;
         private DrawnSceneObject PredatorObject = null;
+        private DrawnSceneObject splash;
         private HighScore hScore;
         private GameTimer gtimer;
         private CameraMove Camera;
@@ -85,10 +86,22 @@ namespace GameJam.FrogShift
         }
         public void GameUpdateEvent(Game G, EventArguments E)
         {
-            if(Splash)
+            if (SplashFlag)
             {
                 AudioPlayer.PlaySplash();
-                Splash = false;
+                SplashFlag = false;
+                splash = Splash.MakeSplash(_CScene, _Player);
+            }
+
+            if (splash != null)
+            {
+                splash.Data["Life"] = (int)splash.Data["Life"] - 1;
+                if ((int)splash.Data["Life"] == 0)
+                {
+                    splash.Representation.Active = false;
+                    splash = null;
+                    _CScene.Data["Splash"] = null;
+                }
             }
             if (counter1 == 1) { Camera.MoveCamera(this._CScene, this._Runner); counter1 = 0; }
             counter1++;

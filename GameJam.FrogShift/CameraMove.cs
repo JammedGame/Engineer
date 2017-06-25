@@ -34,6 +34,15 @@ namespace GameJam.FrogShift
             {
                 Colliders[i].Representation.Translation = new Vertex(Colliders[i].Representation.Translation.X - MoveSpeed(), Colliders[i].Representation.Translation.Y, 0);
             }
+
+            try
+            {
+                if(_CScene.Data.ContainsKey("Splash"))
+                {
+                    ((DrawnSceneObject)_CScene.Data["Splash"]).Representation.Translation = new Vertex(((DrawnSceneObject)_CScene.Data["Splash"]).Representation.Translation.X - MoveSpeed(), ((DrawnSceneObject)_CScene.Data["Splash"]).Representation.Translation.Y, 0);
+                }
+            }
+            catch { }
         }
         private float MoveSpeed()
         {

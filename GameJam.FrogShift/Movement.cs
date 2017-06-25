@@ -210,7 +210,7 @@ namespace GameJam.FrogShift
                     Time.ResetTime();
                     GameLogic.Up = false;
                     GameLogic.Switch = false;
-                    GameLogic.Splash = true;
+                    GameLogic.SplashFlag = true;
                 }
             }
             else
@@ -225,7 +225,7 @@ namespace GameJam.FrogShift
                     Time.ResetTime();
                     GameLogic.Up = true;
                     GameLogic.Switch = false;
-                    GameLogic.Splash = true;
+                    GameLogic.SplashFlag = true;
                 }
             }
         }

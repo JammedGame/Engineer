@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
     <Compile Include="SeqGen.cs" />
+    <Compile Include="Splash.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -483,6 +484,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\broj9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash13.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
