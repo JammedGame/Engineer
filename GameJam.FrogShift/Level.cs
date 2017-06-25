@@ -31,7 +31,7 @@ namespace GameJam.FrogShift
 
             for (int i = 0; i < LilipadList.Count; i++)
             {
-                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadList[i] * (180*GameLogic._GlobalScale), 830, 0), new Vertex(200, 30, 0));
+                DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, global::GameJam.FrogShift.Properties.Resources.lokvanj2, new Vertex(LilipadList[i] * 180, 830, 0), new Vertex(200, 30, 0));
                 CScene.AddSceneObject(Floor);                
                 ((List<DrawnSceneObject>)(CScene.Data["Colliders"])).Add(Floor);
             }

@@ -58,12 +58,12 @@ namespace GameJam.FrogShift
             {
                 if (_ADown)
                 {
-                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - 6, _Player.Representation.Translation.Y, 0);
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - (10* GameLogic._GlobalScale), _Player.Representation.Translation.Y, 0);
                     Character.UpdateLegs(_Player);
                 }
                 if (_DDown)
                 {
-                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + 6, _Player.Representation.Translation.Y, 0);
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + (10* GameLogic._GlobalScale), _Player.Representation.Translation.Y, 0);
                     Character.UpdateLegs(_Player);
                 }
             }
