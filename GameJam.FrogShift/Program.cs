@@ -32,6 +32,9 @@ namespace GameJam.FrogShift
             PlayScene.BackColor = Color.FromArgb(0, 210, 127);
             GameObject.Scenes.Add(PlayScene);
 
+            AudioPlayer.Init();
+            AudioPlayer.PlaySound(AudioPlayer.Music, true, 30);
+
             Logic.Init(Runner, GameObject, PlayScene);
             Runner.Init(GameObject, MenuScene);
             Runner.Run();

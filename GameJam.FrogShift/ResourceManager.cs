@@ -31,6 +31,7 @@ namespace GameJam.FrogShift
             foreach (DictionaryEntry entry in resourceSet)
             {
                 string resourceKey = entry.Key.ToString();
+                if (resourceKey.StartsWith("audio_")) continue;
                 object resource = entry.Value;
                 Images.Add(resourceKey, (Bitmap)resource);
             }

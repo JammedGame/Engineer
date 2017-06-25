@@ -19,11 +19,9 @@ namespace GameJam.FrogShift
 
         public GameTimer(Scene _CScene, Runner Runner)
         {
-            
             gameTime = rnd.Next(15,45);
-
-            SpriteSet Digit0 = new SpriteSet("0", global::GameJam.FrogShift.Properties.Resources.broj0);
-            SpriteSet Digit1 = new SpriteSet("1", global::GameJam.FrogShift.Properties.Resources.broj0);
+            SpriteSet Digit0 = new SpriteSet("0", global::GameJam.FrogShift.Properties.Resources.broj1);
+            SpriteSet Digit1 = new SpriteSet("1", global::GameJam.FrogShift.Properties.Resources.broj1);
             SpriteSet Digit2 = new SpriteSet("2", global::GameJam.FrogShift.Properties.Resources.broj0);
             SpriteSet Digit3 = new SpriteSet("3", global::GameJam.FrogShift.Properties.Resources.broj0);
             SpriteSet Digit4 = new SpriteSet("4", global::GameJam.FrogShift.Properties.Resources.broj0);

@@ -45,6 +45,7 @@ namespace GameJam.FrogShift
                     ((Sprite)(_Player.Representation)).SetSpriteSet(1);
                     ((Sprite)(((DrawnSceneObject)(_Player.Data["LL"])).Representation)).SetSpriteSet(1);
                     ((Sprite)(((DrawnSceneObject)(_Player.Data["RL"])).Representation)).SetSpriteSet(1);
+                    AudioPlayer.PlaySound(AudioPlayer.Kre, false, 100);
                 }
             }
             if (E.KeyDown == KeyType.Escape)
