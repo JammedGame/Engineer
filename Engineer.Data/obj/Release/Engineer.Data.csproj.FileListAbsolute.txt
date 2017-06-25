@@ -1,0 +1,9 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\bin\Release\Engineer.Data.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\bin\Release\Engineer.Data.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\bin\Release\Engineer.IO.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\bin\Release\Engineer.Mathematics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\bin\Release\Engineer.IO.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\bin\Release\Engineer.Mathematics.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\obj\Release\Engineer.Data.csprojResolveAssemblyReference.cache
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\obj\Release\Engineer.Data.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\obj\Release\Engineer.Data.pdb

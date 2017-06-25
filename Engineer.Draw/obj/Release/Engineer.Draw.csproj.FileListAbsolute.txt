@@ -1,0 +1,13 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Draw.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Draw.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Data.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Engine.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Mathematics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.IO.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Data.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Engine.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.Mathematics.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\bin\Release\Engineer.IO.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\obj\Release\Engineer.Draw.csprojResolveAssemblyReference.cache
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\obj\Release\Engineer.Draw.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Draw\obj\Release\Engineer.Draw.pdb

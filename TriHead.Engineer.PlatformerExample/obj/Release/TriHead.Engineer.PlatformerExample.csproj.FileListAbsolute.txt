@@ -1,0 +1,3 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\obj\Release\TriHead.Engineer.PlatformerExample.csprojResolveAssemblyReference.cache
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\obj\Release\Engineer.PlatformerExample.Properties.Resources.resources
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\TriHead.Engineer.PlatformerExample\obj\Release\TriHead.Engineer.PlatformerExample.csproj.GenerateResource.Cache

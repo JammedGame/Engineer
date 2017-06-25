@@ -1,0 +1,7 @@
+<MaterialEntry>
+	<ID>Ambient</ID>
+	<Type>Surface</Type>
+	<Input>	<Name>Color</Name> <Type>Color</Type> <Value><R>0.2</R><G>0.2</G><B>0.2</B></Value> </Input>
+	<Output> <Name>Ambient</Name> </Output>
+	<Function>Ambient.shader</Function>
+</MaterialEntry>

@@ -1,0 +1,7 @@
+<MaterialEntry>
+	<ID>ImageMap</ID>
+	<Type>Texture</Type>
+	<Input>	<Name>Texture</Name> <Type>Image</Type> </Input>
+	<Output> <Name>Color</Name> </Output>
+	<Function>ImageMap.shader</Function>
+</MaterialEntry>

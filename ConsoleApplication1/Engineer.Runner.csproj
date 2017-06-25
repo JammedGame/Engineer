@@ -58,7 +58,6 @@
     <Compile Include="EventManager.cs" />
     <Compile Include="ExternRunner.cs" />
     <Compile Include="Runner.cs" />
-    <Compile Include="ScriptedRunner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

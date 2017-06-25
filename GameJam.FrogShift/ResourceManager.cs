@@ -18,7 +18,7 @@ namespace GameJam.FrogShift
         public ResourceManager()
         {
             XmlDocument Document = new XmlDocument();
-            Document.Load("Library/Material/Default.mtx");
+            Document.Load("Data/Default.mtx");
             XmlNode Main = Document.FirstChild;
             Engineer.Engine.Material Mat = new Engineer.Engine.Material(Main);
             Engineer.Engine.Material.Default = Mat;

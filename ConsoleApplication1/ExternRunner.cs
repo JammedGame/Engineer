@@ -15,7 +15,6 @@ using Engineer.Draw.OpenGL;
 using Engineer.Draw.OpenGL.FixedGL;
 using Engineer.Draw.OpenGL.GLSL;
 using Engineer.Engine;
-using CSScriptLibrary;
 using OpenTK.Input;
 
 namespace Engineer.Runner

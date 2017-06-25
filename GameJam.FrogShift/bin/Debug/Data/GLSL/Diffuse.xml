@@ -1,0 +1,8 @@
+<MaterialEntry>
+	<ID>Diffuse</ID>
+	<Type>Surface</Type>
+	<EngineInput> <Name>Lights</Name> </EngineInput>
+	<Input>	<Name>Color</Name> <Type>Color</Type> <Value><R>1</R><G>1</G><B>1</B></Value> </Input>
+	<Output> <Name>Diffuse</Name> </Output>
+	<Function>Diffuse.shader</Function>
+</MaterialEntry>

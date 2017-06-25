@@ -1,0 +1,4 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\bin\Release\Engineer.IO.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\bin\Release\Engineer.IO.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\obj\Release\Engineer.IO.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.IO\obj\Release\Engineer.IO.pdb

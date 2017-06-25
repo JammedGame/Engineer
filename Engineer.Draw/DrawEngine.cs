@@ -59,7 +59,7 @@ namespace Engineer.Draw
         {
             if (CurrentScene == null) return;
             this._CurrentRenderer.Toggle(RenderEnableCap.Depth, false);
-            String LibPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Engineer/";
+            String LibPath = "Data\\";
             if (!this._CurrentRenderer.IsMaterialReady("2D"))
             {
                 string Vertex2D = File.ReadAllText(LibPath + "GLSL\\Generator\\Vertex2D.shader");

@@ -7,7 +7,7 @@
     <ProjectGuid>{4CE9A835-AC01-4377-B2CC-DD36ECBE0B8A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GameJam.FrogShift</RootNamespace>
-    <AssemblyName>GameJam.FrogShift</AssemblyName>
+    <AssemblyName>UnderdogFrog</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -30,6 +30,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>zaba doktor.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
@@ -526,6 +532,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gameover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="zaba doktor.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

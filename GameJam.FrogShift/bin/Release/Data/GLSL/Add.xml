@@ -1,0 +1,8 @@
+<MaterialEntry>
+	<ID>Add</ID>
+	<Type>Generic</Type>
+	<Output> <Name>Result</Name> </Output>
+	<Input>	<Name>Input1</Name> <Type>Color</Type> </Input>
+	<Input>	<Name>Input2</Name> <Type>Color</Type> </Input>
+	<Function>Add.shader</Function>
+</MaterialEntry>

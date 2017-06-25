@@ -1,0 +1,4 @@
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Release\Engineer.Mathematics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Release\Engineer.Mathematics.pdb
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Release\Engineer.Mathematics.dll
+C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Release\Engineer.Mathematics.pdb

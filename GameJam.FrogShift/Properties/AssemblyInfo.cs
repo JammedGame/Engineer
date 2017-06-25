@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GameJam.FrogShift")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Underdog Frog")]
+[assembly: AssemblyDescription("Underdog Frog")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jamed Game Crew ©  2017")]
 [assembly: AssemblyProduct("GameJam.FrogShift")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright Jamed Game Crew ©  2017")]
+[assembly: AssemblyTrademark("Underdog Frog ©  2017")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
