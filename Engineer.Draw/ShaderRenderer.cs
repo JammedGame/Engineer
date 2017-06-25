@@ -171,7 +171,7 @@ namespace Engineer.Draw
             List<byte> Textures = new List<byte>();
             for (int i = 0; i < TextureBitmaps.Count; i++)
             {
-                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size(1024, 1024));
+                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size(512, 512));
                 Textures.AddRange(ShaderMaterialTranslator.ImageToByte(TextureBitmaps[i]));
             }
             return Textures.ToArray();

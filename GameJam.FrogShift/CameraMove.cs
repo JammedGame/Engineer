@@ -14,7 +14,7 @@ namespace GameJam.FrogShift
         public static int moveRatio = 2;
         float move;
         float Difficulty = 1.0f;
-        int Delay = 500;
+        int Delay = 0;
         
         Scene2D _CScene2D;
 

@@ -513,6 +513,16 @@ namespace GameJam.FrogShift.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kvit {
+            get {
+                object obj = ResourceManager.GetObject("kvit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap leva_noga1 {
             get {
                 object obj = ResourceManager.GetObject("leva_noga1", resourceCulture);
@@ -736,6 +746,16 @@ namespace GameJam.FrogShift.Properties {
         internal static System.Drawing.Bitmap play {
             get {
                 object obj = ResourceManager.GetObject("play", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pley {
+            get {
+                object obj = ResourceManager.GetObject("pley", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -136,8 +136,8 @@ namespace GameJam.FrogShift
                     CScene.Data["GameOverLabel"] = GameOverLabel;
                     CScene.AddSceneObject(GameOverLabel);
 
-                    Close = GameLogic.CreateStaticSprite("Close", global::GameJam.FrogShift.Properties.Resources.exit, new Engineer.Mathematics.Vertex(800, 900, 0), new Engineer.Mathematics.Vertex(300, 60, 0), false);
-                    if (!Up) Close.Representation.Translation = new Vertex(800 * _GlobalScale, 1450 * _GlobalScale, 0);
+                    Close = GameLogic.CreateStaticSprite("Close", global::GameJam.FrogShift.Properties.Resources.kvit, new Engineer.Mathematics.Vertex(1100, 840, 0), new Engineer.Mathematics.Vertex(300, 120, 0), false);
+                    if (!Up) Close.Representation.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
                     Close.Events.Extern.MouseClick += new GameEventHandler(this.CloseGameEvent);
                     CScene.AddSceneObject(Close);
                 }
@@ -148,12 +148,12 @@ namespace GameJam.FrogShift
                         if (Up)
                         {
                             GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
-                            Close.Representation.Translation = new Vertex(800 * _GlobalScale, 900 * _GlobalScale, 0);
+                            Close.Representation.Translation = new Vertex(1100 * _GlobalScale, 840 * _GlobalScale, 0);
                         }
                         else
                         {
                             GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
-                            Close.Representation.Translation = new Vertex(800 * _GlobalScale, 1450 * _GlobalScale, 0);
+                            Close.Representation.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
                         }
                     }
                     catch { }

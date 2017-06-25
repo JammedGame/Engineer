@@ -534,6 +534,8 @@
     <None Include="Resources\gameover.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\pley.png" />
+    <None Include="Resources\kvit.png" />
     <None Include="Resources\naslovna sa imenima.png" />
     <Content Include="zaba doktor.ico" />
   </ItemGroup>

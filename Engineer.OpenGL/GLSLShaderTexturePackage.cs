@@ -38,7 +38,7 @@ namespace Engineer.Draw.OpenGL
                 GL.PixelStore(PixelStoreParameter.UnpackAlignment, 1);
                 _BufferPointer = GCHandle.Alloc(this._Textures, GCHandleType.Pinned);
                 IntPtr TextureBuffer = _BufferPointer.AddrOfPinnedObject();
-                GL.TexImage3D(TextureTarget.Texture2DArray, 0, PixelInternalFormat.Rgba, 1024, 1024, this._TexturesNumber, 0, PixelFormat.Bgra, PixelType.UnsignedByte, TextureBuffer);
+                GL.TexImage3D(TextureTarget.Texture2DArray, 0, PixelInternalFormat.Rgba, 512, 512, this._TexturesNumber, 0, PixelFormat.Bgra, PixelType.UnsignedByte, TextureBuffer);
                 this._Loaded = true;
             }
             else GL.BindTexture(TextureTarget.Texture2DArray, TexturesPointer);
