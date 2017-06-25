@@ -67,18 +67,26 @@ namespace GameJam.FrogShift
                     Character.UpdateLegs(_Player);
                 }
             }
+
+            Vertex lastPos = _Player.Representation.Translation;
+            if (Convert.ToBoolean(_Player.Data["underWater"]))
+            {
+                lastPos = new Vertex(_Player.Representation.Translation.X - _Player.Representation.Scale.X, _Player.Representation.Translation.Y - _Player.Representation.Scale.Y, 0);
+            }
+
             bool collided = Convert.ToBoolean(_Player.Data["colliding"]);
             bool flying = Convert.ToBoolean(_Player.Data["flying"]);
             int tmpSkokBrojac = Convert.ToInt32(_Player.Data["skokBrojac"]);
             int waterLevel = (int)(850 * GameLogic._GlobalScale);
-            float frogCenter = _Player.Representation.Translation.Y + _Player.Representation.Scale.Y / 2;
+            float frogCenter = lastPos.Y + Math.Abs(_Player.Representation.Scale.Y) / 2;
+
+            
+            Vertex playerScale = new Vertex(_Player.Representation.Scale.X, Math.Abs(_Player.Representation.Scale.Y), 0);
             if (tmpSkokBrojac > 0)
             {
 
                 tmpSkokBrojac -= 1;
                 _Player.Data["skokBrojac"] = tmpSkokBrojac;
-
-                Vertex lastPos = _Player.Representation.Translation;
 
                 if (waterLevel > frogCenter)
                 {
@@ -93,8 +101,6 @@ namespace GameJam.FrogShift
             }
             else
             {
-                Vertex lastPos = _Player.Representation.Translation;
-                Vertex playerScale = _Player.Representation.Scale;
                 //lastPos.Y += (float)12;
                 collided = false;
 
@@ -116,7 +122,7 @@ namespace GameJam.FrogShift
 
                         if (!Convert.ToBoolean(_Player.Data["underWater"]))
                         {
-                            _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X, colliderPos.Y - coliderScale.Y - _Player.Representation.Scale.Y / 2 + 1, _Player.Representation.Translation.Z);
+                            _Player.Representation.Translation = new Vertex(lastPos.X, colliderPos.Y - coliderScale.Y - playerScale.Y / 2 + 1, 0);
 
                         }
                         else
@@ -174,6 +180,12 @@ namespace GameJam.FrogShift
                 }
             }
             _Player.Data["colliding"] = collided;
+            if(Convert.ToBoolean(_Player.Data["underWater"]))
+            {
+                _Player.Representation.Rotation = new Vertex(0, 0, 180);
+                _Player.Representation.Translation = new Vertex(lastPos.X + _Player.Representation.Scale.X, lastPos.Y + _Player.Representation.Scale.Y, 0);
+            }
+            else _Player.Representation.Rotation = new Vertex(0, 0, 0);
         }
     }
 }
