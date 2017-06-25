@@ -15,7 +15,7 @@ namespace GameJam.FrogShift
 
         public CameraMove(Scene _CScene)
         {
-            move = 1;
+            move = 2;
             _CScene2D = (Scene2D)_CScene;
         }
     
