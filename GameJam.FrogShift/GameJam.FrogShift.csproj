@@ -388,9 +388,6 @@
     <None Include="Resources\voda3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\broj2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pozadina1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +419,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dzamp aut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
