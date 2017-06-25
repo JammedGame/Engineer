@@ -118,6 +118,10 @@ namespace GameJam.FrogShift
                                 ((Sprite)this.PredatorObject.Representation).UpdateSpriteSet(1);
                             }
                         }
+                        else
+                        {
+
+                        }
                     }
                     else
                     {
@@ -128,6 +132,10 @@ namespace GameJam.FrogShift
                             this.PredatorObject.Representation.Translation = new Vertex(-2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
                             _CScene.AddSceneObject(this.PredatorObject);
                             Predator = true;
+                        }
+                        else
+                        {
+
                         }
                     }
                 }

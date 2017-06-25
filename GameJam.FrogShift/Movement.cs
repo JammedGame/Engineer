@@ -202,6 +202,7 @@ namespace GameJam.FrogShift
             {
                 if(GameLogic.Up && !GameLogic.Switch)
                 {
+                    GameLogic.Up = false;
                     GameLogic.GameOver = true;
                 }
                 else if (GameLogic.Up && GameLogic.Switch)
@@ -216,6 +217,7 @@ namespace GameJam.FrogShift
             {
                 if (!GameLogic.Up && !GameLogic.Switch)
                 {
+                    GameLogic.Up = true;
                     GameLogic.GameOver = true;
                 }
                 else if (!GameLogic.Up && GameLogic.Switch)
