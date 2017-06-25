@@ -52,6 +52,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="GameTimer.cs" />
+    <Compile Include="HighScore.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Movement.cs" />
