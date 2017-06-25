@@ -21,6 +21,7 @@ namespace GameJam.FrogShift
         public static bool PredatorDone = false;
         private DrawnSceneObject PredatorObject = null;
         private DrawnSceneObject splash;
+        private DrawnSceneObject GameOverLabel;
         private HighScore hScore;
         private GameTimer gtimer;
         private CameraMove Camera;
@@ -112,6 +113,19 @@ namespace GameJam.FrogShift
             _Movement.CheckWaterLevel((Scene2D)_CScene,Runner);
             if (GameLogic.GameOver)
             {
+                if(GameOverLabel == null)
+                {
+                    GameOverLabel = GameLogic.CreateStaticSprite("GameOverLabel", global::GameJam.FrogShift.Properties.Resources.gameover, new Vertex(400, 200, 0), new Vertex(1200, 700, 0));
+                    if(!Up) GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                    CScene.Data["GameOverLabel"] = GameOverLabel;
+                    CScene.AddSceneObject(GameOverLabel);
+                }
+                else
+                {
+                    if (Up) GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
+                    else GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                }
+
                 if(!PredatorDone)
                 {
                     if(Predator)

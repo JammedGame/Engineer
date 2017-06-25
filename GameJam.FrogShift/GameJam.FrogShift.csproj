@@ -399,9 +399,6 @@
     <None Include="Resources\pod vodom.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\broj0.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\podvodom.png" />
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +520,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\splash13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
