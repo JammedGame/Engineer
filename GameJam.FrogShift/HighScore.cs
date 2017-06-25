@@ -82,7 +82,7 @@ namespace GameJam.FrogShift
             }
             if(tmpScore.Length < dsoDigits.Count)
             {
-                for (int i = tmpScore.Length+1; i < dsoDigits.Count; i++)
+                for (int i = tmpScore.Length; i < dsoDigits.Count; i++)
                 {
                     dsoDigits[i].Representation.Active = false;
                 }
