@@ -472,5 +472,17 @@
   <ItemGroup>
     <None Include="Resources\zmijo9.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roda4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roda1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roda2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roda3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

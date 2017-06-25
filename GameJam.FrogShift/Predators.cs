@@ -11,6 +11,7 @@ namespace GameJam.FrogShift
     public class Predators
     {
         public static DrawnSceneObject Snake;
+        public static DrawnSceneObject Stork;
         public static void CreateSnake()
         {
             Sprite CharSprite = new Sprite();
@@ -28,6 +29,24 @@ namespace GameJam.FrogShift
             DrawnSceneObject Char = new DrawnSceneObject("Char", CharSprite);
             Char.Data["Speed"] = 20;
             Snake = Char;
+        }
+        public static void CreateStork()
+        {
+            Sprite CharSprite = new Sprite();
+            SpriteSet Phase1 = new SpriteSet("Phase1");
+            Phase1.Sprite.Add(ResourceManager.Images["roda1"]);
+            CharSprite.SpriteSets.Add(Phase1);
+            SpriteSet Phase2 = new SpriteSet("Phase2");
+            for (int i = 1; i < 5; i++) for (int j = 0; j < 2; j++) Phase2.Sprite.Add(ResourceManager.Images["roda" + i]);
+            CharSprite.SpriteSets.Add(Phase2);
+            SpriteSet Phase3 = new SpriteSet("Phase3");
+            Phase3.Sprite.Add(ResourceManager.Images["roda4"]);
+            CharSprite.SpriteSets.Add(Phase3);
+            CharSprite.Translation = new Vertex();
+            CharSprite.Scale = new Vertex(2000 * GameLogic._GlobalScale, 1000 * GameLogic._GlobalScale, 0);
+            DrawnSceneObject Char = new DrawnSceneObject("Char", CharSprite);
+            Char.Data["Speed"] = -20;
+            Stork = Char;
         }
     }
 }

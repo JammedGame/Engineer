@@ -427,6 +427,18 @@
   <data name="dzamp_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dzamp in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="roda1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roda1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roda2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roda2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roda3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roda3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roda4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roda4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="zmijo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zmijo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -120,7 +120,18 @@ namespace GameJam.FrogShift
                         }
                         else
                         {
-
+                            this.PredatorObject.Representation.Translation = new Vertex(this.PredatorObject.Representation.Translation.X - 20, _Player.Representation.Translation.Y - (600 * _GlobalScale), 0);
+                            if ((this.PredatorObject.Representation.Translation.X) - _Player.Representation.Translation.X < -250)
+                            {
+                                ((Sprite)this.PredatorObject.Representation).UpdateSpriteSet(2);
+                                _Player.Representation.Active = false;
+                                ((DrawnSceneObject)_Player.Data["LL"]).Representation.Active = false;
+                                ((DrawnSceneObject)_Player.Data["RL"]).Representation.Active = false;
+                            }
+                            else if ((this.PredatorObject.Representation.Translation.X) - _Player.Representation.Translation.X < -150)
+                            {
+                                ((Sprite)this.PredatorObject.Representation).UpdateSpriteSet(1);
+                            }
                         }
                     }
                     else
@@ -135,7 +146,11 @@ namespace GameJam.FrogShift
                         }
                         else
                         {
-
+                            Predators.CreateStork();
+                            this.PredatorObject = Predators.Stork;
+                            this.PredatorObject.Representation.Translation = new Vertex(2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
+                            _CScene.AddSceneObject(this.PredatorObject);
+                            Predator = true;
                         }
                     }
                 }
