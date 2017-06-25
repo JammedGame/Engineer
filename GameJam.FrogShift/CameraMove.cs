@@ -11,18 +11,19 @@ namespace GameJam.FrogShift
 {
     class CameraMove
     {
+        public static int moveRatio = 2;
         float move;
         Scene2D _CScene2D;
 
         public CameraMove(Scene _CScene)
         {
-            move = 2;
-            move *= GameLogic._GlobalScale;
             _CScene2D = (Scene2D)_CScene;
         }
     
         public void MoveCamera(Scene _CScene, Runner Run)
         {
+            move = CameraMove.moveRatio;
+            move *= GameLogic._GlobalScale;
             /*_CScene2D = (Scene2D)_CScene;
             _CScene2D.Transformation.Translation = new Vertex(_CScene2D.Transformation.Translation.X - move, _CScene2D.Transformation.Translation.Y, 0);
             DrawnSceneObject Water = (DrawnSceneObject)_CScene.Data["Water"];
