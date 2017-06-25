@@ -443,9 +443,6 @@
     <None Include="Resources\broj8.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\broj9.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\zmijo1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -483,6 +480,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\roda3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broj9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
