@@ -189,5 +189,16 @@ namespace GameJam.FrogShift
             }
             else _Player.Representation.Rotation = new Vertex(0, 0, 0);
         }
+        public void CheckWaterLevel(Scene2D CScene)
+        {
+            if (Convert.ToBoolean(_Player.Data["underWater"]))
+            {
+                CScene.Transformation.Translation = new Vertex(CScene.Transformation.Translation.X, -600 * GameLogic._GlobalScale, 0);
+            }
+            else
+            {
+                CScene.Transformation.Translation = new Vertex(CScene.Transformation.Translation.X, 0, 0);
+            }
+        }
     }
 }

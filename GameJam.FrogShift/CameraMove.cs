@@ -22,7 +22,7 @@ namespace GameJam.FrogShift
         public void MoveCamera(Scene _CScene)
         {
             _CScene2D = (Scene2D)_CScene;
-            _CScene2D.Transformation.Translation = new Vertex(_CScene2D.Transformation.Translation.X - move, 0, 0);
+            _CScene2D.Transformation.Translation = new Vertex(_CScene2D.Transformation.Translation.X - move, _CScene2D.Transformation.Translation.Y, 0);
             DrawnSceneObject Water = (DrawnSceneObject)_CScene.Data["Water"];
             DrawnSceneObject Back = (DrawnSceneObject)_CScene.Data["Back"];
             DrawnSceneObject TimerHigh = (DrawnSceneObject)_CScene.Data["TimerHigh"];
