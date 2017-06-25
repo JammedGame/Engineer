@@ -21,11 +21,23 @@ namespace GameJam.FrogShift
         {
             intList = new List<int>();
             int max = 0;
+
+            int tek = 0;
+            int cnt = 0;
+            int n = 0;
             Random rnd = new Random();
-            for (int i = 0; i < Num;i++) {
+            for (int i = 0; i < Num + n; i++)
+            {
                 int num = rnd.Next(1, 5);
-                max += num;
-                intList.Add(max);
+                tek += num;
+                if ((tek - max) == 1) cnt++;
+                if (cnt < 2)
+                {
+                    max += num;
+                    intList.Add(max);
+                }
+                else n++;
+                cnt = 0;
             }
             return intList;
         }
