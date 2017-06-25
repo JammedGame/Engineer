@@ -19,9 +19,13 @@ namespace GameJam.FrogShift
 
             LilipadList.Insert(0, 1);
 
-            DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.BG, new Vertex(0, 0, 0), new Vertex(Runner.Width, Runner.Height, 0), false);
+            DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.pozadina2, new Vertex(0, 0, 0), new Vertex(1920, 850, 0));
             CScene.Data["Back"] = Back;
             CScene.AddSceneObject(Back);
+
+            DrawnSceneObject Back2 = GameLogic.CreateStaticSprite("Back2", global::GameJam.FrogShift.Properties.Resources.pod_vodom, new Vertex(0, 850, 0), new Vertex(1920, 850, 0));
+            CScene.Data["Back2"] = Back2;
+            CScene.AddSceneObject(Back2);
 
             DrawnSceneObject WaterSurface = GameLogic.CreateStaticSprite("WaterSurface", global::GameJam.FrogShift.Properties.Resources.voda1, new Vertex(0, 825, 0), new Vertex(1920, 50, 0));
             CScene.Data["WaterSurface"] = WaterSurface;
