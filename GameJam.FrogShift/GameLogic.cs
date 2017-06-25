@@ -13,6 +13,9 @@ namespace GameJam.FrogShift
 {
     public class GameLogic
     {
+        public static bool Up = true;
+        public static bool GameOver = false;
+        public static bool Switch = false;
         private HighScore hScore;
         private GameTimer gtimer;
         private CameraMove Camera;
@@ -51,12 +54,12 @@ namespace GameJam.FrogShift
             this._CScene = CurrentScene;
             CreateFloor();
             CreateCharacter();
-            this._Movement = new Movement(_Runner, _Player, _Colliders);
+            this.gtimer = new GameTimer(_CScene, Runner);
+            this._Movement = new Movement(_Runner, _Player, _Colliders, gtimer);
             CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
             CScene.Events.Extern.KeyDown += new GameEventHandler(_Movement.KeyDownEvent);
             CScene.Events.Extern.KeyUp += new GameEventHandler(_Movement.KeyUpEvent);
             CScene.Events.Extern.KeyPress += new GameEventHandler(_Movement.KeyPressEvent);
-            this.gtimer = new GameTimer(_CScene, Runner);
             this.hScore = new HighScore(_CScene, Runner);
             Camera = new CameraMove(_CScene);
         }
@@ -78,13 +81,24 @@ namespace GameJam.FrogShift
         }
         public void GameUpdateEvent(Game G, EventArguments E)
         {
-            _Movement.CheckCollision();
-            _Movement.CheckWaterLevel((Scene2D)_CScene);
-            Character.UpdateLegs(_Player);
-            if (counter++ >= 166) { gtimer.DecTime(); counter = 0; }
             if (counter1 == 1) { Camera.MoveCamera(this._CScene, this._Runner); counter1 = 0; }
             counter1++;
+            Character.UpdateLegs(_Player);
+
+            ((DrawnSceneObject)CScene.Data["JumpIn"]).Representation.Active = !GameOver && Up && Switch;
+            ((DrawnSceneObject)CScene.Data["JumpUp"]).Representation.Active = !GameOver && (!Up) && Switch;
+
+            _Movement.CheckCollision();
+            _Movement.CheckWaterLevel((Scene2D)_CScene);
+
+            if (GameLogic.GameOver) return;
+            
+            if (counter++ >= 120) { gtimer.DecTime(); counter = 0; }
             hScore.updateHighscore();
+            if(_Player.Representation.Translation.X + _Player.Representation.Scale.X / 2 < 0)
+            {
+                GameLogic.GameOver = true;
+            }
         }
         public static DrawnSceneObject CreateStaticSprite(string Name, Bitmap Image, Vertex Positon, Vertex Size, bool ApplyGlobalScale = true)
         {

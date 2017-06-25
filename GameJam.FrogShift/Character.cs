@@ -26,7 +26,7 @@ namespace GameJam.FrogShift
             Sprite CharSprite = new Sprite();
             CharSprite.SpriteSets.Add(IdleSet);
             CharSprite.SpriteSets.Add(JumpSet);
-            CharSprite.Translation = new Vertex(200 * GameLogic._GlobalScale, 600 * GameLogic._GlobalScale, 0);
+            CharSprite.Translation = new Vertex(600 * GameLogic._GlobalScale, 600 * GameLogic._GlobalScale, 0);
             CharSprite.Scale = new Vertex(200 * GameLogic._GlobalScale, 200 * GameLogic._GlobalScale, 0);
             DrawnSceneObject Char = new DrawnSceneObject("Char", CharSprite);
 

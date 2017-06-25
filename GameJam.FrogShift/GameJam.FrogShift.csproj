@@ -417,5 +417,11 @@
   <ItemGroup>
     <None Include="bin\Debug\Data\yeah.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dzamp in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dzamp aut.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

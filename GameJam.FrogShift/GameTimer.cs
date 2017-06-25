@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameJam.FrogShift
 {
-    class GameTimer
+    public class GameTimer
     {
         private long gameTime;        
         DrawnSceneObject t1;
@@ -19,7 +19,7 @@ namespace GameJam.FrogShift
 
         public GameTimer(Scene _CScene, Runner Runner)
         {
-            gameTime = rnd.Next(15,45);
+            gameTime = rnd.Next(10,15);
             SpriteSet Digit0 = new SpriteSet("0", global::GameJam.FrogShift.Properties.Resources.broj1);
             SpriteSet Digit1 = new SpriteSet("1", global::GameJam.FrogShift.Properties.Resources.broj1);
             SpriteSet Digit2 = new SpriteSet("2", global::GameJam.FrogShift.Properties.Resources.broj0);
@@ -56,7 +56,7 @@ namespace GameJam.FrogShift
         }
         public void ResetTime()
         {
-            gameTime = rnd.Next(15, 45);
+            gameTime = rnd.Next(10, 15);
         }
 
         public void DecTime()
@@ -64,14 +64,18 @@ namespace GameJam.FrogShift
             gameTime--;
             if (gameTime <= 0)
             {
-                //game over
+                GameLogic.GameOver = true;
+            }
+            else if (gameTime <= 3)
+            {
+                GameLogic.Switch = true;
             }
             else
             {
                 for (int i = 0; i < 10; i++)
                 {
                     if(((gameTime)%10)==i)((Sprite)(t1.Representation)).UpdateSpriteSet(i);
-                    //if (((gameTime) / 10) == i) ((Sprite)(t2.Representation)).UpdateSpriteSet(i);
+                    if (((gameTime) / 10) == i) ((Sprite)(t2.Representation)).UpdateSpriteSet(i);
                 }
             }           
         }

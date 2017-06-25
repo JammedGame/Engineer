@@ -17,25 +17,30 @@ namespace GameJam.FrogShift
         private Runner _Runner;
         private DrawnSceneObject _Player;
         private List<DrawnSceneObject> _Colliders = new List<DrawnSceneObject>();
-        public Movement(Runner NewRunner, DrawnSceneObject Player, List<DrawnSceneObject> Colliders)
+        private GameTimer Time;
+        public Movement(Runner NewRunner, DrawnSceneObject Player, List<DrawnSceneObject> Colliders, GameTimer NTime)
         {
             this._Runner = NewRunner;
             this._Player = Player;
             this._Colliders = Colliders;
             this._Player.Data["underWater"] = false;
+            this.Time = NTime;
         }
         public void KeyPressEvent(Game G, EventArguments E)
         {
+            if (GameLogic.GameOver) return;
             if (E.KeyDown == KeyType.A) _ADown = true;
             if (E.KeyDown == KeyType.D) _DDown = true;
         }
         public void KeyUpEvent(Game G, EventArguments E)
         {
+            if (GameLogic.GameOver) return;
             if (E.KeyDown == KeyType.A) _ADown = false;
             if (E.KeyDown == KeyType.D) _DDown = false;
         }
         public void KeyDownEvent(Game G, EventArguments E)
         {
+            if (GameLogic.GameOver) return;
             if (E.KeyDown == KeyType.Space)
             {
                 if (Convert.ToBoolean(_Player.Data["flying"]) == false)
@@ -59,12 +64,12 @@ namespace GameJam.FrogShift
             {
                 if (_ADown)
                 {
-                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - (10* GameLogic._GlobalScale), _Player.Representation.Translation.Y, 0);
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X - (10 * GameLogic._GlobalScale), _Player.Representation.Translation.Y, 0);
                     Character.UpdateLegs(_Player);
                 }
                 if (_DDown)
                 {
-                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + (10* GameLogic._GlobalScale), _Player.Representation.Translation.Y, 0);
+                    _Player.Representation.Translation = new Vertex(_Player.Representation.Translation.X + (10 * GameLogic._GlobalScale), _Player.Representation.Translation.Y, 0);
                     Character.UpdateLegs(_Player);
                 }
             }
@@ -81,7 +86,7 @@ namespace GameJam.FrogShift
             int waterLevel = (int)(850 * GameLogic._GlobalScale);
             float frogCenter = lastPos.Y + Math.Abs(_Player.Representation.Scale.Y) / 2;
 
-            
+
             Vertex playerScale = new Vertex(_Player.Representation.Scale.X, Math.Abs(_Player.Representation.Scale.Y), 0);
             if (tmpSkokBrojac > 0)
             {
@@ -128,7 +133,7 @@ namespace GameJam.FrogShift
                         }
                         else
                         {
-                             _Player.Representation.Translation = lastPos = new Vertex(lastPos.X, colliderPos.Y - coliderScale.Y, 0);
+                            _Player.Representation.Translation = lastPos = new Vertex(lastPos.X, colliderPos.Y - coliderScale.Y, 0);
                         }
 
                         flying = false;
@@ -149,7 +154,7 @@ namespace GameJam.FrogShift
                             _Player.Data["underWater"] = false;
 
                         }
-                        lastPos.Y += ((int)_Player.Data["padBrojac"] + 1)*GameLogic._GlobalScale;
+                        lastPos.Y += ((int)_Player.Data["padBrojac"] + 1) * GameLogic._GlobalScale;
                         _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
                         _Player.Data["flying"] = true;
                         _Player.Representation.Translation = lastPos;
@@ -167,7 +172,7 @@ namespace GameJam.FrogShift
 
                         }
 
-                        lastPos.Y -= ((int)_Player.Data["padBrojac"] + 1)* GameLogic._GlobalScale;
+                        lastPos.Y -= ((int)_Player.Data["padBrojac"] + 1) * GameLogic._GlobalScale;
                         _Player.Data["padBrojac"] = (int)_Player.Data["padBrojac"] + 1;
                         _Player.Data["flying"] = true;
                         _Player.Representation.Translation = lastPos;
@@ -183,12 +188,39 @@ namespace GameJam.FrogShift
                 }
             }
             _Player.Data["colliding"] = collided;
-            if(Convert.ToBoolean(_Player.Data["underWater"]))
+            if (Convert.ToBoolean(_Player.Data["underWater"]))
             {
                 _Player.Representation.Rotation = new Vertex(0, 0, 180);
                 _Player.Representation.Translation = new Vertex(lastPos.X + _Player.Representation.Scale.X, lastPos.Y + _Player.Representation.Scale.Y, 0);
             }
             else _Player.Representation.Rotation = new Vertex(0, 0, 0);
+
+            if (Convert.ToBoolean(_Player.Data["underWater"]))
+            {
+                if(GameLogic.Up && !GameLogic.Switch)
+                {
+                    GameLogic.GameOver = true;
+                }
+                else if (GameLogic.Up && GameLogic.Switch)
+                {
+                    Time.ResetTime();
+                    GameLogic.Up = false;
+                    GameLogic.Switch = false;
+                }
+            }
+            else
+            {
+                if (!GameLogic.Up && !GameLogic.Switch)
+                {
+                    GameLogic.GameOver = true;
+                }
+                else if (!GameLogic.Up && GameLogic.Switch)
+                {
+                    Time.ResetTime();
+                    GameLogic.Up = true;
+                    GameLogic.Switch = false;
+                }
+            }
         }
         public void CheckWaterLevel(Scene2D CScene)
         {

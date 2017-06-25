@@ -18,7 +18,7 @@ namespace GameJam.FrogShift
             List<int> LilipadList = SG.GenerateSequence(99);
             List<int> LilipadArtList = SG.GenerateArtIndexSequence(100, 2);
 
-            LilipadList.Insert(0, 1);
+            LilipadList.Insert(0, 3);
 
             DrawnSceneObject Back = GameLogic.CreateStaticSprite("Back", global::GameJam.FrogShift.Properties.Resources.pozadina2, new Vertex(0, 0, 0), new Vertex(1920, 850, 0));
             CScene.Data["Back"] = Back;
@@ -44,6 +44,13 @@ namespace GameJam.FrogShift
             DrawnSceneObject Water = GameLogic.CreateStaticSprite("Water", global::GameJam.FrogShift.Properties.Resources.voda, new Vertex(0, 850, 0), new Vertex(1920, 2000, 0));
             CScene.Data["Water"] = Water;
             CScene.AddSceneObject(Water);
+
+            DrawnSceneObject JumpIn = GameLogic.CreateStaticSprite("JumpIn", global::GameJam.FrogShift.Properties.Resources.dzamp_in, new Vertex(550, 200, 0), new Vertex(700, 300, 0));
+            CScene.Data["JumpIn"] = JumpIn;
+            CScene.AddSceneObject(JumpIn);
+            DrawnSceneObject JumpUp = GameLogic.CreateStaticSprite("JumpUp", global::GameJam.FrogShift.Properties.Resources.dzamp_aut, new Vertex(550, 1200, 0), new Vertex(700, 300, 0));
+            CScene.Data["JumpUp"] = JumpUp;
+            CScene.AddSceneObject(JumpUp);
         }
     }
 }
