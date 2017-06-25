@@ -122,11 +122,13 @@ namespace GameJam.FrogShift
 
                         if (!Convert.ToBoolean(_Player.Data["underWater"]))
                         {
-                            _Player.Representation.Translation = new Vertex(lastPos.X, colliderPos.Y - coliderScale.Y - playerScale.Y / 2 + 1, 0);
+                            _Player.Representation.Translation = lastPos = new Vertex(lastPos.X, colliderPos.Y - coliderScale.Y - playerScale.Y / 2 + 1, 0);
 
                         }
                         else
-                        { }
+                        {
+                             _Player.Representation.Translation = lastPos = new Vertex(lastPos.X, colliderPos.Y - coliderScale.Y, 0);
+                        }
 
                         flying = false;
                         break;
