@@ -1,3 +1,5 @@
 /.vs
 *.exe
 *.pbp
+*.pdb
+*.cache
