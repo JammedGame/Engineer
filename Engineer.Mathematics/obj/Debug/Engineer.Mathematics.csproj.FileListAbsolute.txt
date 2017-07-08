@@ -2,3 +2,8 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Debug\Eng
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.pdb
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.csprojResolveAssemblyReference.cache
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.pdb

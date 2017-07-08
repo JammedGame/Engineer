@@ -7,3 +7,12 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\bin\Debug\Engineer.M
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\obj\Debug\Engineer.Data.csprojResolveAssemblyReference.cache
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\obj\Debug\Engineer.Data.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Data\obj\Debug\Engineer.Data.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Debug\Engineer.Data.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Debug\Engineer.Data.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Debug\Engineer.IO.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Debug\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Debug\Engineer.IO.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\obj\Debug\Engineer.Data.csprojResolveAssemblyReference.cache
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\obj\Debug\Engineer.Data.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\obj\Debug\Engineer.Data.pdb

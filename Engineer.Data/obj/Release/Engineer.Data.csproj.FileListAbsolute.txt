@@ -1,0 +1,9 @@
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Release\Engineer.Data.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Release\Engineer.Data.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Release\Engineer.IO.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Release\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Release\Engineer.IO.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\bin\Release\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\obj\Release\Engineer.Data.csprojResolveAssemblyReference.cache
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\obj\Release\Engineer.Data.dll
+C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.Data\obj\Release\Engineer.Data.pdb

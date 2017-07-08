@@ -1,0 +1,2 @@
+C:\Users\Manojlo\Projects\Engineer\Engineer\ConsoleApplication1\obj\Release\Engineer.Runner.csprojResolveAssemblyReference.cache
+C:\Users\Manojlo\Projects\Engineer\Engineer\ConsoleApplication1\obj\Release\Engineer.Runner.exe
