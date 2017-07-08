@@ -24,10 +24,6 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\obj\Debug\GameJa
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\GameJam.FrogShift.csprojResolveAssemblyReference.cache
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\GameJam.FrogShift.Properties.Resources.resources
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\GameJam.FrogShift.csproj.GenerateResource.Cache
-C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\GameJam.FrogShift.pdb
-C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\GameJam.FrogShift.exe.config
-C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\GameJam.FrogShift.exe
-C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\GameJam.FrogShift.pdb
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Data.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Draw.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Draw.OpenGL.dll
@@ -38,7 +34,6 @@ C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.IO.
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Mathematics.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Runner.exe
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\OpenTK.dll
-C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\CSScriptLibrary.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\BulletSharp.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Runner.pdb
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Runner.exe.config
@@ -52,9 +47,7 @@ C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Mat
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Draw.OpenGL.pdb
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Draw.OpenGL.dll.config
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\OpenTK.xml
-C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\CSScriptLibrary.xml
 C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\BulletSharp.dll.config
-C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\GameJam.FrogShift.exe
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Engine.Physics.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\BulletSharp.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\Engineer.Engine.Physics.pdb
@@ -64,3 +57,8 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\Underd
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\bin\Debug\UnderdogFrog.pdb
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\obj\Debug\UnderdogFrog.exe
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\GameJam.FrogShift\obj\Debug\UnderdogFrog.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\UnderdogFrog.exe.config
+C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\UnderdogFrog.exe
+C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\bin\Debug\UnderdogFrog.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\UnderdogFrog.exe
+C:\Users\Jon\Documents\FrogJam\Engineer\GameJam.FrogShift\obj\Debug\UnderdogFrog.pdb

@@ -2,3 +2,7 @@ C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Debug\Eng
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.pdb
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.dll
 C:\Users\DeinVenteD\Projects\Trihead\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.dll
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.pdb

@@ -54,7 +54,7 @@ namespace GameJam.FrogShift
             CharSprite.SpriteSets.Add(JumpSet);
             CharSprite.Translation = new Vertex(0, 0, 0);
             CharSprite.Scale = new Vertex(200 * GameLogic._GlobalScale, 400 * GameLogic._GlobalScale, 0);
-            DrawnSceneObject Char = new DrawnSceneObject("RightLeg", CharSprite);
+            DrawnSceneObject Char = new DrawnSceneObject(Name, CharSprite);
             Char.Data["Offset"] = Offset;
             return Char;
         }
