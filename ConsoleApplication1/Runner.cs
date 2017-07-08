@@ -22,18 +22,21 @@ namespace Engineer.Runner
     public class Runner : OpenTK.GameWindow
     {
         private int _Seed;
+        private int _FrameUpdateRate;
         protected bool _GameInit;
         protected bool _EngineInit;
         protected Timer _Time;
         protected Scene _CurrentScene;
         protected Game _CurrentGame;
         protected DrawEngine _Engine;
+        public int FrameUpdateRate { get => _FrameUpdateRate; set => _FrameUpdateRate = value; }
         public Runner(int width, int height, GraphicsMode mode, string title) : base(width, height, mode, title)
         {
             this._Seed = 0;
+            this._FrameUpdateRate = 6;
             this._GameInit = false;
             this._EngineInit = false;
-            this._Time = new Timer(33);
+            this._Time = new Timer(8.33);
             this._Time.Elapsed += Event_TimerTick;
             this._Time.AutoReset = true;
         }
@@ -261,7 +264,7 @@ namespace Engineer.Runner
         private void Event_TimerTick(object sender, ElapsedEventArgs e)
         {
             this._Seed++;
-            if (_CurrentScene.Type == SceneType.Scene2D && _Seed % 3 == 0)
+            if (_CurrentScene.Type == SceneType.Scene2D && _Seed % this.FrameUpdateRate == 0)
             {
                 Scene2D C2DS = (Scene2D)_CurrentScene;
                 for (int i = 0; i < C2DS.Sprites.Count; i++)
