@@ -29,6 +29,7 @@ namespace GameJam.FrogShift
         private CameraMove Camera;
         private int counter = 0;
         private int counter1 = 0;
+        private bool GameOverInit;
         public static float _GlobalScale;
         private DrawnSceneObject _Player;
         private Runner _Runner;
@@ -63,11 +64,13 @@ namespace GameJam.FrogShift
         public void Init(Runner NewRunner, Game NewGame, Scene CurrentScene)
         {
             GameLogic._GlobalScale = NewRunner.Height / 1080.0f;
+            GameOverInit = false;
             this._Runner = NewRunner;
             this._CGame = NewGame;
             this._CScene = CurrentScene;
             CreateFloor();
             CreateCharacter();
+            CreatePredators();
             this.gtimer = new GameTimer(_CScene, Runner);
             this._Movement = new Movement(_Runner, _Player, _Colliders, gtimer);
             CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
@@ -92,6 +95,10 @@ namespace GameJam.FrogShift
         {
             _CScene.Data["Colliders"] = this._Colliders;
             Level.Create((Scene2D)_CScene, (ExternRunner)Runner);
+        }
+        private void CreatePredators()
+        {
+
         }
         public void CloseGameEvent(Game G, EventArguments E)
         {
@@ -136,8 +143,9 @@ namespace GameJam.FrogShift
 
                 if (GameLogic.GameOver)
                 {
-                    if (GameOverLabel == null)
+                    if (!GameOverInit)
                     {
+                        GameOverInit = true;
                         GameOverLabel = GameLogic.CreateStaticSprite("GameOverLabel", global::GameJam.FrogShift.Properties.Resources.gameover, new Vertex(400, 200, 0), new Vertex(1200, 700, 0));
                         if (!Up) GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
                         CScene.Data["GameOverLabel"] = GameOverLabel;
@@ -150,20 +158,16 @@ namespace GameJam.FrogShift
                     }
                     else
                     {
-                        try
+                        if (Up)
                         {
-                            if (Up)
-                            {
-                                GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
-                                Close.Visual.Translation = new Vertex(1100 * _GlobalScale, 840 * _GlobalScale, 0);
-                            }
-                            else
-                            {
-                                GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
-                                Close.Visual.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
-                            }
+                            GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
+                            Close.Visual.Translation = new Vertex(1100 * _GlobalScale, 840 * _GlobalScale, 0);
                         }
-                        catch { }
+                        else
+                        {
+                            GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                            Close.Visual.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
+                        }
                     }
 
                     if (!PredatorDone)
@@ -203,28 +207,24 @@ namespace GameJam.FrogShift
                         }
                         else
                         {
-                            try
+                            if (!Up)
                             {
-                                if (!Up)
-                                {
-                                    AudioPlayer.PlaySnake();
-                                    Predators.CreateSnake();
-                                    this.PredatorObject = Predators.Snake;
-                                    this.PredatorObject.Visual.Translation = new Vertex(-2000 * _GlobalScale, _Player.Visual.Translation.Y, 0);
-                                    _CScene.AddSceneObject(this.PredatorObject);
-                                    Predator = true;
-                                }
-                                else
-                                {
-                                    AudioPlayer.PlayStork();
-                                    Predators.CreateStork();
-                                    this.PredatorObject = Predators.Stork;
-                                    this.PredatorObject.Visual.Translation = new Vertex(2000 * _GlobalScale, _Player.Visual.Translation.Y, 0);
-                                    _CScene.AddSceneObject(this.PredatorObject);
-                                    Predator = true;
-                                }
+                                AudioPlayer.PlaySnake();
+                                Predators.CreateSnake();
+                                this.PredatorObject = Predators.Snake;
+                                this.PredatorObject.Visual.Translation = new Vertex(-2000 * _GlobalScale, _Player.Visual.Translation.Y, 0);
+                                _CScene.AddSceneObject(this.PredatorObject);
+                                Predator = true;
                             }
-                            catch { }
+                            else
+                            {
+                                AudioPlayer.PlayStork();
+                                Predators.CreateStork();
+                                this.PredatorObject = Predators.Stork;
+                                this.PredatorObject.Visual.Translation = new Vertex(2000 * _GlobalScale, _Player.Visual.Translation.Y, 0);
+                                _CScene.AddSceneObject(this.PredatorObject);
+                                Predator = true;
+                            }
                         }
                     }
 
@@ -261,6 +261,5 @@ namespace GameJam.FrogShift
             DrawnSceneObject Static = new DrawnSceneObject(Name, StaticSprite);
             return Static;
         }
-
     }
 }
