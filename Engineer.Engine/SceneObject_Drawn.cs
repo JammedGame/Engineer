@@ -56,6 +56,7 @@ namespace Engineer.Engine
         }
         public DrawnSceneObject(DrawnSceneObject DSO, Scene ParentScene) : base(DSO, ParentScene)
         {
+            this.Type = SceneObjectType.DrawnSceneObject;
             if (DSO._Visual.Type == DrawObjectType.Actor) this._Visual = new Actor((Actor)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Background) this._Visual = new Background((Background)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Camera) this._Visual = new Camera((Camera)DSO._Visual);

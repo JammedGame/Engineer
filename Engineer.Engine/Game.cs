@@ -70,6 +70,7 @@ namespace Engineer.Engine
             {
                 if (G._Assets[i].Type == SceneObjectType.DrawnSceneObject) this._Assets.Add(new DrawnSceneObject((DrawnSceneObject)G._Assets[i], null));
                 else if (G._Assets[i].Type == SceneObjectType.ScriptSceneObject) this._Assets.Add(new ScriptSceneObject((ScriptSceneObject)G._Assets[i], null));
+                else if (G._Assets[i].Type == SceneObjectType.SoundSceneObject) this._Assets.Add(new SoundSceneObject((SoundSceneObject)G._Assets[i], null));
             }
             this._Scenes = new List<Scene>();
             for(int i = 0; i < G._Scenes.Count; i++)
