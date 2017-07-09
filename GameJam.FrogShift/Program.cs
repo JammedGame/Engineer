@@ -21,6 +21,9 @@ namespace GameJam.FrogShift
         {
             ExternRunner Runner = new ExternRunner(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, new GraphicsMode(32, 24, 0, 8), "Frog Shift");
             Runner.WindowState = OpenTK.WindowState.Fullscreen;
+            //ExternRunner Runner = new ExternRunner(1366, 768, new GraphicsMode(32, 24, 0, 8), "Frog Shift");
+            //Runner.WindowState = OpenTK.WindowState.Normal;
+            Engineer.Engine.Settings.GraphicsQuality = Quality.High;
             Game GameObject = new Game();
 
             ResourceManager _ResMan = new ResourceManager();
