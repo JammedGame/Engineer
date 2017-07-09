@@ -55,6 +55,7 @@ namespace Engineer.Runner
         public void Init(Game CurrentGame, Scene CurrentScene)
         {
             if (!_EngineInit) EngineInit();
+            this._Time.Stop();
             this._GameInit = true;
             this._CurrentGame = CurrentGame;
             this._CurrentScene = CurrentScene;
@@ -68,7 +69,7 @@ namespace Engineer.Runner
             this.MouseMove += new EventHandler<MouseMoveEventArgs>(Event_MouseMove);
             this.MouseWheel += new EventHandler<MouseWheelEventArgs>(Event_MouseWheel);
             PrepareEvents();
-            this._Time.Enabled = true;
+            this._Time.Start();
             Event_Load();
         }
         protected virtual void PrepareEvents()
