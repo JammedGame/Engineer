@@ -85,9 +85,9 @@ namespace Engineer.Draw
             this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
             if(this._CurrentRenderer.TargetType == RenderTargetType.Editor) this._CurrentRenderer.Render2DGrid();
 
-            for(int i = 0; i < CurrentScene.Sprites.Count; i++)
+            for(int i = 0; i < CurrentScene.Objects.Count; i++)
             {
-                DrawSprite(CurrentScene.Sprites[i]);
+                if(CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
             }
         }
         public virtual void DrawSprite(Sprite CurrentSprite)
@@ -100,12 +100,27 @@ namespace Engineer.Draw
                 this._Matrix.Rotate(CurrentSprite.Rotation.Y, 0, 1, 0);
                 this._Matrix.Rotate(CurrentSprite.Rotation.Z, 0, 0, 1);
                 this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
-                this._CurrentRenderer.RenderSprite(CurrentSprite.ID, CurrentSprite.CollectiveLists(), (CurrentSprite.CollectiveLists().Count > 0) ? CurrentSprite.Index() : -1, CurrentSprite.Modified);
+                this._CurrentRenderer.RenderImage(CurrentSprite.ID, CurrentSprite.CollectiveLists(), (CurrentSprite.CollectiveLists().Count > 0) ? CurrentSprite.Index() : -1, CurrentSprite.Modified);
                 CurrentSprite.Modified = false;
                 for(int i = 0; i < CurrentSprite.SubSprites.Count; i++)
                 {
                     DrawSprite(CurrentSprite.SubSprites[i]);
                 }
+                this._Matrix.PopMatrix();
+            }
+        }
+        public virtual void DrawTile(Tile CurrentTile)
+        {
+            if (CurrentTile.Active)
+            {
+                this._Matrix.Translate(CurrentTile.Translation.X, CurrentTile.Translation.Y, CurrentTile.Translation.Z);
+                this._Matrix.Scale(CurrentTile.Scale.X, CurrentTile.Scale.Y, CurrentTile.Scale.Z);
+                this._Matrix.Rotate(CurrentTile.Rotation.X, 1, 0, 0);
+                this._Matrix.Rotate(CurrentTile.Rotation.Y, 0, 1, 0);
+                this._Matrix.Rotate(CurrentTile.Rotation.Z, 0, 0, 1);
+                this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
+                this._CurrentRenderer.RenderImage(CurrentTile.ID, CurrentTile.Collection.TileImages, (CurrentTile.Collection.TileImages.Count > 0) ? CurrentTile.Index() : -1, CurrentTile.Modified);
+                CurrentTile.Modified = false;
                 this._Matrix.PopMatrix();
             }
         }

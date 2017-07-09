@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Engineer.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -111,6 +112,10 @@ namespace Engineer.Engine
             {
                 if (this._SpriteSets[i].Name == Name) this.UpdateSpriteSet(i);
             }
+        }
+        public bool InCollision(DrawObject Collider, Collision2DType Type)
+        {
+            return Collision2D.Check(this.Translation, this.Scale, Collider.Translation, Collider.Scale, Type);
         }
         public int Index()
         {
