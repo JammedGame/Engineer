@@ -88,6 +88,7 @@ namespace Engineer.Draw
 
             for(int i = 0; i < CurrentScene.Objects.Count; i++)
             {
+                if (CurrentScene.Objects[i].Visual == null) continue;
                 if(CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
                 if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) DrawTile((Tile)CurrentScene.Objects[i].Visual);
             }

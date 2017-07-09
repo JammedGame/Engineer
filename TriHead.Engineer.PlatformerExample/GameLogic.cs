@@ -84,6 +84,8 @@ namespace Engineer.PlatformerExample
             CreateCharacter();
             _Physics.UpdateScene(_CurrentScene);
             //Interface.Save(_CurrentGame, "Data/game.efx");
+            SoundSceneObject Jump = new SoundSceneObject("Data/jump.wav", "JumpSound");
+            _CurrentScene.AddSceneObject(Jump);
         }
         private void CreateFloor()
         {
@@ -261,6 +263,7 @@ namespace Engineer.PlatformerExample
                 PlayerSprite.UpdateSpriteSet(0 + (int)_Player.Data["Direction"]);
                 Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
                 _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(Velocities.X, 8f, 0));
+                ((SoundSceneObject)this._CurrentScene.Data["JumpSound"]).Play();
             }
         }
         private void KeyDownEvent(Game G, EventArguments E)
