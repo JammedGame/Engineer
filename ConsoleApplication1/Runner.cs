@@ -16,6 +16,7 @@ using Engineer.Draw.OpenGL.FixedGL;
 using Engineer.Draw.OpenGL.GLSL;
 using Engineer.Engine;
 using OpenTK.Input;
+using System.ComponentModel;
 
 namespace Engineer.Runner
 {
@@ -54,6 +55,27 @@ namespace Engineer.Runner
             GLSLShaderMaterialTranslator Translator = new GLSLShaderMaterialTranslator();
             _Engine.CurrentTranslator = Translator;
             _Engine.SetDefaults();
+        }
+        public void Init(Game CurrentGame, Scene CurrentScene, BackgroundWorker bw)
+        {
+            this.Time.Enabled = false;
+            if (!_EngineInit) EngineInit();
+            this._Time.Stop();
+            this._GameInit = true;
+            this._CurrentGame = CurrentGame;
+            this._CurrentScene = CurrentScene;
+            this.Closing += new EventHandler<System.ComponentModel.CancelEventArgs>(Event_Closing);
+            this.KeyDown += new EventHandler<KeyboardKeyEventArgs>(Event_KeyPress);
+            this.KeyDown += new EventHandler<KeyboardKeyEventArgs>(Event_KeyDown);
+            this.KeyUp += new EventHandler<KeyboardKeyEventArgs>(Event_KeyUp);
+            this.MouseDown += new EventHandler<MouseButtonEventArgs>(Event_MouseClick);
+            this.MouseDown += new EventHandler<MouseButtonEventArgs>(Event_MouseDown);
+            this.MouseUp += new EventHandler<MouseButtonEventArgs>(Event_MouseUp);
+            this.MouseMove += new EventHandler<MouseMoveEventArgs>(Event_MouseMove);
+            this.MouseWheel += new EventHandler<MouseWheelEventArgs>(Event_MouseWheel);
+            PrepareEvents();
+            this._Time.Start();
+            Event_Load();
         }
         public void Init(Game CurrentGame, Scene CurrentScene)
         {

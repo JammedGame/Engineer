@@ -10,12 +10,10 @@ namespace GameJam.FrogShift
 {
     class SeqGen
     {
-        private List<int> intList;        
-        private int diff;
+        private List<int> intList;       
 
         public SeqGen()
-        {
-            diff = 0;
+        {            
             intList = null;
         }
 
