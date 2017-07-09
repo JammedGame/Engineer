@@ -37,7 +37,7 @@ namespace Engineer.Engine
         public Tile(Tile T) : base(T)
         {
             this._CurrentIndex = 0;
-            this.Collection = new TileCollection(this.Collection);   
+            this.Collection = new TileCollection(T.Collection);   
         }
         public void SetIndex(int Index)
         {

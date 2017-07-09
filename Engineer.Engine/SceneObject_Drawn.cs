@@ -61,6 +61,7 @@ namespace Engineer.Engine
             else if (DSO._Visual.Type == DrawObjectType.Camera) this._Visual = new Camera((Camera)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Light) this._Visual = new Light((Light)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Sprite) this._Visual = new Sprite((Sprite)DSO._Visual);
+            else if (DSO._Visual.Type == DrawObjectType.Tile) this._Visual = new Tile((Tile)DSO._Visual);
             this.Events = new EventsPackage(DSO.Events, ParentScene);
         }
         public static void Serialize(DrawnSceneObject CurrentDrawnSceneObject, string Path)
