@@ -18,6 +18,18 @@ namespace Engineer.Engine
     {
         private DrawObject _Visual;
         [XmlIgnore]
+        public bool Active
+        {
+            get
+            {
+                return _Visual.Active;
+            }
+
+            set
+            {
+                _Visual.Active = value;
+            }
+        }
         public override DrawObject Visual
         {
             get

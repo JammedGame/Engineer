@@ -94,9 +94,23 @@ namespace Engineer.Engine
             _CurrentSpriteSet = Index;
             _CurrentIndex = 0;
         }
+        public void SetSpriteSet(string Name)
+        {
+            for(int i = 0; i < this._SpriteSets.Count; i++)
+            {
+                if (this._SpriteSets[i].Name == Name) this.SetSpriteSet(i);
+            }
+        }
         public void UpdateSpriteSet(int Index)
         {
             if (Index != _CurrentSpriteSet) SetSpriteSet(Index);
+        }
+        public void UpdateSpriteSet(string Name)
+        {
+            for (int i = 0; i < this._SpriteSets.Count; i++)
+            {
+                if (this._SpriteSets[i].Name == Name) this.UpdateSpriteSet(i);
+            }
         }
         public int Index()
         {

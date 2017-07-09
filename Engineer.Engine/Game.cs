@@ -16,6 +16,7 @@ namespace Engineer.Engine
         private string _Name;
         private List<SceneObject> _Assets;
         private List<Scene> _Scenes;
+        private Dictionary<string, object> _Data;
         public string Name
         {
             get
@@ -54,6 +55,8 @@ namespace Engineer.Engine
                 _Scenes = value;
             }
         }
+        [XmlIgnore]
+        public Dictionary<string, object> Data { get => _Data; set => _Data = value; }
         public Game()
         {
             this._Assets = new List<SceneObject>();
@@ -74,6 +77,12 @@ namespace Engineer.Engine
                 if (G._Scenes[i].Type == SceneType.Scene2D) this._Scenes.Add(new Scene2D((Scene2D)G._Scenes[i]));
                 else if (G._Scenes[i].Type == SceneType.Scene3D) this._Scenes.Add(new Scene3D((Scene3D)G._Scenes[i]));
             }
+        }
+        public bool AddScene(Scene S)
+        {
+            this._Scenes.Add(S);
+            this.Data[S.Name] = S;
+            return true;
         }
         public static void Serialize(Game CurrentGame, string Path)
         {

@@ -45,6 +45,7 @@ namespace Engineer.Engine
             if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Visual.Type == DrawObjectType.Light) return false;
             if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Visual.Type == DrawObjectType.Undefined) return false;
             Object.ParentScene = this;
+            this.Data[Object.Name] = Object;
             this._Objects.Add(Object);
             return true;
         }

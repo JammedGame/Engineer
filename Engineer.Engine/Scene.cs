@@ -148,6 +148,7 @@ namespace Engineer.Engine
         {
             Object.ParentScene = this;
             this._Objects.Add(Object);
+            this.Data[Object.Name] = Object;
             return true;
         }
         public Scene()
