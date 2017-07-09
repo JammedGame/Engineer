@@ -124,83 +124,83 @@ namespace Engineer.PlatformerExample
             DrawnSceneObject Floor = null;
 
             Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(100, 580, 0);
-            Floor.Representation.Scale = new Vertex(100, 100, 0);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(7);
+            Floor.Visual.Translation = new Vertex(100, 580, 0);
+            Floor.Visual.Scale = new Vertex(100, 100, 0);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(7);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(600, 380, 0);
-            Floor.Representation.Scale = new Vertex(200, 100, 0);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(8);
+            Floor.Visual.Translation = new Vertex(600, 380, 0);
+            Floor.Visual.Scale = new Vertex(200, 100, 0);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(8);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(1000, 380, 0);
-            Floor.Representation.Scale = new Vertex(300, 300, 0);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(9);
+            Floor.Visual.Translation = new Vertex(1000, 380, 0);
+            Floor.Visual.Scale = new Vertex(300, 300, 0);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(9);
             _CurrentScene.AddSceneObject(Floor);
 
             for (int i = 0; i < 10; i++)
             {
                 Floor = new DrawnSceneObject(FloorNC, _CurrentScene);
-                Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + (2 + i) * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
-                ((Sprite)Floor.Representation).UpdateSpriteSet(6);
+                Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + (2 + i) * 98, Floor.Visual.Translation.Y, Floor.Visual.Translation.Z);
+                ((Sprite)Floor.Visual).UpdateSpriteSet(6);
                 _CurrentScene.AddSceneObject(Floor);
             }
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(1);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 1 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 1 * 98, Floor.Visual.Translation.Y, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(1);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 2 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(2);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 2 * 98, Floor.Visual.Translation.Y, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(2);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 4 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(3);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 4 * 98, Floor.Visual.Translation.Y - 200, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(3);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 5 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(4);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 5 * 98, Floor.Visual.Translation.Y - 200, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(4);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 6 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(4);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 6 * 98, Floor.Visual.Translation.Y - 200, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(4);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 7 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(4);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 7 * 98, Floor.Visual.Translation.Y - 200, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(4);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 8 * 98, Floor.Representation.Translation.Y - 200, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(5);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 8 * 98, Floor.Visual.Translation.Y - 200, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(5);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 11 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(0);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 11 * 98, Floor.Visual.Translation.Y, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(0);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 12 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 12 * 98, Floor.Visual.Translation.Y, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(1);
             _CurrentScene.AddSceneObject(Floor);
 
             Floor = new DrawnSceneObject(FloorC, _CurrentScene);
-            Floor.Representation.Translation = new Vertex(Floor.Representation.Translation.X + 13 * 98, Floor.Representation.Translation.Y, Floor.Representation.Translation.Z);
-            ((Sprite)Floor.Representation).UpdateSpriteSet(1);
+            Floor.Visual.Translation = new Vertex(Floor.Visual.Translation.X + 13 * 98, Floor.Visual.Translation.Y, Floor.Visual.Translation.Z);
+            ((Sprite)Floor.Visual).UpdateSpriteSet(1);
             _CurrentScene.AddSceneObject(Floor);
 
             
@@ -242,7 +242,7 @@ namespace Engineer.PlatformerExample
             if (E.KeyDown == KeyType.D)
             {
                 _Player.Data["Direction"] = 0;
-                Sprite PlayerSprite = _Player.Representation as Sprite;
+                Sprite PlayerSprite = _Player.Visual as Sprite;
                 PlayerSprite.UpdateSpriteSet(2);
                 Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
                 _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(3, Velocities.Y, 0));
@@ -250,14 +250,14 @@ namespace Engineer.PlatformerExample
             if (E.KeyDown == KeyType.A)
             {
                 _Player.Data["Direction"] = 1;
-                Sprite PlayerSprite = _Player.Representation as Sprite;
+                Sprite PlayerSprite = _Player.Visual as Sprite;
                 PlayerSprite.UpdateSpriteSet(3);
                 Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
                 _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(-3, Velocities.Y, 0));
             }
             if (E.KeyDown == KeyType.Space)
             {
-                Sprite PlayerSprite = _Player.Representation as Sprite;
+                Sprite PlayerSprite = _Player.Visual as Sprite;
                 PlayerSprite.UpdateSpriteSet(0 + (int)_Player.Data["Direction"]);
                 Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
                 _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(Velocities.X, 8f, 0));
@@ -271,7 +271,7 @@ namespace Engineer.PlatformerExample
         {
             if (E.KeyDown == KeyType.D || E.KeyDown == KeyType.A)
             {
-                Sprite PlayerSprite = _Player.Representation as Sprite;
+                Sprite PlayerSprite = _Player.Visual as Sprite;
                 PlayerSprite.UpdateSpriteSet(0 + (int)_Player.Data["Direction"]);
                 Vertex Velocities = _Physics.GetVelocities((int)_Player.Data["PhysicsIndex"]);
                 _Physics.SetVelocities((int)_Player.Data["PhysicsIndex"], new Vertex(0, Velocities.Y, 0));

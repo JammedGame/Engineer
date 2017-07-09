@@ -22,6 +22,7 @@ namespace Engineer.Runner
     public class Runner : OpenTK.GameWindow
     {
         private int _Seed;
+        private int _FrameUpdateRate;
         protected bool _GameInit;
         protected bool _EngineInit;
         private Timer _Time;
@@ -31,14 +32,16 @@ namespace Engineer.Runner
 
         protected Timer Time { get => _Time; set => _Time = value; }
 
+        public int FrameUpdateRate { get => _FrameUpdateRate; set => _FrameUpdateRate = value; }
         public Runner(int width, int height, GraphicsMode mode, string title) : base(width, height, mode, title)
         {
             this._Seed = 0;
+            this._FrameUpdateRate = 6;
             this._GameInit = false;
             this._EngineInit = false;
-            this.Time = new Timer(8.33);
-            this.Time.Elapsed += Event_TimerTick;
-            this.Time.AutoReset = true;
+            this._Time = new Timer(8.33);
+            this._Time.Elapsed += Event_TimerTick;
+            this._Time.AutoReset = true;
         }
         private void EngineInit()
         {
@@ -146,8 +149,8 @@ namespace Engineer.Runner
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
@@ -176,8 +179,8 @@ namespace Engineer.Runner
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
@@ -205,7 +208,11 @@ namespace Engineer.Runner
                     Vertex STrans = Current2DScene.Transformation.Translation;
                     for (int i = _CurrentScene.Objects.Count - 1; i >= 0; i--)
                     {
-                        if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
+                        DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
+                        if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
+                            STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
                             DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
                             Vertex Trans = Current.Representation.Translation;
@@ -239,8 +246,8 @@ namespace Engineer.Runner
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
@@ -269,7 +276,7 @@ namespace Engineer.Runner
         private void Event_TimerTick(object sender, ElapsedEventArgs e)
         {
             this._Seed++;
-            if (_CurrentScene.Type == SceneType.Scene2D && _Seed % 3 == 0)
+            if (_CurrentScene.Type == SceneType.Scene2D && _Seed % this.FrameUpdateRate == 0)
             {
                 Scene2D C2DS = (Scene2D)_CurrentScene;
                 for (int i = 0; i < C2DS.Sprites.Count; i++)

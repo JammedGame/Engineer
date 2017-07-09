@@ -14,7 +14,9 @@ namespace Engineer.Draw
         protected bool _Active;
         protected bool _Loaded;
         protected int _TexturesNumber;
+        protected int _Resolution;
         protected byte[] _Textures;
+        public int Resolution { get => _Resolution; set => _Resolution = value; }
         public ShaderTexturePackage()
         {
             this._Active = false;

@@ -166,15 +166,27 @@ namespace Engineer.Draw
             _Globals.SetData("Lights[" + Index + "].Intensity", BitConverter.GetBytes(LightParameters[3].X));
             return Update;
         }
-        private byte[] PackTextures(List<Bitmap> TextureBitmaps)
+        private byte[] PackTextures(List<Bitmap> TextureBitmaps, int MaxResolution)
         {
             List<byte> Textures = new List<byte>();
             for (int i = 0; i < TextureBitmaps.Count; i++)
             {
-                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size(512, 512));
+                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size(MaxResolution, MaxResolution));
                 Textures.AddRange(ShaderMaterialTranslator.ImageToByte(TextureBitmaps[i]));
             }
             return Textures.ToArray();
+        }
+        private int TexturesHighestResolution(List<Bitmap> TextureBitmaps)
+        {
+            int MaxResolution = 256;
+            for(int i = 0; i < TextureBitmaps.Count; i++)
+            {
+                int BiggerSize = 0;
+                if (TextureBitmaps[i].Width > TextureBitmaps[i].Height) BiggerSize = TextureBitmaps[i].Width;
+                else BiggerSize = TextureBitmaps[i].Height;
+                while (BiggerSize > MaxResolution && MaxResolution < 4096) MaxResolution *= 2;
+            }
+            return MaxResolution;
         }
         public override void Render2DGrid()
         {
@@ -229,7 +241,9 @@ namespace Engineer.Draw
             if (!this.IsMaterialReady(ID) || Update)
             {
                 this._Manager.ActivateShader("2D");
-                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures) }, true);
+                int MaxResolution = TexturesHighestResolution(Textures);
+                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, MaxResolution) }, true);
+                this._Manager.Active.Textures.Resolution = MaxResolution;
             }
             else this.SetMaterial(new object[3] { new string[6] { ID, null, null, null, null, null }, null, null }, false);
 
