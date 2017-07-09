@@ -11,10 +11,11 @@ namespace Engineer.Mathematics
         Radius,
         Rectangular,
         Focus,
-        Vertical,
+        Vertical
     }
     public class Collision2D
     {
+        public static int Offset = 10;
         public static bool Check(Vertex Position, Vertex Scale, Vertex ColliderPosition, Vertex ColliderScale, Collision2DType Type)
         {
             if (Type == Collision2DType.Radius) return Collision2D.CheckRadiusCollision(Position, Scale, ColliderPosition, ColliderScale);
@@ -46,11 +47,12 @@ namespace Engineer.Mathematics
         }
         private static bool CheckFocusCollision(Vertex Position, Vertex Scale, Vertex ColliderPosition, Vertex ColliderScale)
         {
+            if (Position.Y > ColliderPosition.Y + Offset) return false;
             return CheckPointRectangularCollision(new Vertex(Position.X + Scale.X / 2, Position.Y + Scale.Y, 0), ColliderPosition, ColliderScale);
         }
         private static bool CheckVerticalCollision(Vertex Position, Vertex Scale, Vertex ColliderPosition, Vertex ColliderScale)
         {
-            return CheckPointRectangularCollision(new Vertex(Position.X + Scale.X / 2, Position.Y + Scale.Y, 0), ColliderPosition, ColliderScale) &&
+            return CheckPointRectangularCollision(new Vertex(Position.X + Scale.X / 2, Position.Y + Scale.Y, 0), ColliderPosition, ColliderScale) ||
                 CheckPointRectangularCollision(new Vertex(Position.X + Scale.X / 2, Position.Y, 0), ColliderPosition, ColliderScale);
         }
         private static bool CheckPointRectangularCollision(Vertex Point, Vertex ColliderPosition, Vertex ColliderScale)
