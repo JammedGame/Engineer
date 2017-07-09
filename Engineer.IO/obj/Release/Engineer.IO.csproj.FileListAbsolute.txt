@@ -1,4 +1,0 @@
-C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.IO\bin\Release\Engineer.IO.dll
-C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.IO\bin\Release\Engineer.IO.pdb
-C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.IO\obj\Release\Engineer.IO.dll
-C:\Users\Manojlo\Projects\Engineer\Engineer\Engineer.IO\obj\Release\Engineer.IO.pdb
