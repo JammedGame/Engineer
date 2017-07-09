@@ -77,6 +77,7 @@ namespace Engineer.PlatformerExample
             _CurrentScene.Events.Extern.MouseClick += new GameEventHandler(MouseClickEvent);
             _CurrentScene.Events.Extern.MouseMove += new GameEventHandler(MouseMoveEvent);
             _CurrentScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdateEvent);
+            _CurrentScene.Events.Extern.Resize += new GameEventHandler(WindowResize);
             _CurrentScene.BackColor = Color.FromArgb(41, 216, 238);
             //_Player = (DrawnSceneObject)_CurrentScene.Objects[_CurrentScene.Objects.Count - 1];
             CreateFloor();
@@ -286,6 +287,11 @@ namespace Engineer.PlatformerExample
         private void MouseMoveEvent(Game G, EventArguments E)
         {
 
+        }
+        private void WindowResize(Game G, EventArguments E)
+        {
+            float ScaleRate = this._Runner.Height / 768.0f;
+            this._CurrentScene.Transformation.Scale = new Vertex(ScaleRate, ScaleRate, 1);
         }
     }
 }

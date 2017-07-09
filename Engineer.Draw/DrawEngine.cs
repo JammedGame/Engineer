@@ -80,6 +80,7 @@ namespace Engineer.Draw
             this._Matrix.MatrixMode("ModelView");
             this._Matrix.LoadIdentity();
             this._Matrix.Translate(CurrentScene.Transformation.Translation.X, CurrentScene.Transformation.Translation.Y, CurrentScene.Transformation.Translation.Z);
+            this._Matrix.Scale(CurrentScene.Transformation.Scale.X, CurrentScene.Transformation.Scale.Y, CurrentScene.Transformation.Scale.Z);
 
             this._Matrix.PushMatrix();
             this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);

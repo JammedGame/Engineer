@@ -77,6 +77,9 @@ namespace Engineer.Runner
         }
         protected override void OnResize(EventArgs e)
         {
+            EventArguments Arguments = new EventArguments();
+            Arguments.Size = new Vertex(this.Width, this.Height, 0);
+            CallEvents("Resize", Arguments);
         }
         protected override void OnRenderFrame(FrameEventArgs e)
         {

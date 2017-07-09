@@ -183,6 +183,7 @@ namespace Engineer.Engine
         public KeyType KeyDown;
         public MouseClickType ButtonDown;
         public Vertex Location;
+        public Vertex Size;
         public object Target;
     }
 }
