@@ -59,6 +59,7 @@ namespace Engineer.Runner
         {
             this.Time.Enabled = false;
             if (!_EngineInit) EngineInit();
+            this._Time.Stop();
             this._GameInit = true;
             this._CurrentGame = CurrentGame;
             this._CurrentScene = CurrentScene;
@@ -72,7 +73,7 @@ namespace Engineer.Runner
             this.MouseMove += new EventHandler<MouseMoveEventArgs>(Event_MouseMove);
             this.MouseWheel += new EventHandler<MouseWheelEventArgs>(Event_MouseWheel);
             PrepareEvents();
-            this.Time.Enabled = true;
+            this._Time.Start();
             Event_Load();
         }
         protected virtual void PrepareEvents()
@@ -81,6 +82,9 @@ namespace Engineer.Runner
         }
         protected override void OnResize(EventArgs e)
         {
+            EventArguments Arguments = new EventArguments();
+            Arguments.Size = new Vertex(this.Width, this.Height, 0);
+            CallEvents("Resize", Arguments);
         }
         protected override void OnRenderFrame(FrameEventArgs e)
         {

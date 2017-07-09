@@ -11,12 +11,13 @@ namespace Engineer.Engine
     public enum DrawObjectType
     {
         Undefined = -1,
-        Actor = 0,
-        Camera = 1,
-        Light = 2,
-        Background = 3,
-        Sprite = 4,
-        Figure = 5
+        Background = 0,
+        Sprite = 1,
+        Tile = 2,
+        Actor = 3,
+        Figure = 4,
+        Camera = 5,
+        Light = 6
     }
     public class DrawObject
     {

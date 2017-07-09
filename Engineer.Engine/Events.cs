@@ -114,6 +114,7 @@ namespace Engineer.Engine
             EventList.Add(new EventHandlersPackage("MouseMove"));
             EventList.Add(new EventHandlersPackage("MouseWheel"));
             EventList.Add(new EventHandlersPackage("RenderFrame"));
+            EventList.Add(new EventHandlersPackage("Resize"));
             EventList.Add(new EventHandlersPackage("TimerTick"));
             return EventList;
         }
@@ -141,6 +142,7 @@ namespace Engineer.Engine
         public event GameEventHandler MouseMove;
         public event GameEventHandler MouseWheel;
         public event GameEventHandler RenderFrame;
+        public event GameEventHandler Resize;
         public event GameEventHandler TimerTick;
         public ExternEventPackage()
         {
@@ -174,6 +176,7 @@ namespace Engineer.Engine
             if (EventName == "MouseMove") MouseMove.Invoke(CurrentGame, Args);
             if (EventName == "MouseWheel") MouseWheel.Invoke(CurrentGame, Args);
             if (EventName == "RenderFrame") RenderFrame.Invoke(CurrentGame, Args);
+            if (EventName == "Resize") Resize.Invoke(CurrentGame, Args);
             if (EventName == "TimerTick") TimerTick.Invoke(CurrentGame, Args);
         }
     }

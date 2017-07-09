@@ -95,6 +95,7 @@ namespace Engineer.Engine
             if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Visual.Type == DrawObjectType.Sprite) return false;
             Object.ParentScene = this;
             this._Objects.Add(Object);
+            this.Data[Object.Name] = Object;
             return true;
         }
         public Scene3D() : base()

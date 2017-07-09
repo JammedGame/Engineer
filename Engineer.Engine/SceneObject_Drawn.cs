@@ -18,6 +18,18 @@ namespace Engineer.Engine
     {
         private DrawObject _Visual;
         [XmlIgnore]
+        public bool Active
+        {
+            get
+            {
+                return _Visual.Active;
+            }
+
+            set
+            {
+                _Visual.Active = value;
+            }
+        }
         public override DrawObject Visual
         {
             get
@@ -44,11 +56,13 @@ namespace Engineer.Engine
         }
         public DrawnSceneObject(DrawnSceneObject DSO, Scene ParentScene) : base(DSO, ParentScene)
         {
+            this.Type = SceneObjectType.DrawnSceneObject;
             if (DSO._Visual.Type == DrawObjectType.Actor) this._Visual = new Actor((Actor)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Background) this._Visual = new Background((Background)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Camera) this._Visual = new Camera((Camera)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Light) this._Visual = new Light((Light)DSO._Visual);
             else if (DSO._Visual.Type == DrawObjectType.Sprite) this._Visual = new Sprite((Sprite)DSO._Visual);
+            else if (DSO._Visual.Type == DrawObjectType.Tile) this._Visual = new Tile((Tile)DSO._Visual);
             this.Events = new EventsPackage(DSO.Events, ParentScene);
         }
         public static void Serialize(DrawnSceneObject CurrentDrawnSceneObject, string Path)
