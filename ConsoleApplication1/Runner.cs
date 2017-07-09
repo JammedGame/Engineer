@@ -145,8 +145,8 @@ namespace Engineer.Runner
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
@@ -175,8 +175,8 @@ namespace Engineer.Runner
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
@@ -205,8 +205,8 @@ namespace Engineer.Runner
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
@@ -234,8 +234,8 @@ namespace Engineer.Runner
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                        Vertex Trans = Current.Representation.Translation;
-                        Vertex Scale = Current.Representation.Scale;
+                        Vertex Trans = Current.Visual.Translation;
+                        Vertex Scale = Current.Visual.Scale;
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {

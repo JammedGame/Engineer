@@ -62,6 +62,17 @@ namespace Engineer.Engine
                 _Type = value;
             }
         }
+        public virtual DrawObject Visual
+        {
+            get
+            {
+                return null;
+            }
+
+            set
+            {
+            }
+        }
         [XmlIgnore]
         public Scene ParentScene
         {

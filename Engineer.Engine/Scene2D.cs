@@ -32,18 +32,18 @@ namespace Engineer.Engine
                 List<Sprite> NewList = new List<Sprite>();
                 for (int i = 0; i < Objects.Count; i++)
                 {
-                    if (Objects[i].Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Objects[i]).Representation.Type == DrawObjectType.Sprite)
-                        NewList.Add(((DrawnSceneObject)Objects[i]).Representation as Sprite);
+                    if (Objects[i].Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Objects[i]).Visual.Type == DrawObjectType.Sprite)
+                        NewList.Add(((DrawnSceneObject)Objects[i]).Visual as Sprite);
                 }
                 return NewList;
             }
         }
         public override bool AddSceneObject(SceneObject Object)
         {
-            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Representation.Type == DrawObjectType.Actor) return false;
-            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Representation.Type == DrawObjectType.Camera) return false;
-            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Representation.Type == DrawObjectType.Light) return false;
-            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Representation.Type == DrawObjectType.Undefined) return false;
+            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Visual.Type == DrawObjectType.Actor) return false;
+            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Visual.Type == DrawObjectType.Camera) return false;
+            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Visual.Type == DrawObjectType.Light) return false;
+            if (Object.Type == SceneObjectType.DrawnSceneObject && ((DrawnSceneObject)Object).Visual.Type == DrawObjectType.Undefined) return false;
             Object.ParentScene = this;
             this._Objects.Add(Object);
             return true;

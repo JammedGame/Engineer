@@ -53,19 +53,19 @@ namespace Engineer.Engine.Physics
             {
                 _Objects.Add(Current);
                 DrawnSceneObject DSO = Current as DrawnSceneObject;
-                float MaxDimension = (DSO.Representation.Scale.X > DSO.Representation.Scale.Y) ? DSO.Representation.Scale.X : DSO.Representation.Scale.Y;
+                float MaxDimension = (DSO.Visual.Scale.X > DSO.Visual.Scale.Y) ? DSO.Visual.Scale.X : DSO.Visual.Scale.Y;
                 MaxDimension /= DownScale * 1.0f;
                 CollisionShape Shape;
                 if (Current.Data.ContainsKey("CollisionShape") && (string)Current.Data["CollisionShape"] == "Sphere")
                 {
-                    Shape = new SphereShape(DSO.Representation.Scale.X / (DownScale * 2.0f));
+                    Shape = new SphereShape(DSO.Visual.Scale.X / (DownScale * 2.0f));
                 }
                 else
                 {
-                    Shape = new Box2DShape(DSO.Representation.Scale.X / (DownScale * 2.0f), DSO.Representation.Scale.Y / (DownScale * 2.0f), 0);
+                    Shape = new Box2DShape(DSO.Visual.Scale.X / (DownScale * 2.0f), DSO.Visual.Scale.Y / (DownScale * 2.0f), 0);
                 }
                 _CollisionShapes.Add(Shape);
-                Vertex InvertedY = new Vertex(DSO.Representation.Translation.X/ (DownScale * 1.0f), -DSO.Representation.Translation.Y/ (DownScale * 1.0f), DSO.Representation.Translation.Z/ (DownScale * 1.0f));
+                Vertex InvertedY = new Vertex(DSO.Visual.Translation.X/ (DownScale * 1.0f), -DSO.Visual.Translation.Y/ (DownScale * 1.0f), DSO.Visual.Translation.Z/ (DownScale * 1.0f));
                 DefaultMotionState FallMotionState = new DefaultMotionState(Matrix.Translation(Util.BulletVectorFromEngineerVertex(InvertedY)));
                 Vector3 Inertia = Shape.CalculateLocalInertia((int)Current.Data["Weight"]);
                 RigidBodyConstructionInfo Info = new RigidBodyConstructionInfo((int)Current.Data["Weight"], FallMotionState, Shape, Inertia);
@@ -96,7 +96,7 @@ namespace Engineer.Engine.Physics
                     {
                         int f = 4;
                     }
-                    DSO.Representation.Translation = NewPosition;
+                    DSO.Visual.Translation = NewPosition;
                 }
             }
         }

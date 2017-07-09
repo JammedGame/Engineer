@@ -51,7 +51,7 @@ namespace Engineer.Engine.IO
             if (ObjectToSave.GetType() == typeof(DrawnSceneObject))
             {
                 DrawnSceneObject Current = ObjectToSave as DrawnSceneObject;
-                SaveObject(Current.Representation, DirPath + "Representation.efx", true);
+                SaveObject(Current.Visual, DirPath + "Visual.efx", true);
             }
             if (ObjectToSave.GetType() == typeof(Scene2D) || ObjectToSave.GetType() == typeof(Scene3D))
             {
@@ -119,7 +119,7 @@ namespace Engineer.Engine.IO
             if (FileType == typeof(DrawnSceneObject))
             {
                 DrawnSceneObject Current = CurrentObject as DrawnSceneObject;
-                Current.Representation = (DrawObject)LoadObject(DirPath + "Representation/", null);
+                Current.Visual = (DrawObject)LoadObject(DirPath + "Visual/", null);
             }
             if (FileType == typeof(Scene2D) || FileType == typeof(Scene3D))
             {
