@@ -16,3 +16,12 @@ C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Data\bin\Debug\Engineer.Mathema
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Data\obj\Debug\Engineer.Data.csprojResolveAssemblyReference.cache
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Data\obj\Debug\Engineer.Data.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Data\obj\Debug\Engineer.Data.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\bin\Debug\Engineer.Data.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\bin\Debug\Engineer.Data.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\bin\Debug\Engineer.IO.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\bin\Debug\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\bin\Debug\Engineer.IO.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\obj\Debug\Engineer.Data.csprojResolveAssemblyReference.cache
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\obj\Debug\Engineer.Data.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Data\obj\Debug\Engineer.Data.pdb

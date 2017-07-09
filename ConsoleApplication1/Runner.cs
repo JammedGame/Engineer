@@ -214,13 +214,11 @@ namespace Engineer.Runner
                         if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
                         {
-                            DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
-                            Vertex Trans = Current.Representation.Translation;
-                            Vertex Scale = Current.Representation.Scale;
-                            if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
-                                STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
+                            DrawnSceneObject DSO = (DrawnSceneObject)_CurrentScene.Objects[i];
+                            if (STrans.X + DSO.Visual.Translation.X < e.X && e.X < STrans.X + DSO.Visual.Translation.X + DSO.Visual.Scale.X &&
+                                STrans.Y + DSO.Visual.Translation.Y < e.Y && e.Y < STrans.Y + DSO.Visual.Translation.Y + DSO.Visual.Scale.Y)
                             {
-                                Arguments.Target = Current;
+                                Arguments.Target = DSO;
                                 CallObjectEvents(i, "MouseClick", Arguments);
                                 Arguments.Handled = true;
                             }

@@ -24,3 +24,16 @@ C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Draw\bin\Debug\Engineer.IO.pdb
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Draw\obj\Debug\Engineer.Draw.csprojResolveAssemblyReference.cache
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Draw\obj\Debug\Engineer.Draw.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Draw\obj\Debug\Engineer.Draw.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Draw.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Draw.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Data.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Engine.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.IO.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Data.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Engine.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\bin\Debug\Engineer.IO.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\obj\Debug\Engineer.Draw.csprojResolveAssemblyReference.cache
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\obj\Debug\Engineer.Draw.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Draw\obj\Debug\Engineer.Draw.pdb

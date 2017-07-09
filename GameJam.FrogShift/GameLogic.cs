@@ -118,7 +118,7 @@ namespace GameJam.FrogShift
                     splash.Data["Life"] = (int)splash.Data["Life"] - 1;
                     if ((int)splash.Data["Life"] == 0)
                     {
-                        splash.Representation.Active = false;
+                        splash.Visual.Active = false;
                         splash = null;
                         _CScene.Data["Splash"] = null;
                     }
@@ -128,8 +128,8 @@ namespace GameJam.FrogShift
                 counter1++;
                 Character.UpdateLegs(_Player);
 
-                ((DrawnSceneObject)CScene.Data["JumpIn"]).Representation.Active = !GameOver && Up && Switch;
-                ((DrawnSceneObject)CScene.Data["JumpUp"]).Representation.Active = !GameOver && (!Up) && Switch;
+                ((DrawnSceneObject)CScene.Data["JumpIn"]).Visual.Active = !GameOver && Up && Switch;
+                ((DrawnSceneObject)CScene.Data["JumpUp"]).Visual.Active = !GameOver && (!Up) && Switch;
 
                 _Movement.CheckCollision();
                 _Movement.CheckWaterLevel((Scene2D)_CScene, Runner);
@@ -139,12 +139,12 @@ namespace GameJam.FrogShift
                     if (GameOverLabel == null)
                     {
                         GameOverLabel = GameLogic.CreateStaticSprite("GameOverLabel", global::GameJam.FrogShift.Properties.Resources.gameover, new Vertex(400, 200, 0), new Vertex(1200, 700, 0));
-                        if (!Up) GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                        if (!Up) GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
                         CScene.Data["GameOverLabel"] = GameOverLabel;
                         CScene.AddSceneObject(GameOverLabel);
 
                         Close = GameLogic.CreateStaticSprite("Close", global::GameJam.FrogShift.Properties.Resources.kvit, new Engineer.Mathematics.Vertex(1100, 840, 0), new Engineer.Mathematics.Vertex(300, 120, 0), false);
-                        if (!Up) Close.Representation.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
+                        if (!Up) Close.Visual.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
                         Close.Events.Extern.MouseClick += new GameEventHandler(this.CloseGameEvent);
                         CScene.AddSceneObject(Close);
                     }
@@ -154,13 +154,13 @@ namespace GameJam.FrogShift
                         {
                             if (Up)
                             {
-                                GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
-                                Close.Representation.Translation = new Vertex(1100 * _GlobalScale, 840 * _GlobalScale, 0);
+                                GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 200 * _GlobalScale, 0);
+                                Close.Visual.Translation = new Vertex(1100 * _GlobalScale, 840 * _GlobalScale, 0);
                             }
                             else
                             {
-                                GameOverLabel.Representation.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
-                                Close.Representation.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
+                                GameOverLabel.Visual.Translation = new Vertex(400 * _GlobalScale, 750 * _GlobalScale, 0);
+                                Close.Visual.Translation = new Vertex(1100 * _GlobalScale, 1390 * _GlobalScale, 0);
                             }
                         }
                         catch { }
@@ -172,32 +172,32 @@ namespace GameJam.FrogShift
                         {
                             if (!Up)
                             {
-                                this.PredatorObject.Representation.Translation = new Vertex(this.PredatorObject.Representation.Translation.X + 20, _Player.Representation.Translation.Y - (250 * _GlobalScale), 0);
-                                if (_Player.Representation.Translation.X - (this.PredatorObject.Representation.Translation.X + this.PredatorObject.Representation.Scale.X) < -50)
+                                this.PredatorObject.Visual.Translation = new Vertex(this.PredatorObject.Visual.Translation.X + 20, _Player.Visual.Translation.Y - (250 * _GlobalScale), 0);
+                                if (_Player.Visual.Translation.X - (this.PredatorObject.Visual.Translation.X + this.PredatorObject.Visual.Scale.X) < -50)
                                 {
-                                    ((Sprite)this.PredatorObject.Representation).UpdateSpriteSet(2);
-                                    _Player.Representation.Active = false;
-                                    ((DrawnSceneObject)_Player.Data["LL"]).Representation.Active = false;
-                                    ((DrawnSceneObject)_Player.Data["RL"]).Representation.Active = false;
+                                    ((Sprite)this.PredatorObject.Visual).UpdateSpriteSet(2);
+                                    _Player.Visual.Active = false;
+                                    ((DrawnSceneObject)_Player.Data["LL"]).Visual.Active = false;
+                                    ((DrawnSceneObject)_Player.Data["RL"]).Visual.Active = false;
                                 }
-                                else if (_Player.Representation.Translation.X - (this.PredatorObject.Representation.Translation.X + this.PredatorObject.Representation.Scale.X) < 50)
+                                else if (_Player.Visual.Translation.X - (this.PredatorObject.Visual.Translation.X + this.PredatorObject.Visual.Scale.X) < 50)
                                 {
-                                    ((Sprite)this.PredatorObject.Representation).UpdateSpriteSet(1);
+                                    ((Sprite)this.PredatorObject.Visual).UpdateSpriteSet(1);
                                 }
                             }
                             else
                             {
-                                this.PredatorObject.Representation.Translation = new Vertex(this.PredatorObject.Representation.Translation.X - 20, _Player.Representation.Translation.Y - (600 * _GlobalScale), 0);
-                                if ((this.PredatorObject.Representation.Translation.X) - _Player.Representation.Translation.X < -250)
+                                this.PredatorObject.Visual.Translation = new Vertex(this.PredatorObject.Visual.Translation.X - 20, _Player.Visual.Translation.Y - (600 * _GlobalScale), 0);
+                                if ((this.PredatorObject.Visual.Translation.X) - _Player.Visual.Translation.X < -250)
                                 {
-                                    ((Sprite)this.PredatorObject.Representation).UpdateSpriteSet(2);
-                                    _Player.Representation.Active = false;
-                                    ((DrawnSceneObject)_Player.Data["LL"]).Representation.Active = false;
-                                    ((DrawnSceneObject)_Player.Data["RL"]).Representation.Active = false;
+                                    ((Sprite)this.PredatorObject.Visual).UpdateSpriteSet(2);
+                                    _Player.Visual.Active = false;
+                                    ((DrawnSceneObject)_Player.Data["LL"]).Visual.Active = false;
+                                    ((DrawnSceneObject)_Player.Data["RL"]).Visual.Active = false;
                                 }
-                                else if ((this.PredatorObject.Representation.Translation.X) - _Player.Representation.Translation.X < -150)
+                                else if ((this.PredatorObject.Visual.Translation.X) - _Player.Visual.Translation.X < -150)
                                 {
-                                    ((Sprite)this.PredatorObject.Representation).UpdateSpriteSet(1);
+                                    ((Sprite)this.PredatorObject.Visual).UpdateSpriteSet(1);
                                 }
                             }
                         }
@@ -210,7 +210,7 @@ namespace GameJam.FrogShift
                                     AudioPlayer.PlaySnake();
                                     Predators.CreateSnake();
                                     this.PredatorObject = Predators.Snake;
-                                    this.PredatorObject.Representation.Translation = new Vertex(-2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
+                                    this.PredatorObject.Visual.Translation = new Vertex(-2000 * _GlobalScale, _Player.Visual.Translation.Y, 0);
                                     _CScene.AddSceneObject(this.PredatorObject);
                                     Predator = true;
                                 }
@@ -219,7 +219,7 @@ namespace GameJam.FrogShift
                                     AudioPlayer.PlayStork();
                                     Predators.CreateStork();
                                     this.PredatorObject = Predators.Stork;
-                                    this.PredatorObject.Representation.Translation = new Vertex(2000 * _GlobalScale, _Player.Representation.Translation.Y, 0);
+                                    this.PredatorObject.Visual.Translation = new Vertex(2000 * _GlobalScale, _Player.Visual.Translation.Y, 0);
                                     _CScene.AddSceneObject(this.PredatorObject);
                                     Predator = true;
                                 }
@@ -236,7 +236,7 @@ namespace GameJam.FrogShift
 
                 if (counter++ >= 120) { gtimer.DecTime(); counter = 0; DiffTime++; }
                 hScore.updateHighscore();
-                if (_Player.Representation.Translation.X + _Player.Representation.Scale.X / 2 < 0)
+                if (_Player.Visual.Translation.X + _Player.Visual.Scale.X / 2 < 0)
                 {
                     GameLogic.GameOver = true;
                 }

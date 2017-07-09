@@ -6,3 +6,8 @@ C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\bin\Debug\Engineer.
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.pdb
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Mathematics\bin\Debug\Engineer.Mathematics.pdb
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.csprojResolveAssemblyReference.cache
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.dll
+C:\Users\Manojlo\Projects\HHD\Engineer\Engineer.Mathematics\obj\Debug\Engineer.Mathematics.pdb

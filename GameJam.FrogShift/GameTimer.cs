@@ -73,13 +73,13 @@ namespace GameJam.FrogShift
             if (gameTime >= 0)
                 for (int i = 0; i < 10; i++)
                 {
-                    if (((gameTime) % 10) == i) ((Sprite)(t1.Representation)).UpdateSpriteSet(i);
-                    if (((gameTime) / 10) == i) ((Sprite)(t2.Representation)).UpdateSpriteSet(i);
+                    if (((gameTime) % 10) == i) ((Sprite)(t1.Visual)).UpdateSpriteSet(i);
+                    if (((gameTime) / 10) == i) ((Sprite)(t2.Visual)).UpdateSpriteSet(i);
                 }
         }
         public static void ChangeDrawnSceneObjectImage(DrawnSceneObject Object, Bitmap Image)
         {
-            SpriteSet Set = ((Sprite)(Object.Representation)).SpriteSets[0];
+            SpriteSet Set = ((Sprite)(Object.Visual)).SpriteSets[0];
             Set.Sprite.Clear();
             Set.Sprite.Add(Image);
         }

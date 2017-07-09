@@ -20,7 +20,7 @@ namespace GameJam.FrogShift
             Sprite Splashes = new Sprite();
             Splashes.SpriteSets.Add(splash1);
             Splashes.Scale = new Vertex(300 * GameLogic._GlobalScale, 220 * GameLogic._GlobalScale, 0);
-            Splashes.Translation = _Player.Representation.Translation;
+            Splashes.Translation = _Player.Visual.Translation;
             if(!GameLogic.Up) Splashes.Translation = new Vertex(Splashes.Translation.X - 300 * GameLogic._GlobalScale, Splashes.Translation.Y - 250 * GameLogic._GlobalScale, 0);
             else Splashes.Translation = new Vertex(Splashes.Translation.X, Splashes.Translation.Y - 30 * GameLogic._GlobalScale, 0);
             t1 = new DrawnSceneObject("Splash", Splashes);

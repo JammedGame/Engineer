@@ -79,14 +79,14 @@ namespace GameJam.FrogShift
            
             for (int i = 0; i < tmpScore.Length; i++)
             {
-               dsoDigits[i].Representation.Active = true;
-               ((Sprite)(dsoDigits[i].Representation)).UpdateSpriteSet(Convert.ToInt32(tmpScore.Substring(i,1)));
+               dsoDigits[i].Visual.Active = true;
+               ((Sprite)(dsoDigits[i].Visual)).UpdateSpriteSet(Convert.ToInt32(tmpScore.Substring(i,1)));
             }
             if(tmpScore.Length < dsoDigits.Count)
             {
                 for (int i = tmpScore.Length; i < dsoDigits.Count; i++)
                 {
-                    dsoDigits[i].Representation.Active = false;
+                    dsoDigits[i].Visual.Active = false;
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace GameJam.FrogShift
 
         public static void ChangeDrawnSceneObjectImage(DrawnSceneObject Object, Bitmap Image)
         {
-            SpriteSet Set = ((Sprite)(Object.Representation)).SpriteSets[0];
+            SpriteSet Set = ((Sprite)(Object.Visual)).SpriteSets[0];
             Set.Sprite.Clear();
             Set.Sprite.Add(Image);
         }

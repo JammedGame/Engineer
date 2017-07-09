@@ -60,14 +60,14 @@ namespace GameJam.FrogShift
             DrawnSceneObject Char = (DrawnSceneObject)CScene.Data["Frog"];
             List<DrawnSceneObject> Colliders = (List<DrawnSceneObject>)CScene.Data["Colliders"];
             DrawnSceneObject Last = Colliders[Colliders.Count - 1];
-            if (Char.Representation.Translation.X + 2000 > Last.Representation.Translation.X)
+            if (Char.Visual.Translation.X + 2000 > Last.Visual.Translation.X)
             {
                 List<int> LilipadList = this.GenerateSequence(100);
                 List<int> LilipadArtList = this.GenerateArtIndexSequence(100, 2);
 
                 for (int i = 0; i < LilipadList.Count; i++)
                 {
-                    DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, ResourceManager.Images["lokvanj" + LilipadArtList[i]], new Vertex(Last.Representation.Translation.X + LilipadList[i] * 180, 830, 0), new Vertex(200, 30, 0));
+                    DrawnSceneObject Floor = GameLogic.CreateStaticSprite("Floor" + i, ResourceManager.Images["lokvanj" + LilipadArtList[i]], new Vertex(Last.Visual.Translation.X + LilipadList[i] * 180, 830, 0), new Vertex(200, 30, 0));
                     CScene.AddSceneObject(Floor);
                     ((List<DrawnSceneObject>)(CScene.Data["Colliders"])).Add(Floor);
                 }

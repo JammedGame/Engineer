@@ -14,7 +14,7 @@ namespace GameJam.FrogShift
         public static int moveRatio = 2;
         float move;
         float Difficulty = 1.0f;
-        int Delay = 0;
+        int Delay = 500;
         
         Scene2D _CScene2D;
 
@@ -32,18 +32,18 @@ namespace GameJam.FrogShift
             move *= GameLogic._GlobalScale;
            
             DrawnSceneObject Frog = (DrawnSceneObject)_CScene.Data["Frog"];
-            Frog.Representation.Translation = new Vertex(Frog.Representation.Translation.X - MoveSpeed(), Frog.Representation.Translation.Y, 0);
+            Frog.Visual.Translation = new Vertex(Frog.Visual.Translation.X - MoveSpeed(), Frog.Visual.Translation.Y, 0);
             List<DrawnSceneObject> Colliders = (List<DrawnSceneObject>)_CScene.Data["Colliders"];
             for (int i = 0; i < Colliders.Count; i++)
             {
-                Colliders[i].Representation.Translation = new Vertex(Colliders[i].Representation.Translation.X - MoveSpeed(), Colliders[i].Representation.Translation.Y, 0);
+                Colliders[i].Visual.Translation = new Vertex(Colliders[i].Visual.Translation.X - MoveSpeed(), Colliders[i].Visual.Translation.Y, 0);
             }
 
             try
             {
                 if(_CScene.Data.ContainsKey("Splash"))
                 {
-                    ((DrawnSceneObject)_CScene.Data["Splash"]).Representation.Translation = new Vertex(((DrawnSceneObject)_CScene.Data["Splash"]).Representation.Translation.X - MoveSpeed(), ((DrawnSceneObject)_CScene.Data["Splash"]).Representation.Translation.Y, 0);
+                    ((DrawnSceneObject)_CScene.Data["Splash"]).Visual.Translation = new Vertex(((DrawnSceneObject)_CScene.Data["Splash"]).Visual.Translation.X - MoveSpeed(), ((DrawnSceneObject)_CScene.Data["Splash"]).Visual.Translation.Y, 0);
                 }
             }
             catch { }

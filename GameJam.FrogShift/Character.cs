@@ -60,13 +60,13 @@ namespace GameJam.FrogShift
         }
         public static void UpdateLegs(DrawnSceneObject Char)
         {
-            Vertex FrogTranslate = ((Sprite)(Char.Representation)).Translation;
+            Vertex FrogTranslate = ((Sprite)(Char.Visual)).Translation;
             Vertex LeftLegOffset = (Vertex)(((DrawnSceneObject)(Char.Data["LL"])).Data["Offset"]);
             if ((bool)Char.Data["underWater"])
             {
                 LeftLegOffset= VertexBuilder.RotateZ(LeftLegOffset, 180);
             }
-            Sprite LeftLegSprite = (Sprite)(((DrawnSceneObject)(Char.Data["LL"])).Representation);
+            Sprite LeftLegSprite = (Sprite)(((DrawnSceneObject)(Char.Data["LL"])).Visual);
             LeftLegSprite.Translation = new Vertex(LeftLegOffset.X + FrogTranslate.X, LeftLegOffset.Y + FrogTranslate.Y, 0);
             if ((bool)Char.Data["underWater"]) LeftLegSprite.Rotation = new Vertex(0, 0, 180);
             else LeftLegSprite.Rotation = new Vertex(0, 0, 0);
@@ -75,7 +75,7 @@ namespace GameJam.FrogShift
             {
                 RightLegOffset = VertexBuilder.RotateZ(RightLegOffset, 180);
             }
-            Sprite RightLegSprite = (Sprite)(((DrawnSceneObject)(Char.Data["RL"])).Representation);
+            Sprite RightLegSprite = (Sprite)(((DrawnSceneObject)(Char.Data["RL"])).Visual);
             RightLegSprite.Translation = new Vertex(RightLegOffset.X + FrogTranslate.X, RightLegOffset.Y + FrogTranslate.Y, 0);
             if ((bool)Char.Data["underWater"]) RightLegSprite.Rotation = new Vertex(0, 0, 180);
             else RightLegSprite.Rotation = new Vertex(0, 0, 0);
