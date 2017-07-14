@@ -8,6 +8,8 @@ using Engineer.Engine;
 using Engineer.Mathematics;
 using System.IO;
 
+
+
 namespace Engineer.Draw
 {
     public class DrawEngine
@@ -84,13 +86,15 @@ namespace Engineer.Draw
 
             this._Matrix.PushMatrix();
             this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
-            if(this._CurrentRenderer.TargetType == RenderTargetType.Editor) this._CurrentRenderer.Render2DGrid();
+            if (this._CurrentRenderer.TargetType == RenderTargetType.Editor) this._CurrentRenderer.Render2DGrid();
 
-            for(int i = 0; i < CurrentScene.Objects.Count; i++)
+            for (int i = 0; i < CurrentScene.Objects.Count; i++)
             {
-                if(CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
+                if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
                 if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) DrawTile((Tile)CurrentScene.Objects[i].Visual);
             }
+
+
         }
         public virtual void DrawSprite(Sprite CurrentSprite)
         {
@@ -104,7 +108,7 @@ namespace Engineer.Draw
                 this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
                 this._CurrentRenderer.RenderImage(CurrentSprite.ID, CurrentSprite.CollectiveLists(), (CurrentSprite.CollectiveLists().Count > 0) ? CurrentSprite.Index() : -1, CurrentSprite.Modified);
                 CurrentSprite.Modified = false;
-                for(int i = 0; i < CurrentSprite.SubSprites.Count; i++)
+                for (int i = 0; i < CurrentSprite.SubSprites.Count; i++)
                 {
                     DrawSprite(CurrentSprite.SubSprites[i]);
                 }
@@ -167,11 +171,11 @@ namespace Engineer.Draw
                                    -CurrentScene.EditorCamera.Translation.Y,
                                    -CurrentScene.EditorCamera.Translation.Z);
             this._Matrix.PushMatrix();
-            this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix); 
+            this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
 
             for (int i = 0; i < CurrentScene.Actors.Count; i++)
             {
-                if(CurrentScene.Actors[i].Active)
+                if (CurrentScene.Actors[i].Active)
                 {
                     this._Matrix.Scale(CurrentScene.Actors[i].Scale.X, CurrentScene.Actors[i].Scale.Y, CurrentScene.Actors[i].Scale.Z);
                     this._Matrix.Translate(CurrentScene.Actors[i].Translation.X,
@@ -203,7 +207,7 @@ namespace Engineer.Draw
                                                              CurrentScene.Actors[i].Geometries[j].TexCoords,
                                                              CurrentScene.Actors[i].Geometries[j].Faces,
                                                              CurrentScene.Actors[i].Modified);
-                        
+
                     }
                     this._Matrix.PopMatrix();
                 }

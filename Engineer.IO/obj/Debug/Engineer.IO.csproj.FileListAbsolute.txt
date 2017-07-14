@@ -6,3 +6,4 @@ C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.IO\bin\Debug\Engineer.IO.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.IO\bin\Debug\Engineer.IO.pdb
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.IO\obj\Debug\Engineer.IO.dll
 C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.IO\obj\Debug\Engineer.IO.pdb
+C:\Users\Jon\Documents\FrogJam\Engineer\Engineer.IO\obj\Debug\Engineer.IO.csprojResolveAssemblyReference.cache
