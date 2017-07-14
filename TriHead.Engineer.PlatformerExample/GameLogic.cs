@@ -68,6 +68,14 @@ namespace Engineer.PlatformerExample
             _Physics = new BulletPhysics();
             
             EFXInterface Interface = new EFXInterface();
+
+            TileCollection Collection = new TileCollection();
+            Tile Empty = new Tile();
+            Empty.Name = "New Tile";
+            DrawnSceneObject EmptySO = new DrawnSceneObject("New Tile", Empty);
+            Interface.Save(EmptySO, "Data/NewTile.efx");
+
+
             //_CurrentGame = (Game)Interface.Load("Data/game.efx");
             _CurrentGame.Scenes.Add(new Scene2D("Default"));
             _CurrentScene = (Scene2D)_CurrentGame.Scenes[0];

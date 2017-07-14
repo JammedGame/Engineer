@@ -102,6 +102,8 @@ namespace Engineer.Draw
                 this._Matrix.Rotate(CurrentSprite.Rotation.X, 1, 0, 0);
                 this._Matrix.Rotate(CurrentSprite.Rotation.Y, 0, 1, 0);
                 this._Matrix.Rotate(CurrentSprite.Rotation.Z, 0, 0, 1);
+                float [] PaintColor = { (CurrentSprite.Paint.R * 1.0f + 1) / 256, (CurrentSprite.Paint.G * 1.0f + 1) / 256, (CurrentSprite.Paint.B * 1.0f + 1) / 256, (CurrentSprite.Paint.A * 1.0f + 1) / 256 };
+                this._CurrentRenderer.SetSurface(PaintColor);
                 this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
                 this._CurrentRenderer.RenderImage(CurrentSprite.ID, CurrentSprite.CollectiveLists(), (CurrentSprite.CollectiveLists().Count > 0) ? CurrentSprite.Index() : -1, CurrentSprite.Modified);
                 CurrentSprite.Modified = false;
@@ -121,6 +123,8 @@ namespace Engineer.Draw
                 this._Matrix.Rotate(CurrentTile.Rotation.X, 1, 0, 0);
                 this._Matrix.Rotate(CurrentTile.Rotation.Y, 0, 1, 0);
                 this._Matrix.Rotate(CurrentTile.Rotation.Z, 0, 0, 1);
+                float[] PaintColor = { (CurrentTile.Paint.R * 1.0f + 1) / 256, (CurrentTile.Paint.G * 1.0f + 1) / 256, (CurrentTile.Paint.B * 1.0f + 1) / 256, (CurrentTile.Paint.A * 1.0f + 1) / 256 };
+                this._CurrentRenderer.SetSurface(PaintColor);
                 this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
                 this._CurrentRenderer.RenderImage(CurrentTile.ID, CurrentTile.Collection.TileImages, (CurrentTile.Collection.TileImages.Count > 0) ? CurrentTile.Index() : -1, CurrentTile.Modified);
                 CurrentTile.Modified = false;

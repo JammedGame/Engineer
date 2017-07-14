@@ -15,6 +15,7 @@ namespace Engineer.Engine
         private bool _Modified;
         private int _CurrentIndex;
         private int _CurrentSpriteSet;
+        private Color _Paint;
         private List<SpriteSet> _SpriteSets;
         private List<Sprite> _SubSprites;
         public bool Modified
@@ -29,6 +30,7 @@ namespace Engineer.Engine
                 _Modified = value;
             }
         }
+        public Color Paint { get => _Paint; set => _Paint = value; }
         [XmlIgnore]
         public List<SpriteSet> SpriteSets
         {

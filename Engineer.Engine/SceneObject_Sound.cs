@@ -10,8 +10,23 @@ namespace Engineer.Engine
     public class SoundSceneObject : SceneObject
     {
         private bool _Looped;
+        private string _Path;
         private MediaPlayer _Player;
         private EventHandler _LoopHandler;
+        public string Path
+        {
+            get
+            {
+                return _Path;
+            }
+
+            set
+            {
+                _Path = value;
+                this._Player = new System.Windows.Media.MediaPlayer();
+                this._Player.Open(new Uri(Path, UriKind.Relative));
+            }
+        }
         public SoundSceneObject() : base()
         {
             this.Type = SceneObjectType.SoundSceneObject;

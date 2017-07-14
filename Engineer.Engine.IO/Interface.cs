@@ -47,16 +47,18 @@ namespace Engineer.Engine.IO
         }
         public virtual bool SaveData(object ObjectToSave, string FilePath, ref string Log)
         {
+            string DirPath = Path.GetDirectoryName(FilePath) + "/" + Path.GetFileNameWithoutExtension(FilePath) + "/";
+            if (Directory.Exists(DirPath)) Directory.Delete(DirPath, true);
+            SaveObject(ObjectToSave, FilePath, true);
+            if (File.Exists(FilePath)) File.Delete(FilePath);
+            ZipFile.CreateFromDirectory(DirPath, FilePath);
+            Directory.Delete(DirPath, true);
+            Log = "Success";
+            return true;
+
             try
             {
-                string DirPath = Path.GetDirectoryName(FilePath) + "/" + Path.GetFileNameWithoutExtension(FilePath) + "/";
-                if (Directory.Exists(DirPath)) Directory.Delete(DirPath, true);
-                SaveObject(ObjectToSave, FilePath, true);
-                if (File.Exists(FilePath)) File.Delete(FilePath);
-                ZipFile.CreateFromDirectory(DirPath, FilePath);
-                Directory.Delete(DirPath, true);
-                Log = "Success";
-                return true;
+                
             }
             catch (Exception ex)
             {
