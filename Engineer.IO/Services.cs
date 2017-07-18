@@ -15,7 +15,8 @@ namespace Engineer.IO
     public class BruteStream
     {
         protected int _Index;
-        private Architecture CurrentArchitecture;
+        private Architecture _CurrentArchitecture;
+        public Architecture CurrentArchitecture { get => _CurrentArchitecture; set => _CurrentArchitecture = value; }
         private byte[] Bytes;
         public virtual bool EOF
         {
@@ -28,9 +29,11 @@ namespace Engineer.IO
         }
         public BruteStream()
         {
+            this._CurrentArchitecture = Architecture.IEEELittleEndian;
         }
         public BruteStream(string FileRoot)
         {
+            this._CurrentArchitecture = Architecture.IEEELittleEndian;
             this.Bytes = File.ReadAllBytes(FileRoot);
             this._Index = 0;
         }
@@ -211,8 +214,6 @@ namespace Engineer.IO
                 Value = (uint)i2 | ((long)i1 << 32);
                 return Value;
             }
-            _Index += 8;
-            return Value;
         }
         public virtual unsafe float ReadIEEELESingle()
         {
@@ -296,7 +297,6 @@ namespace Engineer.IO
         }
         private int BufferSize;
         private FileStream Stream;
-        private Architecture CurrentArchitecture;
         private byte[] BytesBuffer;
         private byte[] BytesBufferBackBuffer;
         public override int Index
@@ -546,8 +546,6 @@ namespace Engineer.IO
                 Value = (uint)i2 | ((long)i1 << 32);
                 return Value;
             }
-            IncreaseIndex(8);
-            return Value;
         }
         public override unsafe float ReadIEEELESingle()
         {
@@ -813,8 +811,6 @@ namespace Engineer.IO
                 Value = (uint)i2 | ((long)i1 << 32);
                 return Value;
             }
-            Index += 8;
-            return Value;
         }
         public unsafe float ReadIEEELESingle()
         {

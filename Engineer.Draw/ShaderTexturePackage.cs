@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
+using Engineer.Mathematics;
 
 namespace Engineer.Draw
 {
@@ -14,7 +15,9 @@ namespace Engineer.Draw
         protected bool _Active;
         protected bool _Loaded;
         protected int _TexturesNumber;
+        protected Vertex _Resolution;
         protected byte[] _Textures;
+        public Vertex Resolution { get => _Resolution; set => _Resolution = value; }
         public ShaderTexturePackage()
         {
             this._Active = false;

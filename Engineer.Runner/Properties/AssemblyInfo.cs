@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Engineer.IO")]
+[assembly: AssemblyTitle("Engineer.Runner")]
 [assembly: AssemblyDescription("Engineer Game Engine")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DeinVenteD")]
-[assembly: AssemblyProduct("Engineer.IO")]
+[assembly: AssemblyProduct("Engineer.Runner")]
 [assembly: AssemblyCopyright("Copyright © DeinVenteD 2015-2017")]
 [assembly: AssemblyTrademark("Engineer")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e609ebc6-3b93-4386-a4a2-f96c00b376e7")]
+[assembly: Guid("7aeafc58-ba7c-4a8c-96f8-708b6a9b2c75")]
 
 // Version information for an assembly consists of the following four values:
 //

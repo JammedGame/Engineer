@@ -84,10 +84,6 @@ namespace Engineer.Data
                         Mathematics.Face NewFace = new Mathematics.Face();
                         for (int i = 1; i < Parts.Length; i++)
                         {
-                            if (Parts.Length > 3)
-                            {
-                                int d = 3;
-                            }
                             string[] SubParts = Parts[i].Split('/');
                             NewFace.Vertices.Add(Math.Abs(Convert.ToInt32(SubParts[0])) - 1);
                             if (SubParts.Length > 1) NewFace.TexCoords.Add(Math.Abs(Convert.ToInt32(SubParts[1])) - 1);

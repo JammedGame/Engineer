@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Engineer.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Engineer.Engine
         private bool _Modified;
         private int _CurrentIndex;
         private int _CurrentSpriteSet;
+        private Color _Paint;
         private List<SpriteSet> _SpriteSets;
         private List<Sprite> _SubSprites;
         public bool Modified
@@ -28,6 +30,7 @@ namespace Engineer.Engine
                 _Modified = value;
             }
         }
+        public Color Paint { get => _Paint; set => _Paint = value; }
         [XmlIgnore]
         public List<SpriteSet> SpriteSets
         {
@@ -94,9 +97,27 @@ namespace Engineer.Engine
             _CurrentSpriteSet = Index;
             _CurrentIndex = 0;
         }
+        public void SetSpriteSet(string Name)
+        {
+            for(int i = 0; i < this._SpriteSets.Count; i++)
+            {
+                if (this._SpriteSets[i].Name == Name) this.SetSpriteSet(i);
+            }
+        }
         public void UpdateSpriteSet(int Index)
         {
             if (Index != _CurrentSpriteSet) SetSpriteSet(Index);
+        }
+        public void UpdateSpriteSet(string Name)
+        {
+            for (int i = 0; i < this._SpriteSets.Count; i++)
+            {
+                if (this._SpriteSets[i].Name == Name) this.UpdateSpriteSet(i);
+            }
+        }
+        public bool InCollision(DrawObject Collider, Collision2DType Type)
+        {
+            return Collision2D.Check(this.Translation, this.Scale, Collider.Translation, Collider.Scale, Type);
         }
         public int Index()
         {

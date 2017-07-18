@@ -70,6 +70,7 @@ namespace Engineer.Engine
             this._Enabled = true;
             this._Script = SSO._Script;
             this._ScriptType = SSO.ScriptType;
+            this.Type = SceneObjectType.ScriptSceneObject;
         }
         public static void Serialize(ScriptSceneObject CurrentScriptSceneObject, string Path)
         {

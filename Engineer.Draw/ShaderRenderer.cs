@@ -166,15 +166,28 @@ namespace Engineer.Draw
             _Globals.SetData("Lights[" + Index + "].Intensity", BitConverter.GetBytes(LightParameters[3].X));
             return Update;
         }
-        private byte[] PackTextures(List<Bitmap> TextureBitmaps)
+        private byte[] PackTextures(List<Bitmap> TextureBitmaps, Vertex MaxResolution)
         {
             List<byte> Textures = new List<byte>();
             for (int i = 0; i < TextureBitmaps.Count; i++)
             {
-                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size(256, 256));
+                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size((int)MaxResolution.X, (int)MaxResolution.Y));
                 Textures.AddRange(ShaderMaterialTranslator.ImageToByte(TextureBitmaps[i]));
             }
             return Textures.ToArray();
+        }
+        private int TexturesHighestResolution(List<Bitmap> TextureBitmaps)
+        {
+            int MaxResolution = 256;
+            for(int i = 0; i < TextureBitmaps.Count; i++)
+            {
+                int BiggerSize = 0;
+                if (TextureBitmaps[i].Width > TextureBitmaps[i].Height) BiggerSize = TextureBitmaps[i].Width;
+                else BiggerSize = TextureBitmaps[i].Height;
+                while (BiggerSize > MaxResolution && MaxResolution < 4096) MaxResolution *= 2;
+            }
+            MaxResolution = (MaxResolution / 4) * (int)Engine.Settings.GraphicsQuality;
+            return MaxResolution;
         }
         public override void Render2DGrid()
         {
@@ -224,12 +237,27 @@ namespace Engineer.Draw
             _Manager.SetDrawMode(GraphicDrawMode.Lines);
             _Manager.Draw();
         }
-        public override void RenderSprite(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update)
+        public override void RenderImage(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update)
         {
             if (!this.IsMaterialReady(ID) || Update)
             {
                 this._Manager.ActivateShader("2D");
-                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures) }, true);
+                if (Textures.Count > 1)
+                {
+                    int MaxResolution = TexturesHighestResolution(Textures);
+                    this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, new Vertex(MaxResolution, MaxResolution, 0)) }, true);
+                    this._Manager.Active.Textures.Resolution = new Vertex(MaxResolution, MaxResolution, 0);
+                }
+                else if (Textures.Count > 0)
+                {
+                    Vertex Resolution = new Vertex((Textures[0].Width / 4) * (int)Engine.Settings.GraphicsQuality, (Textures[0].Height / 4) * (int)Engine.Settings.GraphicsQuality, 0);
+                    this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, Resolution) }, true);
+                    this._Manager.Active.Textures.Resolution = Resolution;
+                }
+                else
+                {
+                    this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, 0, null }, true);
+                }
             }
             else this.SetMaterial(new object[3] { new string[6] { ID, null, null, null, null, null }, null, null }, false);
 
