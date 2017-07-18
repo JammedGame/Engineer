@@ -211,8 +211,6 @@ namespace Engineer.IO
                 Value = (uint)i2 | ((long)i1 << 32);
                 return Value;
             }
-            _Index += 8;
-            return Value;
         }
         public virtual unsafe float ReadIEEELESingle()
         {
@@ -546,8 +544,6 @@ namespace Engineer.IO
                 Value = (uint)i2 | ((long)i1 << 32);
                 return Value;
             }
-            IncreaseIndex(8);
-            return Value;
         }
         public override unsafe float ReadIEEELESingle()
         {
@@ -813,8 +809,6 @@ namespace Engineer.IO
                 Value = (uint)i2 | ((long)i1 << 32);
                 return Value;
             }
-            Index += 8;
-            return Value;
         }
         public unsafe float ReadIEEELESingle()
         {

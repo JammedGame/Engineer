@@ -92,10 +92,6 @@ namespace Engineer.Engine.Physics
                     float Y = -Transform.Origin.Y * DownScale;
                     float Z = Transform.Origin.Z * DownScale;
                     Vertex NewPosition = new Mathematics.Vertex(X, Y, 0);
-                    if (_RigidBodies[i].LinearVelocity.X > 0 || _RigidBodies[i].LinearVelocity.Y > 0)
-                    {
-                        int f = 4;
-                    }
                     DSO.Visual.Translation = NewPosition;
                 }
             }

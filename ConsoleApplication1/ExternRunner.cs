@@ -22,8 +22,6 @@ namespace Engineer.Runner
 {
     public class ExternRunner : Runner
     {
-        private EventManager _Events;
-        private List<EventManager> _ObjectEvents;
         public ExternRunner(int width, int height, GraphicsMode mode, string title) : base(width, height, mode, title)
         {
         }
