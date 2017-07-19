@@ -14,7 +14,7 @@ namespace Engineer.Engine
     }
     public class Settings
     {
-        public static string Version = "0.0.0.1a";
+        public static string Version = "0.0.0.2";
         public static Quality GraphicsQuality = Quality.High;
     }
 }
