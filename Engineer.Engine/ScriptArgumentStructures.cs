@@ -173,6 +173,11 @@ namespace Engineer.Engine
         NonUSBackSlash = 130,
         LastKey = 131
     }
+    public enum WorkOperation
+    {
+        Destroy,
+        Preload
+    }
     public struct EventArguments
     {
         public bool Control;
@@ -180,8 +185,10 @@ namespace Engineer.Engine
         public bool Shift;
         public bool Handled;
         public int Delta;
+        public int Progress;
         public KeyType KeyDown;
         public MouseClickType ButtonDown;
+        public WorkOperation Operation;
         public Vertex Location;
         public Vertex Size;
         public object Target;

@@ -116,6 +116,14 @@ namespace Engineer.Draw
         {
 
         }
+        public virtual void PreLoadMaterial(string ID, List<Bitmap> Textures)
+        {
+
+        }
+        public virtual void DestroyMaterial(string ID)
+        {
+
+        }
         public virtual void Toggle(RenderEnableCap Preference, bool Value)
         {
 

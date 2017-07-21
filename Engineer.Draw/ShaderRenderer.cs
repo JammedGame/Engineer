@@ -293,6 +293,26 @@ namespace Engineer.Draw
             _Manager.SetDrawMode(GraphicDrawMode.Triangles);
             _Manager.Draw();
         }
+        public override void PreLoadMaterial(string ID, List<Bitmap> Textures)
+        {
+            this._Manager.ActivateShader("2D");
+            if (Textures.Count > 1)
+            {
+                int MaxResolution = TexturesHighestResolution(Textures);
+                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, new Vertex(MaxResolution, MaxResolution, 0)) }, true);
+                this._Manager.Active.Textures.Resolution = new Vertex(MaxResolution, MaxResolution, 0);
+            }
+            else if (Textures.Count > 0)
+            {
+                Vertex Resolution = new Vertex((Textures[0].Width / 4) * (int)Engine.Settings.GraphicsQuality, (Textures[0].Height / 4) * (int)Engine.Settings.GraphicsQuality, 0);
+                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, Resolution) }, true);
+                this._Manager.Active.Textures.Resolution = Resolution;
+            }
+            else
+            {
+                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, 0, null }, true);
+            }
+        }
         public override void RenderGeometry(List<Vertex> Vertices, List<Vertex> Normals, List<Vertex> TexCoords, List<Face> Faces, bool Update)
         {
             if((TexCoords == null || TexCoords.Count == 0) && _Manager.Active.Attributes.Exists("V_TextureUV"))
@@ -321,6 +341,10 @@ namespace Engineer.Draw
         public override void PopPreferences()
         {
             if (this._PushedID != "") _Manager.ActivateShader(this._PushedID);
+        }
+        public override void DestroyMaterial(string ID)
+        {
+            this._Manager.DeleteShader(ID);
         }
     }
 }

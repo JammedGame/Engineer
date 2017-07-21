@@ -16,9 +16,17 @@ using Engineer.Draw.OpenGL.FixedGL;
 using Engineer.Draw.OpenGL.GLSL;
 using Engineer.Engine;
 using OpenTK.Input;
+using System.ComponentModel;
 
 namespace Engineer.Runner
 {
+    public enum WindowState
+    {
+        Normal = 0,
+        Minimized = 1,
+        Maximized = 2,
+        Fullscreen = 3
+    }
     public class Runner : OpenTK.GameWindow
     {
         private int _Seed;
@@ -26,11 +34,13 @@ namespace Engineer.Runner
         protected bool _GameInit;
         protected bool _EngineInit;
         protected Timer _Time;
+        protected Scene _NextScene;
+        protected Scene _PrevScene;
         protected Scene _CurrentScene;
         protected Game _CurrentGame;
         protected DrawEngine _Engine;
         public int FrameUpdateRate { get => _FrameUpdateRate; set => _FrameUpdateRate = value; }
-        public Runner(int width, int height, GraphicsMode mode, string title) : base(width, height, mode, title)
+        public Runner(int Width, int Height, GraphicsMode Mode, string Title) : base(Width, Height, Mode, Title)
         {
             this._Seed = 0;
             this._FrameUpdateRate = 6;
@@ -39,6 +49,10 @@ namespace Engineer.Runner
             this._Time = new Timer(8.33);
             this._Time.Elapsed += Event_TimerTick;
             this._Time.AutoReset = true;
+        }
+        public void SetWindowState(WindowState State)
+        {
+            this.WindowState = (OpenTK.WindowState)State;
         }
         private void EngineInit()
         {
@@ -71,6 +85,30 @@ namespace Engineer.Runner
             PrepareEvents();
             this._Time.Start();
             Event_Load();
+        }
+        public void SwitchScene(Scene NextScene)
+        {
+            BackgroundWorker Worker = new BackgroundWorker();
+            Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.SwitchSceneFinishPreload);
+            Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.Event_OperationFinished);
+            Worker.ProgressChanged += new ProgressChangedEventHandler(this.Event_OperationProgress);
+            this._NextScene = NextScene;
+            if (NextScene.Type == SceneType.Scene2D) this._Engine.Preload2DScene((Scene2D)NextScene, Worker);
+        }
+        public void SwitchScene(string SceneName)
+        {
+            for(int i = 0; i < this._CurrentGame.Scenes.Count; i++)
+            {
+                if(this._CurrentGame.Scenes[i].Name == SceneName)
+                {
+                    this.SwitchScene(this._CurrentGame.Scenes[i]);
+                }
+            }
+        }
+        private void SwitchSceneFinishPreload(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.Init(this._CurrentGame, this._NextScene);
+            if(this._PrevScene.Type == SceneType.Scene2D) this._Engine.Destroy2DScene((Scene2D)this._PrevScene, null);
         }
         protected virtual void PrepareEvents()
         {
@@ -278,6 +316,17 @@ namespace Engineer.Runner
             }
             EventArguments Arguments = new EventArguments();
             CallEvents("TimerTick", Arguments);
+        }
+        private void Event_OperationProgress(object sender, ProgressChangedEventArgs e)
+        {
+            EventArguments Arguments = new EventArguments();
+            Arguments.Progress = e.ProgressPercentage;
+            CallEvents("OperationProgress", Arguments);
+        }
+        private void Event_OperationFinished(object sender, RunWorkerCompletedEventArgs e)
+        {
+            EventArguments Arguments = new EventArguments();
+            CallEvents("OperationFinished", Arguments);
         }
         protected virtual void CallEvents(string EventName, EventArguments Args)
         {
