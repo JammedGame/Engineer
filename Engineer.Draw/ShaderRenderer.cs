@@ -17,6 +17,8 @@ namespace Engineer.Draw
         private byte[] _GridVertices;
         private byte[] _SpriteVertices;
         private byte[] _SpriteUV;
+        public string _Vertex2D;
+        public string _Fragment2D;
         protected ShaderUniformPackage _Globals;
         protected ShaderManager _Manager;
         protected ShaderManager Manager
@@ -241,7 +243,7 @@ namespace Engineer.Draw
         {
             if (!this.IsMaterialReady(ID) || Update)
             {
-                this._Manager.ActivateShader("2D");
+                this._Manager.ActivateShader(ID);
                 if (Textures.Count > 1)
                 {
                     int MaxResolution = TexturesHighestResolution(Textures);
@@ -295,22 +297,23 @@ namespace Engineer.Draw
         }
         public override void PreLoadMaterial(string ID, List<Bitmap> Textures)
         {
-            this._Manager.ActivateShader("2D");
+            this._Manager.AddShader(ID);
+            this._Manager.ActivateShader(ID);
             if (Textures.Count > 1)
             {
                 int MaxResolution = TexturesHighestResolution(Textures);
-                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, new Vertex(MaxResolution, MaxResolution, 0)) }, true);
+                this.SetMaterial(new object[3] { new string[6] { ID, this._Vertex2D, this._Fragment2D, null, null, null }, Textures.Count, PackTextures(Textures, new Vertex(MaxResolution, MaxResolution, 0)) }, true);
                 this._Manager.Active.Textures.Resolution = new Vertex(MaxResolution, MaxResolution, 0);
             }
             else if (Textures.Count > 0)
             {
                 Vertex Resolution = new Vertex((Textures[0].Width / 4) * (int)Engine.Settings.GraphicsQuality, (Textures[0].Height / 4) * (int)Engine.Settings.GraphicsQuality, 0);
-                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, Resolution) }, true);
+                this.SetMaterial(new object[3] { new string[6] { ID, this._Vertex2D, this._Fragment2D, null, null, null }, Textures.Count, PackTextures(Textures, Resolution) }, true);
                 this._Manager.Active.Textures.Resolution = Resolution;
             }
             else
             {
-                this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, 0, null }, true);
+                this.SetMaterial(new object[3] { new string[6] { ID, this._Vertex2D, this._Fragment2D, null, null, null }, 0, null }, true);
             }
         }
         public override void RenderGeometry(List<Vertex> Vertices, List<Vertex> Normals, List<Vertex> TexCoords, List<Face> Faces, bool Update)

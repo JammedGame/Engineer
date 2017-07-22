@@ -66,6 +66,11 @@ namespace Engineer.Runner
             _Engine.CurrentTranslator = Translator;
             _Engine.SetDefaults();
         }
+        public void Init(Game CurrentGame)
+        {
+            if (!_EngineInit) EngineInit();
+            this._CurrentGame = CurrentGame;
+        }
         public void Init(Game CurrentGame, Scene CurrentScene)
         {
             if (!_EngineInit) EngineInit();
@@ -82,6 +87,7 @@ namespace Engineer.Runner
             this.MouseUp += new EventHandler<MouseButtonEventArgs>(Event_MouseUp);
             this.MouseMove += new EventHandler<MouseMoveEventArgs>(Event_MouseMove);
             this.MouseWheel += new EventHandler<MouseWheelEventArgs>(Event_MouseWheel);
+            this.Resize += new EventHandler<EventArgs>(Event_Resize);
             PrepareEvents();
             this._Time.Start();
             Event_Load();
@@ -89,6 +95,7 @@ namespace Engineer.Runner
         public void SwitchScene(Scene NextScene)
         {
             BackgroundWorker Worker = new BackgroundWorker();
+            Worker.WorkerReportsProgress = true;
             Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.SwitchSceneFinishPreload);
             Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.Event_OperationFinished);
             Worker.ProgressChanged += new ProgressChangedEventHandler(this.Event_OperationProgress);
@@ -108,7 +115,6 @@ namespace Engineer.Runner
         private void SwitchSceneFinishPreload(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Init(this._CurrentGame, this._NextScene);
-            if(this._PrevScene.Type == SceneType.Scene2D) this._Engine.Destroy2DScene((Scene2D)this._PrevScene, null);
         }
         protected virtual void PrepareEvents()
         {
@@ -116,9 +122,7 @@ namespace Engineer.Runner
         }
         protected override void OnResize(EventArgs e)
         {
-            EventArguments Arguments = new EventArguments();
-            Arguments.Size = new Vertex(this.Width, this.Height, 0);
-            CallEvents("Resize", Arguments);
+            this.Event_Resize(null, e);
         }
         protected override void OnRenderFrame(FrameEventArgs e)
         {
@@ -303,6 +307,13 @@ namespace Engineer.Runner
             EventArguments Arguments = new EventArguments();
             CallEvents("RenderFrame", Arguments);
         }
+        private void Event_Resize(object sender, EventArgs e)
+        {
+            if (this._CurrentScene == null) return;
+            EventArguments Arguments = new EventArguments();
+            Arguments.Size = new Vertex(this.Width, this.Height, 0);
+            CallEvents("Resize", Arguments);
+        }
         private void Event_TimerTick(object sender, ElapsedEventArgs e)
         {
             this._Seed++;
@@ -319,14 +330,16 @@ namespace Engineer.Runner
         }
         private void Event_OperationProgress(object sender, ProgressChangedEventArgs e)
         {
+            if (this._CurrentScene == null) return;
             EventArguments Arguments = new EventArguments();
             Arguments.Progress = e.ProgressPercentage;
-            CallEvents("OperationProgress", Arguments);
+            //CallEvents("OperationProgress", Arguments);
         }
         private void Event_OperationFinished(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (this._CurrentScene == null) return;
             EventArguments Arguments = new EventArguments();
-            CallEvents("OperationFinished", Arguments);
+            //CallEvents("OperationFinished", Arguments);
         }
         protected virtual void CallEvents(string EventName, EventArguments Args)
         {

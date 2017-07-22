@@ -19,7 +19,9 @@ namespace Engineer.Draw.OpenGL.GLSL
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-            SetUpShader("Default", new string[5] { global::Engineer.Draw.OpenGL.Shaders.Example_Vertex, global::Engineer.Draw.OpenGL.Shaders.Partial_Fragment, null, null, null });
+            this._Vertex2D = File.ReadAllText(Engineer.Engine.Settings.LibPath + "GLSL\\Generator\\Vertex2D.shader");
+            this._Fragment2D = File.ReadAllText(Engineer.Engine.Settings.LibPath + "GLSL\\Generator\\Fragment2D.shader");
+            SetUpShader("Default", new string[5] { this._Vertex2D, this._Fragment2D, null, null, null });
         }
         public override void SetViewport(int Width, int Height)
         {

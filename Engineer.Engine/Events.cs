@@ -161,6 +161,9 @@ namespace Engineer.Engine
             MouseWheel = new GameEventHandler(OnInvoke);
             RenderFrame = new GameEventHandler(OnInvoke);
             TimerTick = new GameEventHandler(OnInvoke);
+            Resize = new GameEventHandler(OnInvoke);
+            OperationProgress = new GameEventHandler(OnInvoke);
+            OperationFinished = new GameEventHandler(OnInvoke);
         }
         public void OnInvoke(Game CurrentGame, EventArguments Args)
         {

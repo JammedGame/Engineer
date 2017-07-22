@@ -14,6 +14,7 @@ namespace Engineer.Project
         [STAThread]
         static void Main()
         {
+            ResourceManager RM = new ResourceManager();
             GameLogic Logic = new GameLogic();
             Logic.Run();
         }

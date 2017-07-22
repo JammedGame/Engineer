@@ -61,6 +61,7 @@ namespace Engineer.Engine
         {
             this._Assets = new List<SceneObject>();
             this._Scenes = new List<Scene>();
+            this._Data = new Dictionary<string, object>();
         }
         public Game(Game G)
         {

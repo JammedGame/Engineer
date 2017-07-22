@@ -13,8 +13,6 @@ namespace Engineer.Draw
 {
     public class DrawEngine
     {
-        private string _Vertex2D;
-        private string _Fragment2D;
         private BackgroundWorker _CurrentWorker;
         private MatrixTransformer _Matrix;
         private Renderer _CurrentRenderer;
@@ -46,8 +44,6 @@ namespace Engineer.Draw
         public DrawEngine()
         {
             this._Matrix = new MatrixTransformer();
-            this._Vertex2D = File.ReadAllText(Engineer.Engine.Settings.LibPath + "GLSL\\Generator\\Vertex2D.shader");
-            this._Fragment2D = File.ReadAllText(Engineer.Engine.Settings.LibPath + "GLSL\\Generator\\Fragment2D.shader");
         }
         public DrawEngine(DrawEngine DE)
         {
@@ -64,6 +60,19 @@ namespace Engineer.Draw
         private void Preload2DSceneWork(object sender, DoWorkEventArgs e)
         {
             Scene2D CurrentScene = (Scene2D)e.Argument;
+            if (CurrentScene == null) return;
+            this._CurrentRenderer.Toggle(RenderEnableCap.Depth, false);
+            this._CurrentRenderer.ClearColor(new float[4] {(CurrentScene.BackColor.R *1.0f + 1)/256,
+                                                           (CurrentScene.BackColor.G *1.0f + 1)/256,
+                                                           (CurrentScene.BackColor.B *1.0f + 1)/256,
+                                                           (CurrentScene.BackColor.A *1.0f + 1)/256});
+            this._CurrentRenderer.Clear();
+            this._Matrix.MatrixMode("Projection");
+            this._Matrix.LoadIdentity();
+            this._CurrentRenderer.SetProjectionMatrix(_Matrix.ProjectionMatrix);
+            this._Matrix.MatrixMode("ModelView");
+            this._Matrix.LoadIdentity();
+            this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
             for (int i = 0; i < CurrentScene.Objects.Count; i++)
             {
                 if (CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
@@ -104,12 +113,6 @@ namespace Engineer.Draw
         {
             if (CurrentScene == null) return;
             this._CurrentRenderer.Toggle(RenderEnableCap.Depth, false);
-            String LibPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Engineer/";
-            if (!this._CurrentRenderer.IsMaterialReady("2D"))
-            {
-                this._CurrentRenderer.SetMaterial(new object[3] { new string[6] { "2D", this._Vertex2D, this._Fragment2D, null, null, null }, null, null }, true);
-            }
-
             this._CurrentRenderer.SetViewport(Width, Height);
             this._CurrentRenderer.ClearColor(new float[4] {(CurrentScene.BackColor.R *1.0f + 1)/256,
                                                            (CurrentScene.BackColor.G *1.0f + 1)/256,
@@ -229,7 +232,7 @@ namespace Engineer.Draw
             {
                 if (!this._CurrentRenderer.IsMaterialReady(CurrentSprite.ID))
                 {
-                    this._CurrentRenderer.SetMaterial(new object[3] { new string[6] { CurrentSprite.ID, this._Vertex2D, this._Fragment2D, null, null, null }, null, null }, true);
+                    this._CurrentRenderer.SetMaterial(new object[3] { new string[6] { CurrentSprite.ID, ((ShaderRenderer)(this._CurrentRenderer))._Vertex2D, ((ShaderRenderer)(this._CurrentRenderer))._Fragment2D, null, null, null }, null, null }, true);
                 }
                 this._Matrix.Translate(CurrentSprite.Translation.X, CurrentSprite.Translation.Y, CurrentSprite.Translation.Z);
                 this._Matrix.Scale(CurrentSprite.Scale.X, CurrentSprite.Scale.Y, CurrentSprite.Scale.Z);
@@ -254,7 +257,7 @@ namespace Engineer.Draw
             {
                 if (!this._CurrentRenderer.IsMaterialReady(CurrentTile.ID))
                 {
-                    this._CurrentRenderer.SetMaterial(new object[3] { new string[6] { CurrentTile.ID, this._Vertex2D, this._Fragment2D, null, null, null }, null, null }, true);
+                    this._CurrentRenderer.SetMaterial(new object[3] { new string[6] { CurrentTile.ID, ((ShaderRenderer)(this._CurrentRenderer))._Vertex2D, ((ShaderRenderer)(this._CurrentRenderer))._Fragment2D, null, null, null }, null, null }, true);
                 }
                 this._Matrix.Translate(CurrentTile.Translation.X, CurrentTile.Translation.Y, CurrentTile.Translation.Z);
                 this._Matrix.Scale(CurrentTile.Scale.X, CurrentTile.Scale.Y, CurrentTile.Scale.Z);

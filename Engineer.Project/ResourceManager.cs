@@ -1,5 +1,5 @@
-﻿using Engineer.Engine;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -22,6 +22,7 @@ namespace Engineer.Project
             XmlNode Main = Document.FirstChild;
             Engineer.Engine.Material Mat = new Engineer.Engine.Material(Main);
             Engineer.Engine.Material.Default = Mat;
+            Init();
         }
         public void Init()
         {
