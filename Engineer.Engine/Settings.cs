@@ -15,7 +15,7 @@ namespace Engineer.Engine
     public class Settings
     {
         public static string Version = "0.0.0.3";
-        public static string LibPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Engineer/";
+        public static string LibPath = "Data/";
         public static Quality GraphicsQuality = Quality.High;
     }
 }

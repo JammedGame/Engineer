@@ -11,6 +11,6 @@ namespace Engineer.Project
     public class LocalSettings
     {
         public static WindowState State = WindowState.Normal;
-        public static Vertex Scale = new Vertex(1024, 768, 1);
+        public static Vertex Scale = new Vertex(1024, 600, 1);
     }
 }

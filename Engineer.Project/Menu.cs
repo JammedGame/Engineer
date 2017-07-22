@@ -27,12 +27,12 @@ namespace Engineer.Project
             PlayTile.Collection = Buttons;
             PlayTile.SetIndex(0);
             PlayTile.Scale = new Vertex(300, 150, 1);
-            PlayTile.Translation = new Vertex(100, 200, 0);
+            PlayTile.Translation = new Vertex(100, 100, 0);
             Tile QuitTile = new Tile();
             QuitTile.Collection = Buttons;
             QuitTile.SetIndex(1);
             QuitTile.Scale = new Vertex(300, 150, 1);
-            QuitTile.Translation = new Vertex(100, 550, 0);
+            QuitTile.Translation = new Vertex(100, 350, 0);
             DrawnSceneObject Back = new DrawnSceneObject("Back", BackTile);
             DrawnSceneObject Play = new DrawnSceneObject("Play", PlayTile);
             DrawnSceneObject Quit = new DrawnSceneObject("Quit", QuitTile);

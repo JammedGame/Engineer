@@ -333,13 +333,13 @@ namespace Engineer.Runner
             if (this._CurrentScene == null) return;
             EventArguments Arguments = new EventArguments();
             Arguments.Progress = e.ProgressPercentage;
-            //CallEvents("OperationProgress", Arguments);
+            CallEvents("OperationProgress", Arguments);
         }
         private void Event_OperationFinished(object sender, RunWorkerCompletedEventArgs e)
         {
             if (this._CurrentScene == null) return;
             EventArguments Arguments = new EventArguments();
-            //CallEvents("OperationFinished", Arguments);
+            CallEvents("OperationFinished", Arguments);
         }
         protected virtual void CallEvents(string EventName, EventArguments Args)
         {

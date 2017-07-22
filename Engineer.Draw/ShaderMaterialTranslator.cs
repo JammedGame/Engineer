@@ -113,8 +113,7 @@ namespace Engineer.Draw
             string Fragment = GenerateFragment(Output);
             if (Fragment == "") return false;
             this._FragmentShaderOutput = Fragment;
-            String LibPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Engineer/";
-            this._VertexShaderOutput = File.ReadAllText(LibPath + this._MaterialTranslatorType + "\\Generator\\Vertex.shader");
+            this._VertexShaderOutput = File.ReadAllText(Engine.Settings.LibPath + this._MaterialTranslatorType + "\\Generator\\Vertex.shader");
             if (_TexturesNumber > 0)
             {
                 List<byte> Textures = new List<byte>();
@@ -144,9 +143,8 @@ namespace Engineer.Draw
             {
                 FunctionCalls.Add(GenerateFragmentFinalizer(false, ""));
             }
-            String LibPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Engineer/";
-            if (_TexturesNumber > 0) FragmentHeader = File.ReadAllText(LibPath + this._MaterialTranslatorType + "\\Generator\\FragmentTexturedHeader.shader") + "\n";
-            else FragmentHeader = File.ReadAllText(LibPath + this._MaterialTranslatorType + "\\Generator\\FragmentHeader.shader") + "\n";
+            if (_TexturesNumber > 0) FragmentHeader = File.ReadAllText(Engine.Settings.LibPath + this._MaterialTranslatorType + "\\Generator\\FragmentTexturedHeader.shader") + "\n";
+            else FragmentHeader = File.ReadAllText(Engine.Settings.LibPath + this._MaterialTranslatorType + "\\Generator\\FragmentHeader.shader") + "\n";
             if (FragmentHeader == "") return "";
             FragmentCode += FragmentHeader;
             FragmentCode += "\n";
@@ -253,8 +251,7 @@ namespace Engineer.Draw
         private void LoadEntries()
         {
             List<string> PossibleEntries = new List<string>();
-            String LibPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Engineer/";
-            string[] Files = Directory.GetFiles(LibPath + _MaterialTranslatorType);
+            string[] Files = Directory.GetFiles(Engine.Settings.LibPath + _MaterialTranslatorType);
             for (int i = 0; i < Files.Length; i++)
             {
                 if (!PossibleEntries.Contains(Path.GetFileNameWithoutExtension(Files[i]))) PossibleEntries.Add(Path.GetFileNameWithoutExtension(Files[i]));
