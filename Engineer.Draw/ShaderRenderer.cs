@@ -244,6 +244,11 @@ namespace Engineer.Draw
             if (!this.IsMaterialReady(ID) || Update)
             {
                 this._Manager.ActivateShader(ID);
+                if (!this._Manager.ShaderExists(ID))
+                {
+                    this._Manager.AddShader(ID);
+                    this._Manager.CompileShader(ID, this._Vertex2D, this._Fragment2D);
+                }
                 if (Textures.Count > 1)
                 {
                     int MaxResolution = TexturesHighestResolution(Textures);

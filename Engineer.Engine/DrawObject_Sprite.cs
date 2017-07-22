@@ -18,6 +18,7 @@ namespace Engineer.Engine
         private Color _Paint;
         private List<SpriteSet> _SpriteSets;
         private List<Sprite> _SubSprites;
+        private List<Bitmap> _Collectives;
         public bool Modified
         {
             get
@@ -78,11 +79,13 @@ namespace Engineer.Engine
         }
         public List<Bitmap> CollectiveLists()
         {
+            if (this._Collectives != null && this._Modified) return this._Collectives;
             List<Bitmap> Lists = new List<Bitmap>();
             for(int i = 0; i < _SpriteSets.Count; i++)
             {
                 Lists.AddRange(_SpriteSets[i].Sprite);
             }
+            this._Collectives = Lists;
             return Lists;
         }
         public void RaiseIndex()

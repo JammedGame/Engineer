@@ -230,10 +230,6 @@ namespace Engineer.Draw
         {
             if (CurrentSprite.Active)
             {
-                if (!this._CurrentRenderer.IsMaterialReady(CurrentSprite.ID))
-                {
-                    this._CurrentRenderer.SetMaterial(new object[3] { new string[6] { CurrentSprite.ID, ((ShaderRenderer)(this._CurrentRenderer))._Vertex2D, ((ShaderRenderer)(this._CurrentRenderer))._Fragment2D, null, null, null }, null, null }, true);
-                }
                 this._Matrix.Translate(CurrentSprite.Translation.X, CurrentSprite.Translation.Y, CurrentSprite.Translation.Z);
                 this._Matrix.Scale(CurrentSprite.Scale.X, CurrentSprite.Scale.Y, CurrentSprite.Scale.Z);
                 this._Matrix.Rotate(CurrentSprite.Rotation.X, 1, 0, 0);
@@ -255,10 +251,6 @@ namespace Engineer.Draw
         {
             if (CurrentTile.Active)
             {
-                if (!this._CurrentRenderer.IsMaterialReady(CurrentTile.ID))
-                {
-                    this._CurrentRenderer.SetMaterial(new object[3] { new string[6] { CurrentTile.ID, ((ShaderRenderer)(this._CurrentRenderer))._Vertex2D, ((ShaderRenderer)(this._CurrentRenderer))._Fragment2D, null, null, null }, null, null }, true);
-                }
                 this._Matrix.Translate(CurrentTile.Translation.X, CurrentTile.Translation.Y, CurrentTile.Translation.Z);
                 this._Matrix.Scale(CurrentTile.Scale.X, CurrentTile.Scale.Y, CurrentTile.Scale.Z);
                 this._Matrix.Rotate(CurrentTile.Rotation.X, 1, 0, 0);
