@@ -31,6 +31,7 @@ namespace Engineer.Draw.OpenGL.GLSL
         }
         public override bool Compile(string VertexShaderString, string FragmentShaderString, string GeometryShaderString, string TessellationControlString, string TessellationEvaluationString)
         {
+            SetShaderCode(VertexShaderString, FragmentShaderString, GeometryShaderString, TessellationControlString, TessellationEvaluationString);
             int IsCompiled;
             _VertexShader_Indexer = GL.CreateShader(ShaderType.VertexShader);
             _FragmentShader_Indexer = GL.CreateShader(ShaderType.FragmentShader);
@@ -91,7 +92,6 @@ namespace Engineer.Draw.OpenGL.GLSL
                 return false;
             }
             _Compiled = true;
-            SetShaderCode(VertexShaderString, FragmentShaderString, GeometryShaderString, TessellationControlString, TessellationEvaluationString);
             return true;
         }
         public override void Activate()
@@ -103,6 +103,10 @@ namespace Engineer.Draw.OpenGL.GLSL
         }
         public override void Draw(GraphicDrawMode DrawMode, int Offset)
         {
+            if (!_Compiled)
+            {
+                this.Compile(this.VertexShader_Code, this.FragmentShader_Code, this.GeometryShader_Code, this.TessellationControl_Code, this.TessellationEvaluation_Code);
+            }
             if (_Compiled)
             {
                 GL.UseProgram(_Program_Indexer);

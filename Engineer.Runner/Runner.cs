@@ -33,6 +33,7 @@ namespace Engineer.Runner
         private int _FrameUpdateRate;
         protected bool _GameInit;
         protected bool _EngineInit;
+        protected bool _ContextInit;
         protected Timer _Time;
         protected Scene _NextScene;
         protected Scene _PrevScene;
@@ -46,6 +47,7 @@ namespace Engineer.Runner
             this._FrameUpdateRate = 6;
             this._GameInit = false;
             this._EngineInit = false;
+            this._ContextInit = false;
             this._Time = new Timer(8.33);
             this._Time.Elapsed += Event_TimerTick;
             this._Time.AutoReset = true;
@@ -94,6 +96,12 @@ namespace Engineer.Runner
         }
         public void SwitchScene(Scene NextScene)
         {
+            if(!this._ContextInit)
+            {
+                this.Init(this._CurrentGame, NextScene);
+                this._ContextInit = true;
+                return;
+            }
             BackgroundWorker Worker = new BackgroundWorker();
             Worker.WorkerReportsProgress = true;
             Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.SwitchSceneFinishPreload);
@@ -109,6 +117,21 @@ namespace Engineer.Runner
                 if(this._CurrentGame.Scenes[i].Name == SceneName)
                 {
                     this.SwitchScene(this._CurrentGame.Scenes[i]);
+                }
+            }
+        }
+        public void ClearScene(Scene ClearedScene)
+        {
+            BackgroundWorker Worker = new BackgroundWorker();
+            if (ClearedScene.Type == SceneType.Scene2D) this._Engine.Destroy2DScene((Scene2D)ClearedScene, Worker);
+        }
+        public void ClearScene(string SceneName)
+        {
+            for (int i = 0; i < this._CurrentGame.Scenes.Count; i++)
+            {
+                if (this._CurrentGame.Scenes[i].Name == SceneName)
+                {
+                    this.ClearScene(this._CurrentGame.Scenes[i]);
                 }
             }
         }

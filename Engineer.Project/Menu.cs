@@ -1,5 +1,6 @@
 ﻿using Engineer.Engine;
 using Engineer.Mathematics;
+using Engineer.Runner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Engineer.Project
     {
         public Menu()
         {
+            this.Name = "Menu";
             TileCollection Backgrounds = new TileCollection();
             Backgrounds.TileImages.Add(ResourceManager.Images["back"]);
             TileCollection Buttons = new TileCollection();
@@ -35,10 +37,39 @@ namespace Engineer.Project
             QuitTile.Translation = new Vertex(100, 350, 0);
             DrawnSceneObject Back = new DrawnSceneObject("Back", BackTile);
             DrawnSceneObject Play = new DrawnSceneObject("Play", PlayTile);
+            Play.Events.Extern.MouseClick += new GameEventHandler(this.PlayClick);
             DrawnSceneObject Quit = new DrawnSceneObject("Quit", QuitTile);
+            Quit.Events.Extern.MouseClick += new GameEventHandler(this.QuitClick);
             this.AddSceneObject(Back);
             this.AddSceneObject(Play);
             this.AddSceneObject(Quit);
+        }
+        private void PlayClick(object sender, EventArguments e)
+        {
+            Game CurrentGame = (Game)this.Data["Game"];
+            ExternRunner Runner = (ExternRunner)this.Data["Runner"];
+            GameScene OldGame = null;
+            if (CurrentGame.Data.ContainsKey("GameScene"))
+            {
+                OldGame = (GameScene)CurrentGame.Data["GameScene"];
+            }
+            GameScene NewGame = new GameScene();
+            NewGame.Data["Game"] = CurrentGame;
+            NewGame.Data["Runner"] = Runner;
+            if (!CurrentGame.Data.ContainsKey("LoadingScene"))
+            {
+                LoadingScene Loading = new LoadingScene();
+                CurrentGame.AddScene(Loading);
+                Loading.Data["Game"] = CurrentGame;
+                Loading.Data["Runner"] = Runner;
+            }
+            Runner.SwitchScene("LoadingScene");
+            CurrentGame.AddScene(NewGame);
+            //Runner.SwitchScene("GameScene");
+        }
+        private void QuitClick(object sender, EventArguments e)
+        {
+            ((ExternRunner)this.Data["Runner"]).Close();
         }
     }
 }

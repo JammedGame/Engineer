@@ -116,7 +116,7 @@ namespace Engineer.Draw
         {
 
         }
-        public virtual void PreLoadMaterial(string ID, List<Bitmap> Textures)
+        public virtual void LoadMaterial(string ID, object Data)
         {
 
         }
@@ -125,6 +125,10 @@ namespace Engineer.Draw
 
         }
         public virtual void Toggle(RenderEnableCap Preference, bool Value)
+        {
+
+        }
+        public virtual void PreLoad2DMaterial(string ID, object Data)
         {
 
         }

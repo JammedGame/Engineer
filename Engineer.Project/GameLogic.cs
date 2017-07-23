@@ -17,15 +17,16 @@ namespace Engineer.Project
             this._Game = new Game();
             this._Game.Name = "Engineer Project";
             Scene2D Menu = new Menu();
-            Menu.Name = "Menu";
             this._Game.AddScene(Menu);
             this._Runner = new ExternRunner((int)LocalSettings.Scale.X, (int)LocalSettings.Scale.Y, "Engineer Project");
+            Menu.Data["Game"] = this._Game;
+            Menu.Data["Runner"] = this._Runner;
             this._Runner.SetWindowState(LocalSettings.State);
             this._Runner.Init(this._Game);
         }
         public void Run()
         {
-            this._Runner.Init(this._Game, (Scene)this._Game.Data["Menu"]);
+            this._Runner.SwitchScene("Menu");
             this._Runner.Run();
         }
     }
