@@ -66,7 +66,7 @@ namespace Engineer.Project
             }
             Runner.SwitchScene("LoadingScene");
             CurrentGame.AddScene(NewGame);
-            //Runner.SwitchScene("GameScene");
+            Runner.SwitchScene("GameScene");
         }
         private void QuitClick(object sender, EventArguments e)
         {

@@ -40,6 +40,7 @@ namespace Engineer.Runner
         protected Scene _CurrentScene;
         protected Game _CurrentGame;
         protected DrawEngine _Engine;
+        protected BackgroundWorker _Worker;
         public int FrameUpdateRate { get => _FrameUpdateRate; set => _FrameUpdateRate = value; }
         public Runner(int Width, int Height, GraphicsMode Mode, string Title) : base(Width, Height, Mode, Title)
         {
@@ -94,21 +95,28 @@ namespace Engineer.Runner
             this._Time.Start();
             Event_Load();
         }
-        public void SwitchScene(Scene NextScene)
+        private bool SwitchSceneBackground(Scene NextScene)
         {
-            if(!this._ContextInit)
+            if (this._Worker != null && this._Worker.IsBusy) return false;
+            if (!this._ContextInit)
             {
                 this.Init(this._CurrentGame, NextScene);
                 this._ContextInit = true;
-                return;
+                return true;
             }
-            BackgroundWorker Worker = new BackgroundWorker();
-            Worker.WorkerReportsProgress = true;
-            Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.SwitchSceneFinishPreload);
-            Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.Event_OperationFinished);
-            Worker.ProgressChanged += new ProgressChangedEventHandler(this.Event_OperationProgress);
+            this._Worker = new BackgroundWorker();
+            this._Worker.WorkerReportsProgress = true;
+            this._Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.SwitchSceneFinishPreload);
+            this._Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.Event_OperationFinished);
+            this._Worker.ProgressChanged += new ProgressChangedEventHandler(this.Event_OperationProgress);
             this._NextScene = NextScene;
-            if (NextScene.Type == SceneType.Scene2D) this._Engine.Preload2DScene((Scene2D)NextScene, Worker);
+            if (NextScene.Type == SceneType.Scene2D) this._Engine.Preload2DScene((Scene2D)NextScene, this._Worker);
+            return true;
+        }
+        public void SwitchScene(Scene NextScene)
+        {
+            if (NextScene == null) return;
+            while (!this.SwitchSceneBackground(NextScene));
         }
         public void SwitchScene(string SceneName)
         {
@@ -120,10 +128,17 @@ namespace Engineer.Runner
                 }
             }
         }
+        private bool ClearSceneBackground(Scene ClearedScene)
+        {
+            if (this._Worker != null && this._Worker.IsBusy) return false;
+            this._Worker = new BackgroundWorker();
+            if (ClearedScene.Type == SceneType.Scene2D) this._Engine.Destroy2DScene((Scene2D)ClearedScene, this._Worker);
+            return true;
+        }
         public void ClearScene(Scene ClearedScene)
         {
-            BackgroundWorker Worker = new BackgroundWorker();
-            if (ClearedScene.Type == SceneType.Scene2D) this._Engine.Destroy2DScene((Scene2D)ClearedScene, Worker);
+            if (ClearedScene == null) return;
+            while (!this.ClearSceneBackground(ClearedScene)) ;
         }
         public void ClearScene(string SceneName)
         {
