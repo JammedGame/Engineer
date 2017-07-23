@@ -134,10 +134,23 @@ namespace Engineer.Draw
 
             for(int i = 0; i < CurrentScene.Objects.Count; i++)
             {
+                if (!CurrentScene.Objects[i].Visual.Fixed) continue;
                 if (CurrentScene.Objects[i].Visual == null) continue;
                 if(CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
                 if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) DrawTile((Tile)CurrentScene.Objects[i].Visual);
             }
+
+            this._Matrix.LoadIdentity();
+            this._Matrix.Scale(CurrentScene.Transformation.Scale.X, CurrentScene.Transformation.Scale.Y, CurrentScene.Transformation.Scale.Z);
+            this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
+            for (int i = 0; i < CurrentScene.Objects.Count; i++)
+            {
+                if (CurrentScene.Objects[i].Visual.Fixed) continue;
+                if (CurrentScene.Objects[i].Visual == null) continue;
+                if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
+                if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) DrawTile((Tile)CurrentScene.Objects[i].Visual);
+            }
+            this._Matrix.PopMatrix();
         }
         public virtual void Preload3DScene(Scene2D CurrentScene)
         {

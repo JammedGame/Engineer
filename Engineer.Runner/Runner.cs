@@ -221,6 +221,7 @@ namespace Engineer.Runner
                         float X = e.X;
                         float Y = e.Y;
                         Scale = new Vertex(Scale.X * Current2DScene.Transformation.Scale.X, Scale.Y * Current2DScene.Transformation.Scale.Y, 1);
+                        if(Current.Visual.Fixed)
                         if (STrans.X + Trans.X < X && X < STrans.X + Trans.X + Scale.X &&
                             STrans.Y + Trans.Y < Y && Y < STrans.Y + Trans.Y + Scale.Y)
                         {
