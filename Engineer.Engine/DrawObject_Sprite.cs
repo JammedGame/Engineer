@@ -120,6 +120,7 @@ namespace Engineer.Engine
         }
         public bool InCollision(DrawObject Collider, Collision2DType Type)
         {
+            if (Collider.ID == this.ID) return false;
             return Collision2D.Check(this.Translation, this.Scale, Collider.Translation, Collider.Scale, Type);
         }
         public int Index()
