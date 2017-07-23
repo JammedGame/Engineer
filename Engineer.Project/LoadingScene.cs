@@ -13,6 +13,7 @@ namespace Engineer.Project
         public LoadingScene()
         {
             this.Name = "LoadingScene";
+            this.Transformation.Scale = new Vertex(LocalSettings.Window.Y / LocalSettings.Scale.Y, LocalSettings.Window.Y / LocalSettings.Scale.Y, 1);
             TileCollection Backgrounds = new TileCollection();
             Backgrounds.TileImages.Add(ResourceManager.Images["back"]);
             TileCollection BarCollection = new TileCollection();
@@ -27,8 +28,8 @@ namespace Engineer.Project
             Tile BarTile = new Tile();
             BarTile.Collection = BarCollection;
             BarTile.SetIndex(0);
-            BarTile.Scale = new Vertex(800, 60, 1);
-            BarTile.Translation = new Vertex(112, 500, 0);
+            BarTile.Scale = new Vertex(1600, 100, 1);
+            BarTile.Translation = new Vertex(120, 900, 0);
             DrawnSceneObject Back = new DrawnSceneObject("Back", BackTile);
             DrawnSceneObject Bar = new DrawnSceneObject("Bar", BarTile);
             this.AddSceneObject(Back);

@@ -14,6 +14,7 @@ namespace Engineer.Project
         public Menu()
         {
             this.Name = "Menu";
+            this.Transformation.Scale = new Vertex(LocalSettings.Window.Y / LocalSettings.Scale.Y, LocalSettings.Window.Y / LocalSettings.Scale.Y, 1);
             TileCollection Backgrounds = new TileCollection();
             Backgrounds.TileImages.Add(ResourceManager.Images["back"]);
             TileCollection Buttons = new TileCollection();

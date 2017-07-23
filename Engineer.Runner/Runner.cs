@@ -209,15 +209,20 @@ namespace Engineer.Runner
             {
                 Scene2D Current2DScene = (Scene2D)_CurrentScene;
                 Vertex STrans = Current2DScene.Transformation.Translation;
+                STrans = new Vertex(STrans.X * Current2DScene.Transformation.Scale.X, STrans.Y * Current2DScene.Transformation.Scale.Y, 0);
                 for (int i = _CurrentScene.Objects.Count - 1; i >= 0; i--)
                 {
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
                         Vertex Trans = Current.Visual.Translation;
+                        Trans = new Vertex(Trans.X * Current2DScene.Transformation.Scale.X, Trans.Y * Current2DScene.Transformation.Scale.Y, 0);
                         Vertex Scale = Current.Visual.Scale;
-                        if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
-                            STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
+                        float X = e.X;
+                        float Y = e.Y;
+                        Scale = new Vertex(Scale.X * Current2DScene.Transformation.Scale.X, Scale.Y * Current2DScene.Transformation.Scale.Y, 1);
+                        if (STrans.X + Trans.X < X && X < STrans.X + Trans.X + Scale.X &&
+                            STrans.Y + Trans.Y < Y && Y < STrans.Y + Trans.Y + Scale.Y)
                         {
                             Arguments.Target = Current;
                             CallObjectEvents(i, "MouseDown", Arguments);
@@ -239,15 +244,20 @@ namespace Engineer.Runner
             {
                 Scene2D Current2DScene = (Scene2D)_CurrentScene;
                 Vertex STrans = Current2DScene.Transformation.Translation;
+                STrans = new Vertex(STrans.X * Current2DScene.Transformation.Scale.X, STrans.Y * Current2DScene.Transformation.Scale.Y, 0);
                 for (int i = _CurrentScene.Objects.Count - 1; i >= 0; i--)
                 {
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
                         Vertex Trans = Current.Visual.Translation;
+                        Trans = new Vertex(Trans.X * Current2DScene.Transformation.Scale.X, Trans.Y * Current2DScene.Transformation.Scale.Y, 0);
                         Vertex Scale = Current.Visual.Scale;
-                        if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
-                            STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
+                        float X = e.X;
+                        float Y = e.Y;
+                        Scale = new Vertex(Scale.X * Current2DScene.Transformation.Scale.X, Scale.Y * Current2DScene.Transformation.Scale.Y, 1);
+                        if (STrans.X + Trans.X < X && X < STrans.X + Trans.X + Scale.X &&
+                            STrans.Y + Trans.Y < Y && Y < STrans.Y + Trans.Y + Scale.Y)
                         {
                             Arguments.Target = Current;
                             CallObjectEvents(i, "MouseUp", Arguments);
@@ -269,15 +279,20 @@ namespace Engineer.Runner
             {
                 Scene2D Current2DScene = (Scene2D)_CurrentScene;
                 Vertex STrans = Current2DScene.Transformation.Translation;
+                STrans = new Vertex(STrans.X * Current2DScene.Transformation.Scale.X, STrans.Y * Current2DScene.Transformation.Scale.Y, 0);
                 for (int i = _CurrentScene.Objects.Count - 1; i >= 0; i--)
                 {
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
                         Vertex Trans = Current.Visual.Translation;
+                        Trans = new Vertex(Trans.X * Current2DScene.Transformation.Scale.X, Trans.Y * Current2DScene.Transformation.Scale.Y, 0);
                         Vertex Scale = Current.Visual.Scale;
-                        if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
-                            STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
+                        float X = e.X;
+                        float Y = e.Y;
+                        Scale = new Vertex(Scale.X * Current2DScene.Transformation.Scale.X, Scale.Y * Current2DScene.Transformation.Scale.Y, 1);
+                        if (STrans.X + Trans.X < X && X < STrans.X + Trans.X + Scale.X &&
+                            STrans.Y + Trans.Y < Y && Y < STrans.Y + Trans.Y + Scale.Y)
                         {
                             Arguments.Target = Current;
                             CallObjectEvents(i, "MouseClick", Arguments);
@@ -298,15 +313,20 @@ namespace Engineer.Runner
             {
                 Scene2D Current2DScene = (Scene2D)_CurrentScene;
                 Vertex STrans = Current2DScene.Transformation.Translation;
+                STrans = new Vertex(STrans.X * Current2DScene.Transformation.Scale.X, STrans.Y * Current2DScene.Transformation.Scale.Y, 0);
                 for (int i = _CurrentScene.Objects.Count - 1; i >= 0; i--)
                 {
                     if (_CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                     {
                         DrawnSceneObject Current = (DrawnSceneObject)_CurrentScene.Objects[i];
                         Vertex Trans = Current.Visual.Translation;
+                        Trans = new Vertex(Trans.X * Current2DScene.Transformation.Scale.X, Trans.Y * Current2DScene.Transformation.Scale.Y, 0);
                         Vertex Scale = Current.Visual.Scale;
-                        if (STrans.X + Trans.X < e.X && e.X < STrans.X + Trans.X + Scale.X &&
-                            STrans.Y + Trans.Y < e.Y && e.Y < STrans.Y + Trans.Y + Scale.Y)
+                        float X = e.X;
+                        float Y = e.Y;
+                        Scale = new Vertex(Scale.X * Current2DScene.Transformation.Scale.X, Scale.Y * Current2DScene.Transformation.Scale.Y, 1);
+                        if (STrans.X + Trans.X < X && X < STrans.X + Trans.X + Scale.X &&
+                            STrans.Y + Trans.Y < Y && Y < STrans.Y + Trans.Y + Scale.Y)
                         {
                             Arguments.Target = Current;
                             CallObjectEvents(i, "MouseMove", Arguments);
