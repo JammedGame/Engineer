@@ -30,10 +30,26 @@ namespace Engineer.Project
             BarTile.SetIndex(0);
             BarTile.Scale = new Vertex(1600, 100, 1);
             BarTile.Translation = new Vertex(120, 900, 0);
+            Tile ProgressTile = new Tile();
+            ProgressTile.Collection = ProgressCollection;
+            ProgressTile.SetIndex(0);
+            ProgressTile.Scale = new Vertex(0, 100, 1);
+            ProgressTile.Translation = new Vertex(120, 900, 0);
             DrawnSceneObject Back = new DrawnSceneObject("Back", BackTile);
             DrawnSceneObject Bar = new DrawnSceneObject("Bar", BarTile);
+            DrawnSceneObject Progress = new DrawnSceneObject("Progress", ProgressTile);
             this.AddSceneObject(Back);
             this.AddSceneObject(Bar);
+            this.AddSceneObject(Progress);
+            this.Events.Extern.OperationProgress += new GameEventHandler(ProgressUpdate);
+        }
+        public void Reset()
+        {
+            ((DrawnSceneObject)this.Data["Progress"]).Visual.Scale = new Vertex(0, 100, 1);
+        }
+        private void ProgressUpdate(object Sender, EventArguments E)
+        {
+            ((DrawnSceneObject)this.Data["Progress"]).Visual.Scale = new Vertex(E.Progress * 16, 100, 1);
         }
     }
 }

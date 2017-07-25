@@ -169,22 +169,28 @@ namespace Engineer.Draw
         private byte[] PackTextures(List<Bitmap> TextureBitmaps, Vertex MaxResolution)
         {
             List<byte> Textures = new List<byte>();
-            for (int i = 0; i < TextureBitmaps.Count; i++)
+            lock (TextureBitmaps)
             {
-                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size((int)MaxResolution.X, (int)MaxResolution.Y));
-                Textures.AddRange(ShaderMaterialTranslator.ImageToByte(TextureBitmaps[i]));
+                for (int i = 0; i < TextureBitmaps.Count; i++)
+                {
+                    TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size((int)MaxResolution.X, (int)MaxResolution.Y));
+                    Textures.AddRange(ShaderMaterialTranslator.ImageToByte(TextureBitmaps[i]));
+                }
             }
             return Textures.ToArray();
         }
         private int TexturesHighestResolution(List<Bitmap> TextureBitmaps)
         {
             int MaxResolution = 256;
-            for(int i = 0; i < TextureBitmaps.Count; i++)
+            lock (TextureBitmaps)
             {
-                int BiggerSize = 0;
-                if (TextureBitmaps[i].Width > TextureBitmaps[i].Height) BiggerSize = TextureBitmaps[i].Width;
-                else BiggerSize = TextureBitmaps[i].Height;
-                while (BiggerSize > MaxResolution && MaxResolution < 4096) MaxResolution *= 2;
+                for (int i = 0; i < TextureBitmaps.Count; i++)
+                {
+                    int BiggerSize = 0;
+                    if (TextureBitmaps[i].Width > TextureBitmaps[i].Height) BiggerSize = TextureBitmaps[i].Width;
+                    else BiggerSize = TextureBitmaps[i].Height;
+                    while (BiggerSize > MaxResolution && MaxResolution < 4096) MaxResolution *= 2;
+                }
             }
             MaxResolution = (MaxResolution / 4) * (int)Engine.Settings.GraphicsQuality;
             return MaxResolution;
@@ -268,6 +274,8 @@ namespace Engineer.Draw
                 _SpriteUV = ConvertToByteArray(UV, 2);
             }
 
+            _Manager.ActivateShader(ID);
+
             _Manager.Active.Attributes.SetData("V_Vertex", 6 * 3 * sizeof(float), _SpriteVertices);
             _Manager.Active.Attributes.SetData("V_TextureUV", 6 * 2 * sizeof(float), _SpriteUV);
 
@@ -275,7 +283,7 @@ namespace Engineer.Draw
             _Manager.Active.Uniforms.SetData("Index", BitConverter.GetBytes(CurrentIndex));
 
             _Manager.SetDrawMode(GraphicDrawMode.Triangles);
-            _Manager.Draw();
+            if(_Manager.Active.ShaderID == ID) _Manager.Draw();
         }
         public override void LoadMaterial(string ID, object Data)
         {
@@ -336,7 +344,7 @@ namespace Engineer.Draw
         }
         public override void DestroyMaterial(string ID)
         {
-            this._Manager.DeleteShader(ID);
+            if(this._Manager.ShaderExists(ID)) this._Manager.DeleteShader(ID);
         }
         public override void PreLoad2DMaterial(string ID, object Data)
         {

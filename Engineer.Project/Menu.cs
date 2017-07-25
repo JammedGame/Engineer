@@ -53,18 +53,25 @@ namespace Engineer.Project
             if (CurrentGame.Data.ContainsKey("GameScene"))
             {
                 OldGame = (GameScene)CurrentGame.Data["GameScene"];
+                CurrentGame.Scenes.Remove(OldGame);
             }
             GameScene NewGame = new GameScene();
             NewGame.Data["Game"] = CurrentGame;
             NewGame.Data["Runner"] = Runner;
+            LoadingScene Loading;
             if (!CurrentGame.Data.ContainsKey("LoadingScene"))
             {
-                LoadingScene Loading = new LoadingScene();
+                Loading = new LoadingScene();
                 CurrentGame.AddScene(Loading);
                 Loading.Data["Game"] = CurrentGame;
                 Loading.Data["Runner"] = Runner;
             }
-            Runner.SwitchScene("LoadingScene");
+            else
+            {
+                Loading = (LoadingScene)CurrentGame.Data["LoadingScene"];
+                Loading.Reset();
+            }
+            Runner.SwitchScene("LoadingScene", false);
             CurrentGame.AddScene(NewGame);
             Runner.SwitchScene("GameScene");
         }

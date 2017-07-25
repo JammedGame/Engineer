@@ -8,6 +8,7 @@ using Engineer.Engine;
 using Engineer.Mathematics;
 using System.IO;
 using System.ComponentModel;
+using System.Runtime;
 
 namespace Engineer.Draw
 {
@@ -78,9 +79,9 @@ namespace Engineer.Draw
                 if (CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                 {
                     if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) this._CurrentRenderer.PreLoad2DMaterial(CurrentScene.Objects[i].Visual.ID, ((Sprite)CurrentScene.Objects[i].Visual).CollectiveLists()); 
-                    if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) this._CurrentRenderer.PreLoad2DMaterial(CurrentScene.Objects[i].Visual.ID, ((Tile)CurrentScene.Objects[i].Visual).Collection.TileImages);
+                    if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) this._CurrentRenderer.PreLoad2DMaterial(((Tile)CurrentScene.Objects[i].Visual).Collection.ID, ((Tile)CurrentScene.Objects[i].Visual).Collection.TileImages);
                 }
-                this._CurrentWorker.ReportProgress(i / CurrentScene.Objects.Count);
+                this._CurrentWorker.ReportProgress((i * 100) / CurrentScene.Objects.Count);
             }
         }
         public virtual void Preload2DScene(Scene2D CurrentScene, BackgroundWorker Worker)
@@ -97,16 +98,16 @@ namespace Engineer.Draw
             {
                 if (CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                 {
-                    this._CurrentRenderer.DestroyMaterial(CurrentScene.Objects[i].Visual.ID);
+                    if(CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) this._CurrentRenderer.DestroyMaterial(((Tile)CurrentScene.Objects[i].Visual).Collection.ID);
+                    else this._CurrentRenderer.DestroyMaterial(CurrentScene.Objects[i].Visual.ID);
                 }
                 this._CurrentWorker.ReportProgress(i / CurrentScene.Objects.Count);
             }
         }
         public virtual void Destroy2DScene(Scene2D CurrentScene, BackgroundWorker Worker)
         {
-            if (Worker == null) Worker = new BackgroundWorker();
-            this._CurrentWorker = Worker;
             Worker.DoWork += new DoWorkEventHandler(this.Destroy2DSceneWork);
+            this._CurrentWorker = Worker;
             Worker.RunWorkerAsync(CurrentScene);
         }
         public virtual void Draw2DScene(Scene2D CurrentScene, int Width, int Height)
@@ -272,7 +273,7 @@ namespace Engineer.Draw
                 float[] PaintColor = { (CurrentTile.Paint.R * 1.0f + 1) / 256, (CurrentTile.Paint.G * 1.0f + 1) / 256, (CurrentTile.Paint.B * 1.0f + 1) / 256, (CurrentTile.Paint.A * 1.0f + 1) / 256 };
                 this._CurrentRenderer.SetSurface(PaintColor);
                 this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
-                this._CurrentRenderer.RenderImage(CurrentTile.ID, CurrentTile.Collection.TileImages, (CurrentTile.Collection.TileImages.Count > 0) ? CurrentTile.Index() : -1, CurrentTile.Modified);
+                this._CurrentRenderer.RenderImage(CurrentTile.Collection.ID, CurrentTile.Collection.TileImages, (CurrentTile.Collection.TileImages.Count > 0) ? CurrentTile.Index() : -1, CurrentTile.Modified);
                 CurrentTile.Modified = false;
                 this._Matrix.PopMatrix();
             }

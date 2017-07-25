@@ -17,6 +17,7 @@ using Engineer.Draw.OpenGL.GLSL;
 using Engineer.Engine;
 using OpenTK.Input;
 using System.ComponentModel;
+using System.Runtime;
 
 namespace Engineer.Runner
 {
@@ -31,6 +32,7 @@ namespace Engineer.Runner
     {
         private int _Seed;
         private int _FrameUpdateRate;
+        protected bool _EventsAttached;
         protected bool _GameInit;
         protected bool _EngineInit;
         protected bool _ContextInit;
@@ -49,6 +51,7 @@ namespace Engineer.Runner
             this._GameInit = false;
             this._EngineInit = false;
             this._ContextInit = false;
+            this._EventsAttached = false;
             this._Time = new Timer(8.33);
             this._Time.Elapsed += Event_TimerTick;
             this._Time.AutoReset = true;
@@ -81,24 +84,28 @@ namespace Engineer.Runner
             this._GameInit = true;
             this._CurrentGame = CurrentGame;
             this._CurrentScene = CurrentScene;
-            this.Closing += new EventHandler<System.ComponentModel.CancelEventArgs>(Event_Closing);
-            this.KeyDown += new EventHandler<KeyboardKeyEventArgs>(Event_KeyPress);
-            this.KeyDown += new EventHandler<KeyboardKeyEventArgs>(Event_KeyDown);
-            this.KeyUp += new EventHandler<KeyboardKeyEventArgs>(Event_KeyUp);
-            this.MouseDown += new EventHandler<MouseButtonEventArgs>(Event_MouseClick);
-            this.MouseDown += new EventHandler<MouseButtonEventArgs>(Event_MouseDown);
-            this.MouseUp += new EventHandler<MouseButtonEventArgs>(Event_MouseUp);
-            this.MouseMove += new EventHandler<MouseMoveEventArgs>(Event_MouseMove);
-            this.MouseWheel += new EventHandler<MouseWheelEventArgs>(Event_MouseWheel);
-            this.Resize += new EventHandler<EventArgs>(Event_Resize);
-            PrepareEvents();
+            if (!this._EventsAttached)
+            {
+                this.Closing += new EventHandler<System.ComponentModel.CancelEventArgs>(Event_Closing);
+                this.KeyDown += new EventHandler<KeyboardKeyEventArgs>(Event_KeyPress);
+                this.KeyDown += new EventHandler<KeyboardKeyEventArgs>(Event_KeyDown);
+                this.KeyUp += new EventHandler<KeyboardKeyEventArgs>(Event_KeyUp);
+                this.MouseDown += new EventHandler<MouseButtonEventArgs>(Event_MouseClick);
+                this.MouseDown += new EventHandler<MouseButtonEventArgs>(Event_MouseDown);
+                this.MouseUp += new EventHandler<MouseButtonEventArgs>(Event_MouseUp);
+                this.MouseMove += new EventHandler<MouseMoveEventArgs>(Event_MouseMove);
+                this.MouseWheel += new EventHandler<MouseWheelEventArgs>(Event_MouseWheel);
+                this.Resize += new EventHandler<EventArgs>(Event_Resize);
+                PrepareEvents();
+                this._EventsAttached = true;
+            }
             this._Time.Start();
             Event_Load();
         }
-        private bool SwitchSceneBackground(Scene NextScene)
+        private bool SwitchSceneBackground(Scene NextScene, bool Preload)
         {
-            if (this._Worker != null && this._Worker.IsBusy) return false;
-            if (!this._ContextInit)
+            if (this._Worker != null) return false;
+            if (!this._ContextInit || !Preload)
             {
                 this.Init(this._CurrentGame, NextScene);
                 this._ContextInit = true;
@@ -106,32 +113,46 @@ namespace Engineer.Runner
             }
             this._Worker = new BackgroundWorker();
             this._Worker.WorkerReportsProgress = true;
-            this._Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.SwitchSceneFinishPreload);
+            this._Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.SwitchSceneFinish);
             this._Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.Event_OperationFinished);
             this._Worker.ProgressChanged += new ProgressChangedEventHandler(this.Event_OperationProgress);
             this._NextScene = NextScene;
             if (NextScene.Type == SceneType.Scene2D) this._Engine.Preload2DScene((Scene2D)NextScene, this._Worker);
             return true;
         }
-        public void SwitchScene(Scene NextScene)
+        public void SwitchScene(Scene NextScene, bool Preload = true)
         {
             if (NextScene == null) return;
-            while (!this.SwitchSceneBackground(NextScene));
+            while (!this.SwitchSceneBackground(NextScene, Preload));
         }
-        public void SwitchScene(string SceneName)
+        public void SwitchScene(string SceneName, bool Preload = true)
         {
             for(int i = 0; i < this._CurrentGame.Scenes.Count; i++)
             {
                 if(this._CurrentGame.Scenes[i].Name == SceneName)
                 {
-                    this.SwitchScene(this._CurrentGame.Scenes[i]);
+                    this.SwitchScene(this._CurrentGame.Scenes[i], Preload);
                 }
+            }
+        }
+        private void SwitchSceneFinish(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.Init(this._CurrentGame, this._NextScene);
+            if (this._Worker != null)
+            {
+                this._Worker.RunWorkerCompleted -= new RunWorkerCompletedEventHandler(this.SwitchSceneFinish);
+                this._Worker.RunWorkerCompleted -= new RunWorkerCompletedEventHandler(this.Event_OperationFinished);
+                this._Worker.ProgressChanged -= new ProgressChangedEventHandler(this.Event_OperationProgress);
+                this._Worker.Dispose();
+                this._Worker = null;
             }
         }
         private bool ClearSceneBackground(Scene ClearedScene)
         {
-            if (this._Worker != null && this._Worker.IsBusy) return false;
+            if (this._Worker != null) return false;
             this._Worker = new BackgroundWorker();
+            this._Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.ClearSceneFinish);
+            this._Worker.WorkerReportsProgress = true;
             if (ClearedScene.Type == SceneType.Scene2D) this._Engine.Destroy2DScene((Scene2D)ClearedScene, this._Worker);
             return true;
         }
@@ -149,10 +170,17 @@ namespace Engineer.Runner
                     this.ClearScene(this._CurrentGame.Scenes[i]);
                 }
             }
-        }
-        private void SwitchSceneFinishPreload(object sender, RunWorkerCompletedEventArgs e)
+        }  
+        private void ClearSceneFinish(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.Init(this._CurrentGame, this._NextScene);
+            if (this._Worker != null)
+            {
+                this._Worker.RunWorkerCompleted -= new RunWorkerCompletedEventHandler(this.ClearSceneFinish);
+                this._Worker.Dispose();
+                this._Worker = null;
+            }
+            GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+            System.GC.Collect();
         }
         protected virtual void PrepareEvents()
         {

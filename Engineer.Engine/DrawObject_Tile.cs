@@ -59,6 +59,7 @@ namespace Engineer.Engine
     }
     public class TileCollection
     {
+        private string _ID;
         private List<Bitmap> _TileImages;
         [XmlIgnore]
         public List<Bitmap> TileImages
@@ -73,17 +74,21 @@ namespace Engineer.Engine
                 _TileImages = value;
             }
         }
+        public string ID { get => _ID; set => _ID = value; }
         public TileCollection()
         {
+            this._ID = Guid.NewGuid().ToString();
             this._TileImages = new List<Bitmap>();
         }
         public TileCollection(Bitmap TileImage)
         {
+            this._ID = Guid.NewGuid().ToString();
             this._TileImages = new List<Bitmap>();
             this._TileImages.Add(TileImage);
         }
         public TileCollection(TileCollection TC)
         {
+            this._ID = Guid.NewGuid().ToString();
             this._TileImages = new List<Bitmap>(TC._TileImages);
         }
     }
