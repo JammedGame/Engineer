@@ -109,8 +109,8 @@ namespace Engineer.Engine
         public void SetSpriteSet(int Index)
         {
             if (Index >= _SpriteSets.Count) return;
-            CurrentSpriteSet = Index;
-            _CurrentIndex = 0;
+            this._CurrentSpriteSet = Index;
+            this._CurrentIndex = 0;
         }
         public void SetSpriteSet(string Name)
         {
