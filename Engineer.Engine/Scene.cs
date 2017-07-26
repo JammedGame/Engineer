@@ -185,5 +185,23 @@ namespace Engineer.Engine
             }
             this._Data = new Dictionary<string, object>(S.Data);
         }
+        public List<SceneObject> GetObjectsWithData(string DataKey)
+        {
+            List<SceneObject> Objects = new List<SceneObject>();
+            for (int i = 0; i < this._Objects.Count; i++)
+            {
+                if (this._Objects[i].Data.ContainsKey(DataKey)) Objects.Add(this._Objects[i]);
+            }
+            return Objects;
+        }
+        public List<SceneObject> GetObjectsWithData(string DataKey, object Value)
+        {
+            List<SceneObject> Objects = new List<SceneObject>();
+            for (int i = 0; i < this._Objects.Count; i++)
+            {
+                if (this._Objects[i].Data[DataKey].Equals(Value)) Objects.Add(this._Objects[i]);
+            }
+            return Objects;
+        }
     }
 }

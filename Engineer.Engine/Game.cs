@@ -86,6 +86,42 @@ namespace Engineer.Engine
             this.Data[S.Name] = S;
             return true;
         }
+        public List<Scene> GetScenesWithData(string DataKey)
+        {
+            List<Scene> Scenes = new List<Scene>();
+            for(int i = 0; i < this._Scenes.Count; i++)
+            {
+                if (this._Scenes[i].Data.ContainsKey(DataKey)) Scenes.Add(this.Scenes[i]);
+            }
+            return Scenes;
+        }
+        public List<Scene> GetScenesWithData(string DataKey, object Value)
+        {
+            List<Scene> Scenes = new List<Scene>();
+            for (int i = 0; i < this._Scenes.Count; i++)
+            {
+                if (this._Scenes[i].Data[DataKey].Equals(Value)) Scenes.Add(this._Scenes[i]);
+            }
+            return Scenes;
+        }
+        public List<SceneObject> GetAssetsWithData(string DataKey)
+        {
+            List<SceneObject> Assets = new List<SceneObject>();
+            for (int i = 0; i < this._Assets.Count; i++)
+            {
+                if (this._Assets[i].Data.ContainsKey(DataKey)) Assets.Add(this._Assets[i]);
+            }
+            return Assets;
+        }
+        public List<SceneObject> GetAssetsWithData(string DataKey, object Value)
+        {
+            List<SceneObject> Assets = new List<SceneObject>();
+            for (int i = 0; i < this._Assets.Count; i++)
+            {
+                if (this._Assets[i].Data[DataKey].Equals(Value)) Assets.Add(this._Assets[i]);
+            }
+            return Assets;
+        }
         public static void Serialize(Game CurrentGame, string Path)
         {
             XmlSerializer Serializer = new XmlSerializer(typeof(Game));
