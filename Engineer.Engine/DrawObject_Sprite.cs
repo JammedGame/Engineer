@@ -15,6 +15,7 @@ namespace Engineer.Engine
         private bool _Modified;
         private int _CurrentIndex;
         private int _CurrentSpriteSet;
+        private int _BackUpSpriteSet;
         private Color _Paint;
         private List<SpriteSet> _SpriteSets;
         private List<Sprite> _SubSprites;
@@ -31,6 +32,7 @@ namespace Engineer.Engine
                 _Modified = value;
             }
         }
+        public int BackUpSpriteSet { get => _BackUpSpriteSet; set => _BackUpSpriteSet = value; }
         public Color Paint { get => _Paint; set => _Paint = value; }
         [XmlIgnore]
         public List<SpriteSet> SpriteSets
@@ -92,7 +94,15 @@ namespace Engineer.Engine
         {
             _CurrentIndex++;
             if (_SpriteSets.Count <= 0) _CurrentIndex = -1;
-            else if (_CurrentIndex >= _SpriteSets[_CurrentSpriteSet].Sprite.Count) _CurrentIndex = 0;
+            else if (_CurrentIndex >= _SpriteSets[_CurrentSpriteSet].Sprite.Count)
+            {
+                if (this._BackUpSpriteSet != -1)
+                {
+                    this._CurrentSpriteSet = this._BackUpSpriteSet;
+                    this._BackUpSpriteSet = -1;
+                }
+                _CurrentIndex = 0;
+            }
         }
         public void SetSpriteSet(int Index)
         {
