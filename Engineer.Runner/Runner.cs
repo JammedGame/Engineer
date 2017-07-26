@@ -404,12 +404,14 @@ namespace Engineer.Runner
         private void Event_TimerTick(object sender, ElapsedEventArgs e)
         {
             this._Seed++;
-            if (_CurrentScene.Type == SceneType.Scene2D && _Seed % this.FrameUpdateRate == 0)
+            if (_CurrentScene.Type == SceneType.Scene2D)
             {
                 Scene2D C2DS = (Scene2D)_CurrentScene;
                 for (int i = 0; i < C2DS.Sprites.Count; i++)
                 {
-                    C2DS.Sprites[i].RaiseIndex();
+                    int FrameUpdateRate = this._FrameUpdateRate;
+                    if (C2DS.Sprites[i].SpriteSets[C2DS.Sprites[i].CurrentSpriteSet].Seed != -1) FrameUpdateRate = C2DS.Sprites[i].SpriteSets[C2DS.Sprites[i].CurrentSpriteSet].Seed;
+                    if (this._Seed % FrameUpdateRate == 0) C2DS.Sprites[i].RaiseIndex();
                 }
             }
             EventArguments Arguments = new EventArguments();

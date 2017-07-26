@@ -32,7 +32,9 @@ namespace Engineer.Engine
                 _Modified = value;
             }
         }
+        [XmlIgnore]
         public int BackUpSpriteSet { get => _BackUpSpriteSet; set => _BackUpSpriteSet = value; }
+        public int CurrentSpriteSet { get => _CurrentSpriteSet; }
         public Color Paint { get => _Paint; set => _Paint = value; }
         [XmlIgnore]
         public List<SpriteSet> SpriteSets
@@ -94,7 +96,7 @@ namespace Engineer.Engine
         {
             _CurrentIndex++;
             if (_SpriteSets.Count <= 0) _CurrentIndex = -1;
-            else if (_CurrentIndex >= _SpriteSets[_CurrentSpriteSet].Sprite.Count)
+            else if (_CurrentIndex >= _SpriteSets[CurrentSpriteSet].Sprite.Count)
             {
                 if (this._BackUpSpriteSet != -1)
                 {
@@ -107,7 +109,7 @@ namespace Engineer.Engine
         public void SetSpriteSet(int Index)
         {
             if (Index >= _SpriteSets.Count) return;
-            _CurrentSpriteSet = Index;
+            CurrentSpriteSet = Index;
             _CurrentIndex = 0;
         }
         public void SetSpriteSet(string Name)
@@ -119,7 +121,7 @@ namespace Engineer.Engine
         }
         public void UpdateSpriteSet(int Index)
         {
-            if (Index != _CurrentSpriteSet) SetSpriteSet(Index);
+            if (Index != CurrentSpriteSet) SetSpriteSet(Index);
         }
         public void UpdateSpriteSet(string Name)
         {
@@ -136,21 +138,21 @@ namespace Engineer.Engine
         public int Index()
         {
             int Index = 0;
-            for(int i = 0; i < _CurrentSpriteSet; i++)
+            for(int i = 0; i < CurrentSpriteSet; i++)
             {
                 Index += _SpriteSets[i].Sprite.Count;
             }
             Index += _CurrentIndex;
             return Index;
         }
-        public int IO_CurrentSpriteSet
-        { get => _CurrentSpriteSet; set => _CurrentSpriteSet = value; }
     }
     public class SpriteSet
     {
+        private int _Seed;
         private string _ID;
         private string _Name;
         private List<Bitmap> _Sprites;
+        public int Seed { get => _Seed; set => _Seed = value; }
         public string ID
         {
             get
@@ -190,18 +192,21 @@ namespace Engineer.Engine
         }
         public SpriteSet()
         {
+            this._Seed = -1;
             this._ID = Guid.NewGuid().ToString();
             this._Name = this._ID;
             this._Sprites = new List<Bitmap>();
         }
         public SpriteSet(string Name)
         {
+            this._Seed = -1;
             this._ID = Guid.NewGuid().ToString();
             this._Name = Name;
             this._Sprites = new List<Bitmap>();
         }
         public SpriteSet(string Name, Bitmap SpriteImage)
         {
+            this._Seed = -1;
             this._ID = Guid.NewGuid().ToString();
             this._Name = Name;
             this._Sprites = new List<Bitmap>();
@@ -209,6 +214,7 @@ namespace Engineer.Engine
         }
         public SpriteSet(SpriteSet SS)
         {
+            this._Seed = SS._Seed;
             this._ID = SS._ID;
             this._Name = SS._Name;
             this._Sprites = new List<Bitmap>(SS._Sprites);
