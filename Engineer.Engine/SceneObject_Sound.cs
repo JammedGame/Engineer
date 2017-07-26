@@ -9,10 +9,13 @@ namespace Engineer.Engine
 {
     public class SoundSceneObject : SceneObject
     {
+        private bool _Playing;
         private bool _Looped;
         private string _Path;
         private MediaPlayer _Player;
         private EventHandler _LoopHandler;
+        public bool Playing { get => _Playing; }
+        public int Volume { get => (int)(_Player.Volume * 100); set => _Player.Volume = value / 100.0; }
         public string Path
         {
             get
@@ -52,20 +55,28 @@ namespace Engineer.Engine
         public void Play()
         {
             this._Player.Stop();
+            this._Playing = true;
             this._Player.Play();
             this._Looped = false;
         }
         public void PlayLooped()
         {
             this._Player.Stop();
+            this._Playing = true;
             this._Player.Play();
             this._Looped = true;
             this._Player.MediaEnded += this._LoopHandler;
+        }
+        public void Stop()
+        {
+            this._Playing = false;
+            this._Player.Stop();
         }
         private void Ended(object sender, EventArgs e)
         {
             if(!this._Looped)
             {
+                this._Playing = false;
                 this._Player.MediaEnded -= this._LoopHandler;
             }
             this._Player.Stop();
