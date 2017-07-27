@@ -133,16 +133,19 @@ namespace Engineer.Draw
             this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
             if(this._CurrentRenderer.TargetType == RenderTargetType.Editor) this._CurrentRenderer.Render2DGrid();
 
-            for(int i = 0; i < CurrentScene.Objects.Count; i++)
+            for (int i = 0; i < CurrentScene.Objects.Count; i++)
             {
                 if (!CurrentScene.Objects[i].Visual.Fixed) continue;
                 if (CurrentScene.Objects[i].Visual == null) continue;
-                if(CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
+                if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
                 if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) DrawTile((Tile)CurrentScene.Objects[i].Visual);
+                this._Matrix.ReadMatrix();
             }
+            this._Matrix.PopMatrix();
 
             this._Matrix.LoadIdentity();
             this._Matrix.Scale(CurrentScene.Transformation.Scale.X, CurrentScene.Transformation.Scale.Y, CurrentScene.Transformation.Scale.Z);
+            this._Matrix.PushMatrix();
             this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
             for (int i = 0; i < CurrentScene.Objects.Count; i++)
             {
@@ -150,6 +153,7 @@ namespace Engineer.Draw
                 if (CurrentScene.Objects[i].Visual == null) continue;
                 if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) DrawSprite((Sprite)CurrentScene.Objects[i].Visual);
                 if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) DrawTile((Tile)CurrentScene.Objects[i].Visual);
+                this._Matrix.ReadMatrix();
             }
             this._Matrix.PopMatrix();
         }
@@ -242,6 +246,7 @@ namespace Engineer.Draw
         }
         public virtual void DrawSprite(Sprite CurrentSprite)
         {
+            this._Matrix.PushMatrix();
             if (CurrentSprite.Active)
             {
                 this._Matrix.Translate(CurrentSprite.Translation.X, CurrentSprite.Translation.Y, CurrentSprite.Translation.Z);
@@ -256,13 +261,28 @@ namespace Engineer.Draw
                 CurrentSprite.Modified = false;
                 for (int i = 0; i < CurrentSprite.SubSprites.Count; i++)
                 {
-                    DrawSprite(CurrentSprite.SubSprites[i]);
+                    this._Matrix.ReadMatrix();
+                    this._Matrix.Translate(CurrentSprite.Translation.X, CurrentSprite.Translation.Y, CurrentSprite.Translation.Z);
+                    this._Matrix.Translate(CurrentSprite.SubSprites[i].Translation.X, CurrentSprite.SubSprites[i].Translation.Y, CurrentSprite.SubSprites[i].Translation.Z);
+                    this._Matrix.Scale(CurrentSprite.SubSprites[i].Scale.X, CurrentSprite.SubSprites[i].Scale.Y, CurrentSprite.SubSprites[i].Scale.Z);
+                    this._Matrix.Rotate(CurrentSprite.Rotation.X, 1, 0, 0);
+                    this._Matrix.Rotate(CurrentSprite.SubSprites[i].Rotation.X, 1, 0, 0);
+                    this._Matrix.Rotate(CurrentSprite.Rotation.Y, 0, 1, 0);
+                    this._Matrix.Rotate(CurrentSprite.SubSprites[i].Rotation.Y, 0, 1, 0);
+                    this._Matrix.Rotate(CurrentSprite.Rotation.Z, 0, 0, 1);
+                    this._Matrix.Rotate(CurrentSprite.SubSprites[i].Rotation.Z, 0, 0, 1);
+                    PaintColor = new float[] { (CurrentSprite.SubSprites[i].Paint.R * 1.0f + 1) / 256, (CurrentSprite.SubSprites[i].Paint.G * 1.0f + 1) / 256, (CurrentSprite.SubSprites[i].Paint.B * 1.0f + 1) / 256, (CurrentSprite.SubSprites[i].Paint.A * 1.0f + 1) / 256 };
+                    this._CurrentRenderer.SetSurface(PaintColor);
+                    this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
+                    this._CurrentRenderer.RenderImage(CurrentSprite.SubSprites[i].ID, CurrentSprite.SubSprites[i].CollectiveLists(), (CurrentSprite.SubSprites[i].CollectiveLists().Count > 0) ? CurrentSprite.Index() : -1, CurrentSprite.SubSprites[i].Modified);
+                    CurrentSprite.SubSprites[i].Modified = false;
                 }
-                this._Matrix.PopMatrix();
             }
+            this._Matrix.PopMatrix();
         }
         public virtual void DrawTile(Tile CurrentTile)
         {
+            this._Matrix.PushMatrix();
             if (CurrentTile.Active)
             {
                 this._Matrix.Translate(CurrentTile.Translation.X, CurrentTile.Translation.Y, CurrentTile.Translation.Z);
@@ -277,6 +297,7 @@ namespace Engineer.Draw
                 CurrentTile.Modified = false;
                 this._Matrix.PopMatrix();
             }
+            this._Matrix.PopMatrix();
         }
     }
 }
