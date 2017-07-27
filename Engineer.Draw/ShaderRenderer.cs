@@ -17,6 +17,7 @@ namespace Engineer.Draw
         private byte[] _GridVertices;
         private byte[] _SpriteVertices;
         private byte[] _SpriteUV;
+        private byte[] _SpriteUVFlipped;
         protected ShaderUniformPackage _Globals;
         protected ShaderManager _Manager;
         protected ShaderManager Manager
@@ -243,7 +244,7 @@ namespace Engineer.Draw
             _Manager.SetDrawMode(GraphicDrawMode.Lines);
             _Manager.Draw();
         }
-        public override void RenderImage(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update)
+        public override void RenderImage(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update, bool Flipped = false)
         {
             if (!this.IsMaterialReady(ID) || Update)
             {
@@ -265,6 +266,14 @@ namespace Engineer.Draw
                 _SpriteVertices = ConvertToByteArray(Vertices, 3);
 
                 List<Vertex> UV = new List<Vertex>();
+                UV.Add(new Vertex(1, 0, 0));
+                UV.Add(new Vertex(0, 0, 0));
+                UV.Add(new Vertex(1, 1, 0));
+                UV.Add(new Vertex(1, 1, 0));
+                UV.Add(new Vertex(0, 0, 0));
+                UV.Add(new Vertex(0, 1, 0));
+                _SpriteUVFlipped = ConvertToByteArray(UV, 2);
+                UV = new List<Vertex>();
                 UV.Add(new Vertex(0, 0, 0));
                 UV.Add(new Vertex(1, 0, 0));
                 UV.Add(new Vertex(0, 1, 0));
@@ -277,7 +286,8 @@ namespace Engineer.Draw
             _Manager.ActivateShader(ID);
 
             _Manager.Active.Attributes.SetData("V_Vertex", 6 * 3 * sizeof(float), _SpriteVertices);
-            _Manager.Active.Attributes.SetData("V_TextureUV", 6 * 2 * sizeof(float), _SpriteUV);
+            if (Flipped) _Manager.Active.Attributes.SetData("V_TextureUV", 6 * 2 * sizeof(float), _SpriteUVFlipped);
+            else _Manager.Active.Attributes.SetData("V_TextureUV", 6 * 2 * sizeof(float), _SpriteUV);
 
             if (!_Manager.Active.Uniforms.Exists("Index")) _Manager.Active.Uniforms.SetDefinition("Index", sizeof(int), "int");
             _Manager.Active.Uniforms.SetData("Index", BitConverter.GetBytes(CurrentIndex));

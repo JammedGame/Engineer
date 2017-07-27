@@ -13,6 +13,7 @@ namespace Engineer.Engine
     public class Sprite : DrawObject
     {
         private bool _Modified;
+        private bool _Flipped;
         private int _CurrentIndex;
         private int _CurrentSpriteSet;
         private int _BackUpSpriteSet;
@@ -30,6 +31,19 @@ namespace Engineer.Engine
             set
             {
                 _Modified = value;
+            }
+        }
+        public bool Flipped
+        {
+            get
+            {
+                return _Flipped;
+            }
+
+            set
+            {
+                _Flipped = value;
+                _Modified = true;
             }
         }
         [XmlIgnore]
@@ -65,6 +79,7 @@ namespace Engineer.Engine
         public Sprite() : base()
         {
             this._CurrentIndex = 0;
+            this._Flipped = false;
             this.Type = DrawObjectType.Sprite;
             this._SpriteSets = new List<SpriteSet>();
             this.Scale = new Mathematics.Vertex(100,100,1);
@@ -73,6 +88,7 @@ namespace Engineer.Engine
         public Sprite(Sprite S) : base(S)
         {
             this._CurrentIndex = 0;
+            this._Flipped = S._Flipped;
             this._SpriteSets = new List<SpriteSet>();
             for (int i = 0; i < S._SpriteSets.Count; i++) this._SpriteSets.Add(new SpriteSet(S._SpriteSets[i]));
             this._SubSprites = new List<Sprite>();

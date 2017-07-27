@@ -184,8 +184,6 @@ namespace Engineer.Mathematics
         }
         public void PopMatrix()
         {
-            if (_MatrixMode == 1) Array.Copy(_PushedModelViewMatrix, ModelViewMatrix, 16);
-            else Array.Copy(_PushedProjectionMatrix, ProjectionMatrix, 16);
             if (_MatrixMode == 1)
             {
                 if (_PushedModelViewMatrix.Count > 0)
@@ -201,6 +199,25 @@ namespace Engineer.Mathematics
                 {
                     Array.Copy(_PushedProjectionMatrix[0], ProjectionMatrix, 16);
                     _PushedProjectionMatrix.RemoveAt(0);
+                }
+                else MTIdentity(ref this._ProjectionMatrix);
+            }
+        }
+        public void ReadMatrix()
+        {
+            if (_MatrixMode == 1)
+            {
+                if (_PushedModelViewMatrix.Count > 0)
+                {
+                    Array.Copy(_PushedModelViewMatrix[0], ModelViewMatrix, 16);
+                }
+                else MTIdentity(ref this._ModelViewMatrix);
+            }
+            else
+            {
+                if (_PushedProjectionMatrix.Count > 0)
+                {
+                    Array.Copy(_PushedProjectionMatrix[0], ProjectionMatrix, 16);
                 }
                 else MTIdentity(ref this._ProjectionMatrix);
             }
