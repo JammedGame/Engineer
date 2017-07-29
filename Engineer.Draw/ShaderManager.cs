@@ -65,6 +65,9 @@ namespace Engineer.Draw
         }
         virtual public bool DeleteShader(string ID)
         {
+            _Shader[ID].Attributes.ClearData();
+            _Shader[ID].Uniforms.ClearData();
+            _Shader[ID].Textures.ClearData();
             _Shader.Remove(ID);
             return true;
         }

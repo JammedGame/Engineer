@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -144,6 +145,8 @@ namespace Engineer.Engine
         public event GameEventHandler RenderFrame;
         public event GameEventHandler Resize;
         public event GameEventHandler TimerTick;
+        public event GameEventHandler OperationProgress;
+        public event GameEventHandler OperationFinished;
         public ExternEventPackage()
         {
             Closing = new GameEventHandler(OnInvoke);
@@ -158,6 +161,9 @@ namespace Engineer.Engine
             MouseWheel = new GameEventHandler(OnInvoke);
             RenderFrame = new GameEventHandler(OnInvoke);
             TimerTick = new GameEventHandler(OnInvoke);
+            Resize = new GameEventHandler(OnInvoke);
+            OperationProgress = new GameEventHandler(OnInvoke);
+            OperationFinished = new GameEventHandler(OnInvoke);
         }
         public void OnInvoke(Game CurrentGame, EventArguments Args)
         {
@@ -178,6 +184,8 @@ namespace Engineer.Engine
             if (EventName == "RenderFrame") RenderFrame.Invoke(CurrentGame, Args);
             if (EventName == "Resize") Resize.Invoke(CurrentGame, Args);
             if (EventName == "TimerTick") TimerTick.Invoke(CurrentGame, Args);
+            if (EventName == "OperationProgress") OperationProgress.Invoke(CurrentGame, Args);
+            if (EventName == "OperationFinished") OperationFinished.Invoke(CurrentGame, Args);
         }
     }
 }

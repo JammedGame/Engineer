@@ -100,7 +100,7 @@ namespace Engineer.Draw
         {
 
         }
-        public virtual void RenderImage(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update)
+        public virtual void RenderImage(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update, bool Flipped = false)
         {
 
         }
@@ -116,7 +116,19 @@ namespace Engineer.Draw
         {
 
         }
+        public virtual void LoadMaterial(string ID, object Data)
+        {
+
+        }
+        public virtual void DestroyMaterial(string ID)
+        {
+
+        }
         public virtual void Toggle(RenderEnableCap Preference, bool Value)
+        {
+
+        }
+        public virtual void PreLoad2DMaterial(string ID, object Data)
         {
 
         }

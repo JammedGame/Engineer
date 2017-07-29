@@ -21,7 +21,10 @@ namespace Engineer.Runner
 {
     public class ExternRunner : Runner
     {
-        public ExternRunner(int width, int height, GraphicsMode mode, string title) : base(width, height, mode, title)
+        public ExternRunner(int Width, int Height, GraphicsMode Mode, string Title) : base(Width, Height, Mode, Title)
+        {
+        }
+        public ExternRunner(int Width, int Height, string Title) : base(Width, Height, new GraphicsMode(32, 24, 0, 8), Title)
         {
         }
         protected override void CallEvents(string EventName, EventArguments Args)

@@ -16,6 +16,7 @@ namespace Engineer.Engine
         private int _CurrentIndex;
         private Color _Paint;
         private TileCollection _Collection;
+        private List<Tile> _SubTiles;
         public bool Modified
         {
             get
@@ -31,17 +32,22 @@ namespace Engineer.Engine
         public Color Paint { get => _Paint; set => _Paint = value; }
         [XmlIgnore]
         public TileCollection Collection { get => _Collection; set => _Collection = value; }
+        public List<Tile> SubTiles { get => _SubTiles; set => _SubTiles = value; }
         public Tile() : base()
         {
             this._CurrentIndex = 0;
             this.Type = DrawObjectType.Tile;
             this.Scale = new Mathematics.Vertex(100, 100, 1);
             this.Collection = new TileCollection();
+            this._SubTiles = new List<Tile>();
         }
         public Tile(Tile T) : base(T)
         {
             this._CurrentIndex = 0;
-            this.Collection = new TileCollection(T.Collection);   
+            this.Collection = new TileCollection(T.Collection);
+            this.Collection = new TileCollection(T.Collection);
+            this._SubTiles = new List<Tile>();
+            for (int i = 0; i < T._SubTiles.Count; i++) this._SubTiles.Add(new Tile(T._SubTiles[i]));
         }
         public void SetIndex(int Index)
         {
@@ -49,6 +55,7 @@ namespace Engineer.Engine
         }
         public bool InCollision(DrawObject Collider, Collision2DType Type)
         {
+            if (Collider.ID == this.ID) return false;
             return Collision2D.Check(this.Translation, this.Scale, Collider.Translation, Collider.Scale, Type);
         }
         public int Index()
@@ -58,6 +65,7 @@ namespace Engineer.Engine
     }
     public class TileCollection
     {
+        private string _ID;
         private List<Bitmap> _TileImages;
         [XmlIgnore]
         public List<Bitmap> TileImages
@@ -72,17 +80,21 @@ namespace Engineer.Engine
                 _TileImages = value;
             }
         }
+        public string ID { get => _ID; set => _ID = value; }
         public TileCollection()
         {
+            this._ID = Guid.NewGuid().ToString();
             this._TileImages = new List<Bitmap>();
         }
         public TileCollection(Bitmap TileImage)
         {
+            this._ID = Guid.NewGuid().ToString();
             this._TileImages = new List<Bitmap>();
             this._TileImages.Add(TileImage);
         }
         public TileCollection(TileCollection TC)
         {
+            this._ID = Guid.NewGuid().ToString();
             this._TileImages = new List<Bitmap>(TC._TileImages);
         }
     }

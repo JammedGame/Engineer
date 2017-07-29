@@ -17,6 +17,7 @@ namespace Engineer.Draw
         private byte[] _GridVertices;
         private byte[] _SpriteVertices;
         private byte[] _SpriteUV;
+        private byte[] _SpriteUVFlipped;
         protected ShaderUniformPackage _Globals;
         protected ShaderManager _Manager;
         protected ShaderManager Manager
@@ -31,11 +32,13 @@ namespace Engineer.Draw
                 _Manager = value;
             }
         }
+        protected Dictionary<string, string> _ShaderCodes;
         public ShaderRenderer() : base()
         {
             this._PushedID = "";
             this._Globals = new ShaderUniformPackage();
             this._GridSize = -1;
+            this._ShaderCodes = new Dictionary<string, string>();
             _Globals.SetDefinition("CameraPosition", 3 * sizeof(float), "vec3");
             _Globals.SetDefinition("Projection", 16 * sizeof(float), "mat4");
             _Globals.SetDefinition("ModelView", 16 * sizeof(float), "mat4");
@@ -80,9 +83,7 @@ namespace Engineer.Draw
             {
                 _Manager.Active.Attributes.SetDefinition("V_TextureUV", 2 * sizeof(float), "vec2");
             }
-
             this._NumLights = 0;
-
             _Manager.CompileShader(ID, ShaderCodes[0], ShaderCodes[1], ShaderCodes[2], ShaderCodes[3], ShaderCodes[4]);
         }
         protected virtual void RefreshActiveShader(string Name, string OldValue, string NewValue)
@@ -169,22 +170,28 @@ namespace Engineer.Draw
         private byte[] PackTextures(List<Bitmap> TextureBitmaps, Vertex MaxResolution)
         {
             List<byte> Textures = new List<byte>();
-            for (int i = 0; i < TextureBitmaps.Count; i++)
+            lock (TextureBitmaps)
             {
-                TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size((int)MaxResolution.X, (int)MaxResolution.Y));
-                Textures.AddRange(ShaderMaterialTranslator.ImageToByte(TextureBitmaps[i]));
+                for (int i = 0; i < TextureBitmaps.Count; i++)
+                {
+                    TextureBitmaps[i] = new Bitmap(TextureBitmaps[i], new Size((int)MaxResolution.X, (int)MaxResolution.Y));
+                    Textures.AddRange(ShaderMaterialTranslator.ImageToByte(TextureBitmaps[i]));
+                }
             }
             return Textures.ToArray();
         }
         private int TexturesHighestResolution(List<Bitmap> TextureBitmaps)
         {
             int MaxResolution = 256;
-            for(int i = 0; i < TextureBitmaps.Count; i++)
+            lock (TextureBitmaps)
             {
-                int BiggerSize = 0;
-                if (TextureBitmaps[i].Width > TextureBitmaps[i].Height) BiggerSize = TextureBitmaps[i].Width;
-                else BiggerSize = TextureBitmaps[i].Height;
-                while (BiggerSize > MaxResolution && MaxResolution < 4096) MaxResolution *= 2;
+                for (int i = 0; i < TextureBitmaps.Count; i++)
+                {
+                    int BiggerSize = 0;
+                    if (TextureBitmaps[i].Width > TextureBitmaps[i].Height) BiggerSize = TextureBitmaps[i].Width;
+                    else BiggerSize = TextureBitmaps[i].Height;
+                    while (BiggerSize > MaxResolution && MaxResolution < 4096) MaxResolution *= 2;
+                }
             }
             MaxResolution = (MaxResolution / 4) * (int)Engine.Settings.GraphicsQuality;
             return MaxResolution;
@@ -237,27 +244,11 @@ namespace Engineer.Draw
             _Manager.SetDrawMode(GraphicDrawMode.Lines);
             _Manager.Draw();
         }
-        public override void RenderImage(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update)
+        public override void RenderImage(string ID, List<Bitmap> Textures, int CurrentIndex, bool Update, bool Flipped = false)
         {
             if (!this.IsMaterialReady(ID) || Update)
             {
-                this._Manager.ActivateShader("2D");
-                if (Textures.Count > 1)
-                {
-                    int MaxResolution = TexturesHighestResolution(Textures);
-                    this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, new Vertex(MaxResolution, MaxResolution, 0)) }, true);
-                    this._Manager.Active.Textures.Resolution = new Vertex(MaxResolution, MaxResolution, 0);
-                }
-                else if (Textures.Count > 0)
-                {
-                    Vertex Resolution = new Vertex((Textures[0].Width / 4) * (int)Engine.Settings.GraphicsQuality, (Textures[0].Height / 4) * (int)Engine.Settings.GraphicsQuality, 0);
-                    this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, Textures.Count, PackTextures(Textures, Resolution) }, true);
-                    this._Manager.Active.Textures.Resolution = Resolution;
-                }
-                else
-                {
-                    this.SetMaterial(new object[3] { new string[6] { ID, this._Manager.Active.VertexShader_Code, this._Manager.Active.FragmentShader_Code, null, null, null }, 0, null }, true);
-                }
+                LoadMaterial(ID, new object[] { new string[] {this._ShaderCodes["Vertex2D"], this._ShaderCodes["Fragment2D"], null, null, null}, Textures });
             }
             else this.SetMaterial(new object[3] { new string[6] { ID, null, null, null, null, null }, null, null }, false);
 
@@ -275,6 +266,14 @@ namespace Engineer.Draw
                 _SpriteVertices = ConvertToByteArray(Vertices, 3);
 
                 List<Vertex> UV = new List<Vertex>();
+                UV.Add(new Vertex(1, 0, 0));
+                UV.Add(new Vertex(0, 0, 0));
+                UV.Add(new Vertex(1, 1, 0));
+                UV.Add(new Vertex(1, 1, 0));
+                UV.Add(new Vertex(0, 0, 0));
+                UV.Add(new Vertex(0, 1, 0));
+                _SpriteUVFlipped = ConvertToByteArray(UV, 2);
+                UV = new List<Vertex>();
                 UV.Add(new Vertex(0, 0, 0));
                 UV.Add(new Vertex(1, 0, 0));
                 UV.Add(new Vertex(0, 1, 0));
@@ -284,14 +283,45 @@ namespace Engineer.Draw
                 _SpriteUV = ConvertToByteArray(UV, 2);
             }
 
+            _Manager.ActivateShader(ID);
+
             _Manager.Active.Attributes.SetData("V_Vertex", 6 * 3 * sizeof(float), _SpriteVertices);
-            _Manager.Active.Attributes.SetData("V_TextureUV", 6 * 2 * sizeof(float), _SpriteUV);
+            if (Flipped) _Manager.Active.Attributes.SetData("V_TextureUV", 6 * 2 * sizeof(float), _SpriteUVFlipped);
+            else _Manager.Active.Attributes.SetData("V_TextureUV", 6 * 2 * sizeof(float), _SpriteUV);
 
             if (!_Manager.Active.Uniforms.Exists("Index")) _Manager.Active.Uniforms.SetDefinition("Index", sizeof(int), "int");
             _Manager.Active.Uniforms.SetData("Index", BitConverter.GetBytes(CurrentIndex));
 
             _Manager.SetDrawMode(GraphicDrawMode.Triangles);
-            _Manager.Draw();
+            if(_Manager.Active.ShaderID == ID) _Manager.Draw();
+        }
+        public override void LoadMaterial(string ID, object Data)
+        {
+            object[] DataArgs = (object[])Data;
+            string[] ShaderCodes = (string[])DataArgs[0];
+            List<Bitmap> Textures = (List<Bitmap>)DataArgs[1];
+            this._Manager.ActivateShader(ID);
+            if (!this._Manager.ShaderExists(ID))
+            {
+                this._Manager.AddShader(ID);
+                this._Manager.CompileShader(ID, this._ShaderCodes["Vertex2D"], this._ShaderCodes["Fragment2D"]);
+            }
+            if (Textures.Count > 1)
+            {
+                int MaxResolution = TexturesHighestResolution(Textures);
+                this.SetMaterial(new object[3] { new string[6] { ID, ShaderCodes[0], ShaderCodes[1], ShaderCodes[2], ShaderCodes[3], ShaderCodes[4] }, Textures.Count, PackTextures(Textures, new Vertex(MaxResolution, MaxResolution, 0)) }, true);
+                this._Manager.Active.Textures.Resolution = new Vertex(MaxResolution, MaxResolution, 0);
+            }
+            else if (Textures.Count > 0)
+            {
+                Vertex Resolution = new Vertex((Textures[0].Width / 4) * (int)Engine.Settings.GraphicsQuality, (Textures[0].Height / 4) * (int)Engine.Settings.GraphicsQuality, 0);
+                this.SetMaterial(new object[3] { new string[6] { ID, ShaderCodes[0], ShaderCodes[1], ShaderCodes[2], ShaderCodes[3], ShaderCodes[4] }, Textures.Count, PackTextures(Textures, Resolution) }, true);
+                this._Manager.Active.Textures.Resolution = Resolution;
+            }
+            else
+            {
+                this.SetMaterial(new object[3] { new string[6] { ID, ShaderCodes[0], ShaderCodes[1], ShaderCodes[2], ShaderCodes[3], ShaderCodes[4] }, 0, null }, true);
+            }
         }
         public override void RenderGeometry(List<Vertex> Vertices, List<Vertex> Normals, List<Vertex> TexCoords, List<Face> Faces, bool Update)
         {
@@ -321,6 +351,14 @@ namespace Engineer.Draw
         public override void PopPreferences()
         {
             if (this._PushedID != "") _Manager.ActivateShader(this._PushedID);
+        }
+        public override void DestroyMaterial(string ID)
+        {
+            if(this._Manager.ShaderExists(ID)) this._Manager.DeleteShader(ID);
+        }
+        public override void PreLoad2DMaterial(string ID, object Data)
+        {
+            LoadMaterial(ID, new object[] { new string[] { this._ShaderCodes["Vertex2D"], this._ShaderCodes["Fragment2D"], null, null, null }, Data });
         }
     }
 }

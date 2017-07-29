@@ -9,8 +9,8 @@ namespace Engineer.Mathematics
     public class MatrixTransformer
     {
         private int _MatrixMode;
-        private float[] _PushedProjectionMatrix;
-        private float[] _PushedModelViewMatrix;
+        private List<float[]> _PushedProjectionMatrix;
+        private List<float[]> _PushedModelViewMatrix;
         private float[] _ProjectionMatrix;
         private float[] _ModelViewMatrix;
         public float[] ProjectionMatrix
@@ -44,10 +44,8 @@ namespace Engineer.Mathematics
             MTIdentity(ref this._ModelViewMatrix);
             this._ProjectionMatrix = new float[16];
             MTIdentity(ref this._ProjectionMatrix);
-            this._PushedModelViewMatrix = new float[16];
-            MTIdentity(ref this._PushedModelViewMatrix);
-            this._PushedProjectionMatrix = new float[16];
-            MTIdentity(ref this._PushedProjectionMatrix);
+            this._PushedModelViewMatrix = new List<float[]>();
+            this._PushedProjectionMatrix = new List<float[]>();
         }
         private void MTFrustum(ref float[] Matrix, float Left, float Right, float Bottom, float Top, float ZNear, float ZFar)
         {
@@ -172,13 +170,57 @@ namespace Engineer.Mathematics
         }
         public void PushMatrix()
         {
-            if (_MatrixMode == 1) Array.Copy(ModelViewMatrix, _PushedModelViewMatrix, 16);
-            else Array.Copy(ProjectionMatrix, _PushedProjectionMatrix, 16);
+            float[] _PushedMatrix = new float[16];
+            if (_MatrixMode == 1)
+            {
+                Array.Copy(ModelViewMatrix, _PushedMatrix, 16);
+                this._PushedModelViewMatrix.Insert(0, _PushedMatrix);
+            }
+            else
+            {
+                Array.Copy(ProjectionMatrix, _PushedMatrix, 16);
+                this._PushedProjectionMatrix.Insert(0, _PushedMatrix);
+            }
         }
         public void PopMatrix()
         {
-            if (_MatrixMode == 1) Array.Copy(_PushedModelViewMatrix, ModelViewMatrix, 16);
-            else Array.Copy(_PushedProjectionMatrix, ProjectionMatrix, 16);
+            if (_MatrixMode == 1)
+            {
+                if (_PushedModelViewMatrix.Count > 0)
+                {
+                    Array.Copy(_PushedModelViewMatrix[0], ModelViewMatrix, 16);
+                    _PushedModelViewMatrix.RemoveAt(0);
+                }
+                else MTIdentity(ref this._ModelViewMatrix);
+            }
+            else
+            {
+                if (_PushedProjectionMatrix.Count > 0)
+                {
+                    Array.Copy(_PushedProjectionMatrix[0], ProjectionMatrix, 16);
+                    _PushedProjectionMatrix.RemoveAt(0);
+                }
+                else MTIdentity(ref this._ProjectionMatrix);
+            }
+        }
+        public void ReadMatrix()
+        {
+            if (_MatrixMode == 1)
+            {
+                if (_PushedModelViewMatrix.Count > 0)
+                {
+                    Array.Copy(_PushedModelViewMatrix[0], ModelViewMatrix, 16);
+                }
+                else MTIdentity(ref this._ModelViewMatrix);
+            }
+            else
+            {
+                if (_PushedProjectionMatrix.Count > 0)
+                {
+                    Array.Copy(_PushedProjectionMatrix[0], ProjectionMatrix, 16);
+                }
+                else MTIdentity(ref this._ProjectionMatrix);
+            }
         }
         public void MultMatrix(float[] Matrix)
         {

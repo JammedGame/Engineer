@@ -48,6 +48,7 @@
     <Compile Include="DrawObject_Background.cs" />
     <Compile Include="DrawObject_Camera.cs" />
     <Compile Include="DrawObject_Tile.cs" />
+    <Compile Include="DrawObject_TileMap.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="SceneObject_Drawn.cs" />
