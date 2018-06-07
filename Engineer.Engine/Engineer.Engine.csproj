@@ -68,6 +68,8 @@
     <Compile Include="SceneObject_Sound.cs" />
     <Compile Include="ScriptArgumentStructures.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Updated\DrawObject.cs" />
+    <Compile Include="Updated\SceneObject.cs" />
     <Compile Include="ValueHolder.cs" />
   </ItemGroup>
   <ItemGroup>
